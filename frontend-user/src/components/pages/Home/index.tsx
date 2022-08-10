@@ -3,6 +3,7 @@ import DefaultLayout from "../../layouts/DefaultLayout";
 import Foreword from "./Foreword";
 import HelpUs from "./HelpUs";
 import JobOpportunities from "./JobOpportunities";
+import Offer from "./Offer";
 import SelectionProcess from "./SelectionProcess";
 import useStyles from "./styles";
 
@@ -83,6 +84,7 @@ const Home = () => {
       <JobOpportunities jobsRef={jobsRef} />
       <SelectionProcess processRef={processRef} />
       <HelpUs />
+      <Offer offerRef={offerRef} />
 
       <div ref={contactRef}></div>
 
