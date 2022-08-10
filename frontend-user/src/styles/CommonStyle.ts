@@ -5,29 +5,19 @@ const useCommonStyle = makeStyles((theme: any) => {
     DefaultLayout: {
       minHeight: "100vh",
       fontFamily: "Plus Jakarta Sans",
+      background: "url(/images/bg-landing.png)",
+      backgroundRepeat: 'no-repeat',
+      backgroundSize:'cover'
     },
-    fbSection: {
+    section: {
       width: "100%",
-      color: "#fff",
-      "&>div": {
-        height: "100%",
-      },
+      maxWidth: "90rem",
+      margin: "0 auto",
     },
     fbContainer: {
       width: "100%",
       maxWidth: "90rem",
       margin: "0 auto",
-    },
-    fbGridBase: {
-      display: "grid",
-      gridTemplateColumns: "repeat(12, 1fr)",
-      gap: "2rem",
-      [theme.breakpoints.only("xs")]: {
-        display: "flex",
-        flexDirection: "column",
-        padding: "0 28px",
-        maxWidth: "calc(100% - 56px)",
-      },
     },
     bgBody: {
       // backgroundImage: "url(/images/bg_dashboard.png)",
