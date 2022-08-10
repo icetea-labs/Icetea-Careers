@@ -3,43 +3,51 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme: any) => {
   return {
     footer: {
-      background: "#000",
+      // background: "#000",
       width: "100%",
-      margin: "0 auto",
     },
     footerWrap: {
       margin: "0 auto",
-      maxWidth: "1440px",
+      maxWidth: "1200px",
       background: "url(/images/bg-footer.png)",
       backgroundSize: "contain",
       width: "100%",
     },
     footerContainer: {
       color: "#fff",
-      padding: "174px 0 46px",
+      padding: "80px 0 60px",
       display: "flex",
     },
+    logo: {
+      width: 200,
+    },
     socials: {
-      maxWidth: 320,
-      marginLeft: 160,
+      maxWidth: 300,
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
+      font: theme.typography.nn41424.font,
+      "& p": {
+        margin: 0,
+      },
       "& .description": {
-        margin: "18px 0 12px",
-        font: "14px/24px Plus Jakarta Sans",
-        maxWidth: 330,
+        margin: "8px 0 20px",
+        maxWidth: 290,
+      },
+      "& .mail": {
+        marginTop: 20,
+        marginBottom: 8,
+        color: theme.palette.primary.main,
       },
     },
     socialList: {
       width: "100%",
       display: "flex",
-      gap: 8,
+      gap: 12,
     },
     socialItem: {
-      width: 32,
-      height: 32,
-      background: "#fff",
+      width: 20,
+      height: 20,
       borderRadius: "50%",
       display: "flex",
       alignItems: "center",
@@ -48,76 +56,68 @@ const useStyles = makeStyles((theme: any) => {
       color: "#fff",
       transition: "0.5s all",
       "& img": {
-        width: 18,
-        height: 18,
+        width: 20,
+        height: 20,
       },
       "&:hover": {
-        background: theme.palette.primary.main,
         transition: "0.5s all",
-        "& img": {
-          color: "#fff",
-        },
-      },
-
-      "& span": {
-        color: "#fff",
-        font: "14px/24px Plus Jakarta Sans",
       },
     },
     navigation: {
       display: "flex",
       marginTop: 10,
-      marginLeft: "15%",
+      marginLeft: "auto",
+      font: theme.typography.nn41424.font,
     },
     navigationGroup: {
       display: "flex",
       flexDirection: "column",
       minWidth: 150,
+      marginLeft: 40,
       "& .group-label": {
-        margin: '0 0 16px',
-        font: "normal normal 600 14px/24px Plus Jakarta Sans",
+        margin: "0 0 4px",
+        color: "rgba(255, 255, 255, 0.5)",
+        letterSpacing: 1,
+        font: "normal normal 600 12px/16px Plus Jakarta Sans",
       },
     },
     navigationItem: {
-      marginTop: 8,
-      font: "14px/24px Plus Jakarta Sans",
+      marginTop: 12,
       color: "#fff",
       textDecoration: "none",
       "&:hover": {
         textDecoration: "underline",
         transition: "0.5s all",
+        cursor: "pointer",
+      },
+    },
+    hr: {
+      display: "grid",
+      gridTemplateColumns: "100px 120px 1fr",
+      gap: 12,
+      marginTop: 10,
+      "& .hr-name": {
+        color: theme.palette.primary.main,
+      },
+      "& .hr-tele": {
+        display: "flex",
+        alignItems: "center",
+        "& img": {
+          height: 12,
+          marginRight: 6,
+        },
       },
     },
     copyRight: {
       color: "#AEAEAE",
-      font: "14px/24px Plus Jakarta Sans",
+      borderTop: "1px solid rgba(255, 255, 255, 0.2)",
+      font: theme.typography.nn41424.font,
+      padding: "12px 0",
       textAlign: "center",
     },
 
-    [theme.breakpoints.down("lg")]: {
-      navigation: {
-        marginLeft: "5%",
-      },
-      socials: {
-        marginLeft: "10%",
-      },
-    },
-    [theme.breakpoints.down("768")]: {
-      footerWrap: {
-        backgroundSize: "cover",
-      },
-      footerContainer: {
-        flexDirection: "column",
-        padding: "60px 60px 40px",
-      },
-      navigation: {
-        marginLeft: 0,
-        marginTop: 40,
-      },
-      socials: {
-        marginLeft: 0,
-      },
-    },
+    [theme.breakpoints.down("lg")]: {},
+    [theme.breakpoints.down("768")]: {},
     [theme.breakpoints.only("xs")]: {
       footerWrap: {
         paddingBottom: 8,

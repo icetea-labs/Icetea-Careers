@@ -8,15 +8,14 @@ type HeaderProps = {
 
 type MenuItemProps = {
   label: string;
-  value: "about" | "features" | "usecase" | "overview" | "roadmap";
+  value: "jobs" | "process" | "offer" | "contact";
 };
 
 const menu: Array<MenuItemProps> = [
-  { label: "About Firebird", value: "about" },
-  { label: "Features", value: "features" },
-  { label: "Use cases", value: "usecase" },
-  { label: "Overview", value: "overview" },
-  { label: "Roadmap", value: "roadmap" },
+  { label: "List job", value: "jobs" },
+  { label: "Process", value: "process" },
+  { label: "What we offer", value: "offer" },
+  { label: "Contact us", value: "contact" },
 ];
 
 const Header = (props: HeaderProps) => {
@@ -33,7 +32,11 @@ const Header = (props: HeaderProps) => {
     return (
       <div className={styles.header}>
         <a href="/">
-          <img src="/images/logo-text.svg" className="header-logo" alt="" />
+          <img
+            src="/images/logo-text-horizontal-white.svg"
+            className="header-logo"
+            alt=""
+          />
         </a>
         <div className={styles.headerMenu}>
           {menu.map((item: MenuItemProps, index: number) => (
@@ -46,9 +49,19 @@ const Header = (props: HeaderProps) => {
             </div>
           ))}
         </div>
-        <a className={styles.btnDownload} href="/">
-          Download Whitepaper
-        </a>
+        <div className={styles.socials}>
+          {socialData?.map((item: socialProps, index: number) => (
+            <a
+              key={index}
+              href={item?.url}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.socialItem}
+            >
+              <img src={item?.imgUrl} alt="" />
+            </a>
+          ))}
+        </div>
       </div>
     );
   };
@@ -56,7 +69,11 @@ const Header = (props: HeaderProps) => {
   const renderHeaderMobile = () => {
     return (
       <div className={styles.headerMobile}>
-        <img src="/images/logo-text.svg" className="header-logo" alt="" />
+        <img
+          src="/images/logo-text-horizontal-white.svg"
+          className="header-logo"
+          alt=""
+        />
         <img
           src="/images/toggle-header.svg"
           className="header-toggle"
@@ -94,18 +111,12 @@ const Header = (props: HeaderProps) => {
                 {item?.label}
               </div>
             ))}
-            <a className={styles.btnDownload + " button-download"} href="/">
-              Download Whitepaper
-            </a>
-            <div className="popup-community">
-              <p className="popup-community-title">COMMUNITY</p>
-              <div className="popup-community-socials">
-                {socialData.map((item: socialProps, index: number) => (
-                  <a key={index} href={item?.url} className={styles.socialItem}>
-                    <img src={item?.imgUrl} alt="" />
-                  </a>
-                ))}
-              </div>
+            <div className={styles.socials}>
+              {socialData?.map((item: socialProps, index: number) => (
+                <a key={index} href={item?.url} className={styles.socialItem}>
+                  <img src={item?.imgUrl} alt="" />
+                </a>
+              ))}
             </div>
           </div>
         </div>

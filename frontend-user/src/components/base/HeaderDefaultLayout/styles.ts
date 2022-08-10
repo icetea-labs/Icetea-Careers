@@ -4,32 +4,31 @@ const useStyles = makeStyles((theme: any) => {
   return {
     header: {
       width: "100%",
-      position: "absolute",
+      maxWidth: 1200,
+      margin: "0 auto",
       zIndex: 20,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
       height: 80,
-      maxWidth: "90rem",
-      // padding: "0 20px",
-      left: "50%",
-      transform: "translate(-50%)",
       "& .header-logo": {
-        height: 40,
-        marginLeft: 20,
+        height: 28,
       },
     },
     headerMenu: {
       width: "100%",
       display: "flex",
       justifyContent: "center",
+      gap: 20,
       color: "#fff",
       fontWeight: 500,
       "& .menu-item": {
-        font: "normal normal 400 18px/32px Plus Jakarta Sans",
+        width: 120,
+        padding: "20px 0",
+        textAlign: "center",
+        font: theme.typography.nn41424.font,
         color: "#fff",
         cursor: "pointer",
-        padding: "8px 16px",
         textDecoration: "none",
         transition: "background-size 0.3s ease-in-out",
         backgroundSize: "0%",
@@ -43,31 +42,6 @@ const useStyles = makeStyles((theme: any) => {
         },
       },
     },
-    btnDownload: {
-      height: 48,
-      marginRight: 20,
-      display: "flex",
-      alignItems: "center",
-      whiteSpace: "nowrap",
-      textTransform: "uppercase",
-      letterSpacing: "1px",
-      font: "normal normal 700 12px/18px Plus Jakarta Sans",
-      padding: "0 34px",
-      color: "#fff",
-      background: theme.palette.primary.main,
-      borderRadius: 60,
-      textDecoration: "none",
-      transition: "0.5s all",
-      "&:hover": {
-        letterSpacing: "1.5px",
-        boxShadow: "0 0 35px #EB522F",
-        transition: "0.5s all",
-      },
-      [theme.breakpoints.down("lg")]: {
-        marginRight: 20,
-      },
-    },
-
     headerMobile: {
       display: "none",
     },
@@ -121,52 +95,27 @@ const useStyles = makeStyles((theme: any) => {
           },
         },
       },
-      "& .popup-community": {
-        marginBottom: 60,
-        marginTop: "auto",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        "&-title": {
-          color: theme.palette.primary.main,
-          font: "normal normal 400 14px/24px Plus Jakarta Sans",
-        },
-        "&-socials": {
-          display: "flex",
-          justifyContent: "center",
-          gap: 12,
-        },
-      },
+    },
+    socials: {
+      display: "flex",
+      width: 155,
     },
     socialItem: {
-      width: 32,
-      height: 32,
-      background: "#fff",
-      borderRadius: "50%",
+      width: 20,
+      height: 20,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       textDecoration: "none",
       color: "#fff",
       transition: "0.5s all",
-      "& img": {
-        width: 18,
-        height: 18,
-      },
-      "&:hover": {
-        background: theme.palette.primary.main,
-        transition: "0.5s all",
-        "& img": {
-          color: "#fff",
-        },
+      marginLeft: 12,
+      "&:first-child": {
+        marginLeft: 0,
       },
     },
 
     [theme.breakpoints.down("lg")]: {
-      btnDownload: {
-        height: 40,
-        padding: "0 20px",
-      },
       headerMenu: {
         "& .menu-item": {
           fontSize: 16,
@@ -179,10 +128,6 @@ const useStyles = makeStyles((theme: any) => {
           height: 36,
           marginLeft: 12,
         },
-      },
-      btnDownload: {
-        height: 36,
-        marginRight: 12,
       },
       headerMenu: {
         "& .menu-item": {

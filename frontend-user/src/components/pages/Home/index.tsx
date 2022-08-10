@@ -1,5 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import DefaultLayout from "../../layouts/DefaultLayout";
+import Foreword from "./Foreword";
+import HelpUs from "./HelpUs";
+import JobOpportunities from "./JobOpportunities";
+import SelectionProcess from "./SelectionProcess";
 import useStyles from "./styles";
 
 const scrollOptions: any = {
@@ -9,11 +13,12 @@ const scrollOptions: any = {
 
 const Home = () => {
   const styles = useStyles();
-  const aboutRef = useRef<HTMLDivElement | null>(null);
-  const featuresRef = useRef<HTMLDivElement | null>(null);
-  const usecasesRef = useRef<HTMLDivElement | null>(null);
-  const overviewRef = useRef<HTMLDivElement | null>(null);
-  const roadmapRef = useRef<HTMLDivElement | null>(null);
+  const jobsRef = useRef<HTMLDivElement | null>(null);
+  const processRef = useRef<HTMLDivElement | null>(null);
+  const offerRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLDivElement | null>(null);
+
+  const [inputSearch, setInputSearch] = useState<string>("");
 
   const onScrollToTop = () => {
     window.scrollTo({
@@ -23,33 +28,36 @@ const Home = () => {
     });
   };
 
-  const onScrollToRef = (
-    name: "about" | "features" | "usecase" | "overview" | "roadmap"
-  ) => {
+  const onScrollToRef = (name: "jobs" | "process" | "offer" | "contact") => {
     switch (name) {
-      case "about":
-        aboutRef?.current?.scrollIntoView(scrollOptions);
+      case "jobs":
+        jobsRef?.current?.scrollIntoView(scrollOptions);
         break;
-      case "features":
+      case "process":
         window.scrollTo({
-          top: (featuresRef?.current?.offsetTop || 0) + 100,
+          top: (processRef?.current?.offsetTop || 0) + 100,
           left: 0,
           behavior: "smooth",
         });
         break;
-      case "usecase":
-        usecasesRef?.current?.scrollIntoView(scrollOptions);
+      case "offer":
+        offerRef?.current?.scrollIntoView(scrollOptions);
         break;
-      case "overview":
-        overviewRef?.current?.scrollIntoView(scrollOptions);
-        break;
-      case "roadmap":
-        roadmapRef?.current?.scrollIntoView(scrollOptions);
+      case "contact":
+        contactRef?.current?.scrollIntoView(scrollOptions);
         break;
 
       default:
         break;
     }
+  };
+
+  const onSearching = (e: any) => {
+    setInputSearch(e.target.value);
+  };
+
+  const handleSearch = () => {
+    console.log("inputSearch", inputSearch);
   };
 
   //#region RENDER
@@ -66,9 +74,19 @@ const Home = () => {
 
   return (
     <DefaultLayout onScrollToRef={onScrollToRef}>
-      Home
+      <Foreword
+        inpuSearch={inputSearch}
+        onSearching={onSearching}
+        handleSearch={handleSearch}
+      />
 
-      {renderBtnScrollToTop()}
+      <JobOpportunities jobsRef={jobsRef} />
+      <SelectionProcess processRef={processRef} />
+      <HelpUs />
+
+      <div ref={contactRef}></div>
+
+      {/* {renderBtnScrollToTop()} */}
     </DefaultLayout>
   );
 };

@@ -5,39 +5,45 @@ import useStyles from "./styles";
 export type socialProps = {
   url: string;
   imgUrl: string;
-  imgUrlHover: string;
+  imgHoverUrl: string;
   label: string;
 };
 export const socialData: Array<socialProps> = [
   {
-    url: "/",
-    imgUrl: "/images/socials/telegram-ann.svg",
-    imgUrlHover: "/images/socials/annoucement-white.svg",
-    label: "Telegram Annoucement",
+    url: "https://www.facebook.com/",
+    imgUrl: "/images/socials/facebook.svg",
+    imgHoverUrl: "/images/socials/facebook-blue.svg",
+    label: "Facebook",
   },
   {
-    url: "/",
-    imgUrl: "/images/socials/medium.svg",
-    imgUrlHover: "/images/socials/medium-white.svg",
-    label: "Medium",
+    url: "https://www.linkedin.com/",
+    imgUrl: "/images/socials/linkedin.svg",
+    imgHoverUrl: "/images/socials/linkedin-blue.svg",
+    label: "Linkedin",
+  },
+];
+
+type teamProps = {
+  name: string;
+  phone: string;
+  telegram: string;
+};
+
+const team: Array<teamProps> = [
+  {
+    name: "Ms. Hong Anh",
+    phone: "+84 38 646 3895",
+    telegram: "@anhngo38",
   },
   {
-    url: "/",
-    imgUrl: "/images/socials/telegram.svg",
-    imgUrlHover: "/images/socials/telegram-white.svg",
-    label: "Telegram Official Group",
+    name: "Ms. Giang",
+    phone: "+84 94 313 9421",
+    telegram: "@PTHGiang2497",
   },
   {
-    url: "/",
-    imgUrl: "/images/socials/discord.svg",
-    imgUrlHover: "/images/socials/discord-white.svg",
-    label: "Discord",
-  },
-  {
-    url: "/",
-    imgUrl: "/images/socials/twitter.svg",
-    imgUrlHover: "/images/socials/twitter-white.svg",
-    label: "Official Twitter",
+    name: "Ms. Phuong",
+    phone: "+84 39 344 4548",
+    telegram: "@phoebehp",
   },
 ];
 
@@ -48,23 +54,21 @@ type FooterProps = {
 const Footer = (props: FooterProps) => {
   const styles = useStyles();
   const { onScrollToRef } = props;
-  const [hover, setHover] = useState<Array<boolean>>([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [hover, setHover] = useState<Array<boolean>>([false, false, false]);
 
   const onHoverSocialItem = (index: number) => {
-    let newHover = [...hover];
-    newHover[index] = true;
-    setHover(newHover);
+    setHover((prevState: any) => {
+      let newHover = [...prevState];
+      newHover[index] = true;
+      return newHover;
+    });
   };
   const onLeaveSocialItem = (index: number) => {
-    let newHover = [...hover];
-    newHover[index] = false;
-    setHover(newHover);
+    setHover((prevState: any) => {
+      let newHover = [...prevState];
+      newHover[index] = false;
+      return newHover;
+    });
   };
 
   return (
@@ -72,28 +76,34 @@ const Footer = (props: FooterProps) => {
       <div className={styles.footerWrap}>
         <div className={styles.footerContainer}>
           <div className={styles.socials}>
-            <img src="/images/logo-text.svg" className={styles.logo} alt="" />
+            <img
+              src="/images/logo-text-horizontal-white.svg"
+              className={styles.logo}
+              alt=""
+            />
+            <p className="mail">ta@icetea.io</p>
+            <p>+84 246 658 5248</p>
             <p className="description">
-              Follow us on Firebird official groups and channels so you won’t
-              miss anything!
+              11th Floor, IPH Tower, 241 Xuan Thuy Street, Cau Giay, Hanoi
             </p>
             <div className={styles.socialList}>
               {socialData.map((item: socialProps, index: number) => (
                 <Tooltip
                   key={index}
-                  // classes={{ tooltip: styles.tooltip }}
                   title={item?.label}
                   arrow
-                  placement="top"
+                  placement="bottom"
                 >
                   <a
                     href={item?.url}
                     className={styles.socialItem}
+                    target="_blank"
+                    rel="noreferrer"
                     onMouseEnter={() => onHoverSocialItem(index)}
                     onMouseLeave={() => onLeaveSocialItem(index)}
                   >
                     <img
-                      src={hover[index] ? item?.imgUrlHover : item?.imgUrl}
+                      src={hover[index] ? item?.imgHoverUrl : item?.imgUrl}
                       alt=""
                     />
                   </a>
@@ -103,46 +113,59 @@ const Footer = (props: FooterProps) => {
           </div>
           <div className={styles.navigation}>
             <div className={styles.navigationGroup}>
-              <p className="group-label">BUY PKF</p>
-              <a href="/" className={styles.navigationItem}>
-                Uniswap
+              <p className="group-label">ABOUT US</p>
+              <a
+                href="/"
+                target="_blank"
+                rel="noreferrer"
+                className={styles.navigationItem}
+              >
+                Our services
               </a>
-              <a href="/" className={styles.navigationItem}>
-                Gate.io
-              </a>
-              <a href="/" className={styles.navigationItem}>
-                Ascendex
-              </a>
-              <a href="/" className={styles.navigationItem}>
-                Kucoin
+              <a
+                href="/"
+                target="_blank"
+                rel="noreferrer"
+                className={styles.navigationItem}
+              >
+                Blog
               </a>
             </div>
             <div className={styles.navigationGroup}>
               <p className="group-label">SITEMAP</p>
               <div
-                onClick={() => onScrollToRef("about")}
+                onClick={() => onScrollToRef && onScrollToRef("jobs")}
                 className={styles.navigationItem}
               >
-                About Firebird
+                List Job
               </div>
               <div
-                onClick={() => onScrollToRef("features")}
+                onClick={() => onScrollToRef && onScrollToRef("process")}
                 className={styles.navigationItem}
               >
-                Features
+                Selection Process
               </div>
               <div
-                onClick={() => onScrollToRef("usecase")}
+                onClick={() => onScrollToRef && onScrollToRef("offer")}
                 className={styles.navigationItem}
               >
-                Use cases
+                What we offer
               </div>
-              <div
-                onClick={() => onScrollToRef("overview")}
-                className={styles.navigationItem}
-              >
-                Overview
-              </div>
+            </div>
+            <div className={styles.navigationGroup}>
+              <p className="group-label">TALENT ACQUISITION TEAM</p>
+              {team.map((hr: teamProps, index: number) => {
+                return (
+                  <div className={styles.hr} key={index}>
+                    <span className="hr-name">{hr?.name}</span>
+                    <span>{hr?.phone}</span>
+                    <div className="hr-tele">
+                      <img src="/images/socials/telegram.svg" alt="" />
+                      <span>{hr?.telegram || "N/A"}</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

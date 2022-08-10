@@ -1,8 +1,8 @@
 import React from "react";
 import { useCommonStyle } from "../../../styles";
-import HeaderDefaultLayout from "../../base/MainDefaultLayout";
+import HeaderDefaultLayout from "../../base/HeaderDefaultLayout";
 import MainDefaultLayout from "../../base/MainDefaultLayout";
-import FooterDefaultLayout from "../../base/MainDefaultLayout";
+import FooterDefaultLayout from "../../base/FooterDefaultLayout";
 
 type LayoutProps = {
   children?: any;

@@ -1,0 +1,22 @@
+import { useCommonStyle } from "../../../../styles";
+import useStyles from "./styles";
+
+const HelpUs = (props: any) => {
+  const styles = useStyles();
+  const commonStyles = useCommonStyle();
+
+  return (
+    <div className={styles.helpus}>
+      <div className={commonStyles.section}>
+        <div className={styles.helpusContainer}>
+          <p className="helpus-title">
+            Help us make sustainable impacts through decentralization
+            technologies.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HelpUs;
