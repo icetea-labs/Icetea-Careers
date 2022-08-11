@@ -6,17 +6,16 @@ import FooterDefaultLayout from "../../base/FooterDefaultLayout";
 
 type LayoutProps = {
   children?: any;
-  onScrollToRef: any;
 };
 const DefaultLayout = (props: LayoutProps) => {
   const commonStyle = useCommonStyle();
-  const { children, onScrollToRef } = props;
+  const { children } = props;
 
   return (
     <div className={commonStyle.DefaultLayout}>
-      <HeaderDefaultLayout onScrollToRef={onScrollToRef} />
+      <HeaderDefaultLayout />
       <MainDefaultLayout>{children}</MainDefaultLayout>
-      <FooterDefaultLayout onScrollToRef={onScrollToRef} />
+      <FooterDefaultLayout />
     </div>
   );
 };

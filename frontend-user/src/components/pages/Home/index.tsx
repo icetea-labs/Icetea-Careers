@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import DefaultLayout from "../../layouts/DefaultLayout";
+import LandingLayout from "../../layouts/LandingLayout";
 import Foreword from "./Foreword";
 import HelpUs from "./HelpUs";
 import JobOpportunities from "./JobOpportunities";
@@ -75,7 +75,7 @@ const Home = () => {
   //#endregion RENDER
 
   return (
-    <DefaultLayout onScrollToRef={onScrollToRef}>
+    <LandingLayout onScrollToRef={onScrollToRef}>
       <Foreword
         inpuSearch={inputSearch}
         onSearching={onSearching}
@@ -91,7 +91,7 @@ const Home = () => {
       <div ref={contactRef}></div>
 
       {/* {renderBtnScrollToTop()} */}
-    </DefaultLayout>
+    </LandingLayout>
   );
 };
 

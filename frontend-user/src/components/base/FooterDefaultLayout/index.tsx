@@ -48,7 +48,7 @@ const team: Array<teamProps> = [
 ];
 
 type FooterProps = {
-  onScrollToRef: any;
+  onScrollToRef?: any;
 };
 
 const Footer = (props: FooterProps) => {

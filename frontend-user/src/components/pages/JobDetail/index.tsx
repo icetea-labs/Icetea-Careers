@@ -14,7 +14,7 @@ for (let i = 0; i < 10; i++) {
   });
 }
 
-const Jobs: FunctionComponent = () => {
+const JobDetail: FunctionComponent = () => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
 
@@ -30,8 +30,7 @@ const Jobs: FunctionComponent = () => {
       <div className={styles.jobs}>
         <div className={commonStyles.section}>
           <div className={styles.jobsContainer}>
-            <p className="jobs-title">Job Opportunities</p>
-            <ListJob listJob={fakeJobs} />
+            <p className="jobs-title">Job Detail</p>
           </div>
         </div>
       </div>
@@ -39,4 +38,4 @@ const Jobs: FunctionComponent = () => {
   );
 };
 
-export default Jobs;
+export default JobDetail;
