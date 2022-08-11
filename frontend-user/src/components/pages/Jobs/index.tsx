@@ -1,4 +1,5 @@
-import { FunctionComponent, useEffect } from "react";
+import { Pagination, PaginationItem } from "@mui/material";
+import { FunctionComponent, useEffect, useState } from "react";
 import { useCommonStyle } from "../../../styles";
 import ListJob from "../../base/ListJob";
 import DefaultLayout from "../../layouts/DefaultLayout";
@@ -18,12 +19,43 @@ const Jobs: FunctionComponent = () => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
 
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, []);
+
+  const renderPagination = () => {
+    if (totalPage <= 1) return <></>;
+
+    return (
+      <Pagination
+        count={totalPage}
+        className={styles.pagination}
+        onChange={(e: any, value: any) => {
+          if (!loading) {
+            setCurrentPage(value);
+          }
+        }}
+        page={currentPage}
+        renderItem={(item: any) => (
+          <PaginationItem
+            className="pagination-item"
+            components={{
+              previous: () => <img src="/images/icon-previous.svg" />,
+              next: () => <img src="/images/icon-next.svg" />,
+            }}
+            {...item}
+          />
+        )}
+      />
+    );
+  };
 
   return (
     <DefaultLayout>
@@ -32,6 +64,7 @@ const Jobs: FunctionComponent = () => {
           <div className={styles.jobsContainer}>
             <p className="jobs-title">Job Opportunities</p>
             <ListJob listJob={fakeJobs} />
+            {renderPagination()}
           </div>
         </div>
       </div>
