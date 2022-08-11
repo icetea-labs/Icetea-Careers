@@ -2,22 +2,19 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme: any) => {
   return {
-    process: {
+    gallery: {
       width: "100%",
-      paddingTop: 120,
+      marginTop: 180,
     },
-    processContainer: {
-      maxWidth: 1040,
+    galleryContainer: {
+      width: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
+      textAlign: "center",
       margin: "0 auto",
       color: "#fff",
-      "& .process-title": {
-        font: theme.typography.nn63248.font,
-        margin: "0 0 40px",
-      },
       "& img": {
         maxWidth: "100%",
       },

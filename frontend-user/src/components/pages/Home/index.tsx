@@ -4,6 +4,7 @@ import Foreword from "./Foreword";
 import HelpUs from "./HelpUs";
 import JobOpportunities from "./JobOpportunities";
 import Offer from "./Offer";
+import PhotoGallery from "./PhotoGallery";
 import SelectionProcess from "./SelectionProcess";
 import useStyles from "./styles";
 
@@ -85,6 +86,7 @@ const Home = () => {
       <SelectionProcess processRef={processRef} />
       <HelpUs />
       <Offer offerRef={offerRef} />
+      <PhotoGallery />
 
       <div ref={contactRef}></div>
 

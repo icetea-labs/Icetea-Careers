@@ -7,7 +7,7 @@ const Offer = (props: any) => {
   const commonStyles = useCommonStyle();
 
   return (
-    <div className={styles.offer}>
+    <div className={styles.offer} ref={props.offerRef}>
       <div className={commonStyles.section}>
         <div className={styles.offerContainer}>
           <p className="offer-title">What we offer</p>
