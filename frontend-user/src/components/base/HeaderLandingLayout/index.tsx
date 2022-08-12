@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { socialData, socialProps } from "../FooterDefaultLayout";
+import { socialData, SocialProps } from "../FooterDefaultLayout";
 import useStyles from "./styles";
 
 type HeaderProps = {
@@ -50,7 +50,7 @@ const HeaderLandingLayout = (props: HeaderProps) => {
           ))}
         </div>
         <div className={styles.socials}>
-          {socialData?.map((item: socialProps, index: number) => (
+          {socialData?.map((item: SocialProps, index: number) => (
             <a
               key={index}
               href={item?.url}
@@ -112,7 +112,7 @@ const HeaderLandingLayout = (props: HeaderProps) => {
               </div>
             ))}
             <div className={styles.socials}>
-              {socialData?.map((item: socialProps, index: number) => (
+              {socialData?.map((item: SocialProps, index: number) => (
                 <a key={index} href={item?.url} className={styles.socialItem}>
                   <img src={item?.imgUrl} alt="" />
                 </a>

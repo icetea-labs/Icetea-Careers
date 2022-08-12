@@ -1,6 +1,5 @@
-import React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
 import createRoutes from "./routes";
 

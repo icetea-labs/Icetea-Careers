@@ -6,15 +6,15 @@ const useCommonStyle = makeStyles((theme: any) => {
       minHeight: "100vh",
       fontFamily: "Plus Jakarta Sans",
       background: "url(/images/bg-default.png)",
-      backgroundRepeat: 'no-repeat',
-      backgroundSize:'cover'
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
     },
     LandingLayout: {
       minHeight: "100vh",
       fontFamily: "Plus Jakarta Sans",
       background: "url(/images/bg-landing.png)",
-      backgroundRepeat: 'no-repeat',
-      backgroundSize:'cover'
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
     },
     section: {
       width: "100%",
@@ -27,10 +27,6 @@ const useCommonStyle = makeStyles((theme: any) => {
       margin: "0 auto",
     },
     bgBody: {
-      // backgroundImage: "url(/images/bg_dashboard.png)",
-      // backgroundRepeat: "no-repeat",
-      // backgroundSize: "100% 555px",
-      // backgroundPositionX: "center",
       position: "relative",
       minHeight: "100vh",
       overflow: "auto",

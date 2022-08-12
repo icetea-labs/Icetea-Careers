@@ -2,13 +2,13 @@ import { Tooltip } from "@mui/material";
 import { useState } from "react";
 import useStyles from "./styles";
 
-export type socialProps = {
+export type SocialProps = {
   url: string;
   imgUrl: string;
   imgHoverUrl: string;
   label: string;
 };
-export const socialData: Array<socialProps> = [
+export const socialData: Array<SocialProps> = [
   {
     url: "https://www.facebook.com/",
     imgUrl: "/images/socials/facebook.svg",
@@ -87,7 +87,7 @@ const Footer = (props: FooterProps) => {
               11th Floor, IPH Tower, 241 Xuan Thuy Street, Cau Giay, Hanoi
             </p>
             <div className={styles.socialList}>
-              {socialData.map((item: socialProps, index: number) => (
+              {socialData.map((item: SocialProps, index: number) => (
                 <Tooltip
                   key={index}
                   title={item?.label}

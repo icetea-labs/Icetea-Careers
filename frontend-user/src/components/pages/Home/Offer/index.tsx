@@ -1,4 +1,4 @@
-import { COMPONENT_ANIMATED, NORMAL_SPEED } from "../../../../constants";
+import { NORMAL_SPEED } from "../../../../constants";
 import { useCommonStyle } from "../../../../styles";
 import useStyles from "./styles";
 

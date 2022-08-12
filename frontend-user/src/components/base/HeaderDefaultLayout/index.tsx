@@ -1,4 +1,4 @@
-import { socialData, socialProps } from "../FooterDefaultLayout";
+import { socialData, SocialProps } from "../FooterDefaultLayout";
 import useStyles from "./styles";
 
 const HeaderDefaultLayout = (props: any) => {
@@ -15,7 +15,7 @@ const HeaderDefaultLayout = (props: any) => {
           />
         </a>
         <div className={styles.socials}>
-          {socialData?.map((item: socialProps, index: number) => (
+          {socialData?.map((item: SocialProps, index: number) => (
             <a
               key={index}
               href={item?.url}

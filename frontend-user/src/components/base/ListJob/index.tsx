@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { COMPONENT_ANIMATED, NORMAL_SPEED } from "../../../constants";
-import { useCommonStyle } from "../../../styles";
 import { ButtonMedium } from "../Button";
 import useStyles from "./styles";
 

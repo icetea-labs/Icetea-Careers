@@ -28,6 +28,8 @@ const Jobs: FunctionComponent = () => {
       top: 0,
       behavior: "smooth",
     });
+    setLoading(false);
+    setTotalPage(1);
   }, []);
 
   const renderPagination = () => {
@@ -47,8 +49,8 @@ const Jobs: FunctionComponent = () => {
           <PaginationItem
             className="pagination-item"
             components={{
-              previous: () => <img src="/images/icon-previous.svg" />,
-              next: () => <img src="/images/icon-next.svg" />,
+              previous: () => <img src="/images/icon-previous.svg" alt="" />,
+              next: () => <img src="/images/icon-next.svg" alt="" />,
             }}
             {...item}
           />
