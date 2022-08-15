@@ -1,9 +1,11 @@
 import { Tooltip } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useCommonStyle } from "../../../styles";
 import { SocialProps } from "../../base/FooterDefaultLayout";
 import DefaultLayout from "../../layouts/DefaultLayout";
 import FormApplication from "./FormApplication";
+import ModalApplication from "./ModalApplication";
 import useStyles from "./styles";
 
 const fakeJobs: any = [];
@@ -51,7 +53,11 @@ const JobDetail: FunctionComponent = () => {
   const commonStyles = useCommonStyle();
   // const params = useParams();
   // const id = params?.jobId;
-  const [hover, setHover] = useState<Array<boolean>>([false, false, false]);
+  const socialsLength = socialData.length;
+  const [hover, setHover] = useState<Array<boolean>>(
+    new Array(socialsLength).fill(false)
+  );
+  const [openModalApplied, setOpenModalApplied] = useState<boolean>(false);
 
   useEffect(() => {
     window.scrollTo({
@@ -73,6 +79,19 @@ const JobDetail: FunctionComponent = () => {
       newHover[index] = false;
       return newHover;
     });
+  };
+
+  const handleOpenModalApplied = () => {
+    setOpenModalApplied(true);
+  };
+
+  const handleCloseModalApplied = () => {
+    setOpenModalApplied(false);
+  };
+
+  const onCopyToClipboard = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast.success("Copied to clipboard", { theme: "dark" });
   };
 
   return (
@@ -117,6 +136,23 @@ const JobDetail: FunctionComponent = () => {
                     </a>
                   </Tooltip>
                 ))}
+                <Tooltip title="Copy" arrow placement="right">
+                  <div
+                    className={styles.socialItem}
+                    onMouseEnter={() => onHoverSocialItem(socialsLength)}
+                    onMouseLeave={() => onLeaveSocialItem(socialsLength)}
+                    onClick={onCopyToClipboard}
+                  >
+                    <img
+                      src={
+                        hover[socialsLength]
+                          ? "/images/icon-link-blue.svg"
+                          : "/images/icon-link.svg"
+                      }
+                      alt=""
+                    />
+                  </div>
+                </Tooltip>
               </div>
 
               <div className={styles.jobContent}>
@@ -146,7 +182,12 @@ const JobDetail: FunctionComponent = () => {
                 </div>
               </div>
 
-              <FormApplication />
+              <FormApplication handleApply={handleOpenModalApplied} />
+
+              <ModalApplication
+                open={openModalApplied}
+                handleClose={handleCloseModalApplied}
+              />
             </div>
           </div>
         </div>

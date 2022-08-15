@@ -12,8 +12,6 @@ declare module "@mui/material/styles" {
     nn63248: React.CSSProperties;
     nn71420: React.CSSProperties;
     nn72432: React.CSSProperties;
-    nn73240: React.CSSProperties;
-    nn74048: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
@@ -25,8 +23,6 @@ declare module "@mui/material/styles" {
     nn63248?: React.CSSProperties;
     nn71420?: React.CSSProperties;
     nn72432?: React.CSSProperties;
-    nn73240?: React.CSSProperties;
-    nn74048?: React.CSSProperties;
   }
 }
 
@@ -40,8 +36,6 @@ declare module "@mui/material/Typography" {
     nn63248: true;
     nn71420: true;
     nn72432: true;
-    nn73240: true;
-    nn74048: true;
   }
 }
 
@@ -73,12 +67,6 @@ function App() {
       },
       nn72432: {
         font: "normal normal 700 1.5rem/2rem Plus Jakarta Sans",
-      },
-      nn73240: {
-        font: "normal normal 700 2rem/2.5rem Plus Jakarta Sans",
-      },
-      nn74048: {
-        font: "normal normal 700 2.5rem/3rem Plus Jakarta Sans",
       },
     },
   });

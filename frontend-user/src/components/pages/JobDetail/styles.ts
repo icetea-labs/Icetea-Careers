@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme: any) => {
       textDecoration: "none",
       color: "#fff",
       transition: "0.5s all",
+      cursor:'pointer',
       "& img": {
         width: 20,
         height: 20,

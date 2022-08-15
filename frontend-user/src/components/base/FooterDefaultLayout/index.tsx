@@ -160,7 +160,7 @@ const Footer = (props: FooterProps) => {
                     <span className="hr-name">{hr?.name}</span>
                     <span>{hr?.phone}</span>
                     <div className="hr-tele">
-                      <img src="/images/socials/telegram.svg" alt="" />
+                      <img src="/images/socials/telegram-white.svg" alt="" />
                       <span>{hr?.telegram || "N/A"}</span>
                     </div>
                   </div>

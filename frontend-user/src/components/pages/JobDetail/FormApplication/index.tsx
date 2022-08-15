@@ -11,8 +11,13 @@ type FormData = {
   facebook?: string;
 };
 
-const FormApplication = (props: any) => {
+type FormApplicationTypes = {
+  handleApply: () => void;
+};
+
+const FormApplication = (props: FormApplicationTypes) => {
   const styles = useStyles();
+  const { handleApply } = props;
 
   const {
     register,
@@ -30,6 +35,7 @@ const FormApplication = (props: any) => {
 
   const onSubmit = (data: any) => {
     console.log(data);
+    handleApply();
   };
 
   return (
@@ -66,9 +72,9 @@ const FormApplication = (props: any) => {
             className="cv-label"
             disabled
             placeholder="Upload your CV"
-            {...register("cv", { required: true })}
+            // {...register("cv", { required: true })}
           />
-          {errors.cv && <span className="error">!</span>}
+          {/* {errors.cv && <span className="error">!</span>} */}
           <label>
             Upload
             <input

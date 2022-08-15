@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./components/pages/Home";
 import JobDetail from "./components/pages/JobDetail";
 import Jobs from "./components/pages/Jobs";
@@ -14,6 +15,7 @@ const routing = function createRouting() {
         <Route path="jobs/:jobId" element={<JobDetail />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
