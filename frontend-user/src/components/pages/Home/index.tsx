@@ -65,6 +65,7 @@ const Home = () => {
   //#region RENDER
 
   const renderBtnScrollToTop = () => {
+    if (true) return;
     return (
       <div className={styles.btnScrollToTop} onClick={onScrollToTop}>
         <img src="/images/icon-arrow-up.svg" alt="" />
@@ -90,7 +91,7 @@ const Home = () => {
 
       <div ref={contactRef}></div>
 
-      {/* {renderBtnScrollToTop()} */}
+      {renderBtnScrollToTop()}
     </LandingLayout>
   );
 };
