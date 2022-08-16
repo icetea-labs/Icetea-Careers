@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme: any) => {
       color: theme.palette.primary.main,
       boxSizing: "border-box",
       outline: "none",
-      border: "1.5px solid rgba(0, 0, 0, 0)",
+      border: "1.5px solid transparent",
       background: "none",
       "&:hover": {
         cursor: "pointer",
-        borderImageSource:
-          "linear-gradient(180deg, rgba(0, 199, 244, 0.3) 0%, rgba(215, 246, 253, 0.63) 55.73%, rgba(0, 199, 244, 0.51) 100%)",
+        background:
+          "linear-gradient(#0f1519, #0f1519) padding-box, linear-gradient(180deg, rgba(0, 199, 244, 0.3) 0%, rgba(215, 246, 253, 0.63) 55.73%, rgba(0, 199, 244, 0.51) 100%) border-box",
       },
       "& img": {
         width: 20,

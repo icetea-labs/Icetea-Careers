@@ -8,14 +8,16 @@ const useStyles = makeStyles((theme: any) => {
     },
     footerWrap: {
       margin: "0 auto",
-      maxWidth: "1200px",
+      maxWidth: "1440px",
+      padding: "0 80px",
       background: "url(/images/bg-footer.png)",
       backgroundSize: "contain",
       width: "100%",
+      boxSizing: "border-box",
     },
     footerContainer: {
       color: "#fff",
-      padding: "80px 0 60px",
+      padding: "80px 40px 60px",
       display: "flex",
     },
     logo: {
@@ -73,7 +75,7 @@ const useStyles = makeStyles((theme: any) => {
       display: "flex",
       flexDirection: "column",
       minWidth: 150,
-      marginLeft: 40,
+      marginLeft: "min(10%, 40px)",
       "& .group-label": {
         margin: "0 0 4px",
         color: "rgba(255, 255, 255, 0.5)",
@@ -116,8 +118,12 @@ const useStyles = makeStyles((theme: any) => {
       textAlign: "center",
     },
 
-    [theme.breakpoints.down("lg")]: {},
-    [theme.breakpoints.down("768")]: {},
+    [theme.breakpoints.down("lg")]: {
+      navigationGroup: {
+        // marginLeft: 20,
+      },
+    },
+    [theme.breakpoints.down("md")]: {},
     [theme.breakpoints.only("xs")]: {
       footerWrap: {
         paddingBottom: 8,
