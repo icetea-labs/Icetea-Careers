@@ -152,11 +152,11 @@ const Footer = (props: FooterProps) => {
                 What we offer
               </div>
             </div>
-            <div className={styles.navigationGroup}>
+            <div className={styles.navigationGroup + " team-mobile"}>
               <p className="group-label">TALENT ACQUISITION TEAM</p>
               {team.map((hr: teamProps, index: number) => {
                 return (
-                  <div className={styles.hr} key={index}>
+                  <div className="hr" key={index}>
                     <span className="hr-name">{hr?.name}</span>
                     <span>{hr?.phone}</span>
                     <div className="hr-tele">

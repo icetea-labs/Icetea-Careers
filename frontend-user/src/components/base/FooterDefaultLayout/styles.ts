@@ -75,12 +75,32 @@ const useStyles = makeStyles((theme: any) => {
       display: "flex",
       flexDirection: "column",
       minWidth: 150,
-      marginLeft: "min(10%, 40px)",
+      marginLeft: 40,
+      // "&:first-child": {
+      //   marginLeft: 0,
+      // },
       "& .group-label": {
         margin: "0 0 4px",
         color: "rgba(255, 255, 255, 0.5)",
         letterSpacing: 1,
         font: "normal normal 600 12px/16px Plus Jakarta Sans",
+      },
+      "& .hr": {
+        display: "grid",
+        gridTemplateColumns: "100px 120px 1fr",
+        gap: 12,
+        marginTop: 10,
+        "& .hr-name": {
+          color: theme.palette.primary.main,
+        },
+        "& .hr-tele": {
+          display: "flex",
+          alignItems: "center",
+          "& img": {
+            height: 12,
+            marginRight: 6,
+          },
+        },
       },
     },
     navigationItem: {
@@ -93,23 +113,6 @@ const useStyles = makeStyles((theme: any) => {
         cursor: "pointer",
       },
     },
-    hr: {
-      display: "grid",
-      gridTemplateColumns: "100px 120px 1fr",
-      gap: 12,
-      marginTop: 10,
-      "& .hr-name": {
-        color: theme.palette.primary.main,
-      },
-      "& .hr-tele": {
-        display: "flex",
-        alignItems: "center",
-        "& img": {
-          height: 12,
-          marginRight: 6,
-        },
-      },
-    },
     copyRight: {
       color: "#AEAEAE",
       borderTop: "1px solid rgba(255, 255, 255, 0.2)",
@@ -118,19 +121,39 @@ const useStyles = makeStyles((theme: any) => {
       textAlign: "center",
     },
 
-    [theme.breakpoints.down("lg")]: {
+    [theme.breakpoints.down("1368")]: {
+      footerWrap: {
+        padding: "0 60px",
+      },
       navigationGroup: {
-        // marginLeft: 20,
+        marginLeft: 20,
       },
     },
-    [theme.breakpoints.down("md")]: {},
-    [theme.breakpoints.only("xs")]: {
+    [theme.breakpoints.down("lg")]: {
+      navigation: {
+        flexWrap: "wrap",
+        width: "min-content",
+        rowGap: 20,
+        columnGap: 60,
+      },
+      navigationGroup: {
+        marginLeft: 0,
+      },
+    },
+    [theme.breakpoints.down("md")]: {
       footerWrap: {
-        paddingBottom: 8,
-        backgroundSize: "inherit",
+        padding: "0 30px",
       },
       footerContainer: {
-        padding: "60px 28px 40px",
+        padding: "60px 0",
+      },
+    },
+    [theme.breakpoints.only("xs")]: {
+      footerWrap: {
+        padding: "0 20px",
+      },
+      footerContainer: {
+        padding: "60px 0 40px",
         display: "flex",
         flexDirection: "column",
       },
@@ -150,7 +173,41 @@ const useStyles = makeStyles((theme: any) => {
         justifyContent: "center",
       },
       navigation: {
-        display: "none",
+        borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+        marginTop: 40,
+        marginLeft: 0,
+        padding: "28px 20px 0 20px",
+        width: "100%",
+        boxSizing: "border-box",
+        columnGap: 40,
+        rowGap: 40,
+        justifyContent: "center",
+      },
+      navigationGroup: {
+        alignItems: "center",
+        minWidth: "auto",
+        "&.team-mobile": {
+          width: "100%",
+          alignItems: "unset",
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "unset",
+          "& .hr": {
+            width: "50%",
+            "&:last-child": {
+              marginTop: 20,
+            },
+          },
+        },
+        "& .group-label": {
+          textAlign: "center",
+          width: "100%",
+        },
+        "& .hr": {
+          display: "flex",
+          flexDirection: "column",
+          gap: 4,
+        },
       },
     },
   };
