@@ -110,7 +110,7 @@ const HeaderLandingLayout = (props: HeaderProps) => {
         >
           <div className="popup-header">
             <img
-              src="/images/logo.svg"
+              src="/images/logo-text-horizontal-white.svg"
               className="header-logo"
               alt=""
               onClick={() => {
@@ -134,6 +134,7 @@ const HeaderLandingLayout = (props: HeaderProps) => {
                 {item?.label}
               </div>
             ))}
+            <p className="community">Community</p>
             <div className={styles.socials}>
               {socialData?.map((item: SocialProps, index: number) => (
                 <a key={index} href={item?.url} className={styles.socialItem}>

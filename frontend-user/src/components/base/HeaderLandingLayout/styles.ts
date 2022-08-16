@@ -4,9 +4,10 @@ const useStyles = makeStyles((theme: any) => {
   return {
     header: {
       width: "100%",
-      maxWidth: 1200,
+      maxWidth: 1440,
+      padding: "0 120px",
+      boxSizing: "border-box",
       margin: "0 auto",
-      zIndex: 20,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -51,39 +52,38 @@ const useStyles = makeStyles((theme: any) => {
       top: 0,
       left: 0,
       width: "100vw",
-      height: "100vh",
+      height: "100%",
+      overflowY: "hidden",
       background: "#04060c",
-      // transform: "scale(0)",
-      // transition: "all .2s ease-out",
-      // "&.show": {
-      //   transform: "scale(1)",
-      // },
+      padding: 20,
+      zIndex: 100,
+      boxSizing: "border-box",
       "& .popup-header": {
-        height: 60,
         width: "100%",
         display: "flex",
         alignItems: "center",
-        "& .header-logo": {
-          width: 60,
-          height: 60,
-        },
         "& .header-close": {
           marginLeft: "auto",
-          marginRight: 20,
           cursor: "pointer",
         },
       },
       "& .popup-navigation": {
-        height: "calc(100vh - 120px)",
+        height: "calc(100vh - 200px)",
         color: "#fff",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         gap: 16,
-        marginTop: 60,
+        marginTop: 80,
         font: "normal normal 600 20px/32px Plus Jakarta Sans",
         "& .button-download": {
           margin: "32px 0 0",
+        },
+        "& .community": {
+          marginTop: "auto",
+          font: "normal normal 600 12px/16px Plus Jakarta Sans",
+          letterSpacing: "1px",
+          marginBottom: -20,
         },
         "&-item": {
           cursor: "pointer",
@@ -98,7 +98,6 @@ const useStyles = makeStyles((theme: any) => {
     },
     socials: {
       display: "flex",
-      width: 155,
     },
     socialItem: {
       width: 20,
@@ -118,43 +117,41 @@ const useStyles = makeStyles((theme: any) => {
     [theme.breakpoints.down("lg")]: {
       headerMenu: {
         "& .menu-item": {
-          fontSize: 16,
+          width: "auto",
+          padding: "20px 10px",
         },
       },
     },
-    [theme.breakpoints.down("1024")]: {
-      header: {
-        "& .header-logo": {
-          height: 36,
-          marginLeft: 12,
-        },
-      },
-      headerMenu: {
-        "& .menu-item": {
-          fontSize: 14,
-          padding: "0 8px",
-        },
-      },
-    },
+    [theme.breakpoints.down("1024")]: {},
     [theme.breakpoints.down("md")]: {
-      header: { display: "none" },
+      header: {
+        display: "none",
+      },
       headerMobile: {
-        position: "absolute",
-        zIndex: 101,
-        top: 0,
-        left: 0,
+        overflow: "hidden",
         width: "100%",
-        height: 92,
+        padding: "0 60px",
+        boxSizing: "border-box",
+        margin: "0 auto",
         display: "flex",
-        alignItems: "center",
         justifyContent: "space-between",
+        alignItems: "center",
+        height: 80,
         "& .header-logo": {
-          marginLeft: 20,
+          height: 28,
         },
         "& .header-toggle": {
-          marginRight: 20,
-          height: 29,
+          height: 32,
         },
+      },
+      headerMobilePopup: {
+        "& .popup-navigation": {
+          gap: 40,
+          font: "normal normal 600 24px/32px Plus Jakarta Sans",
+        },
+      },
+      socials: {
+        gap: 16,
       },
     },
     [theme.breakpoints.only("xs")]: {},

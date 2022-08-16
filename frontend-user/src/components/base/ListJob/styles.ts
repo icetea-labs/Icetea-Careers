@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme: any) => {
       gap: 12,
     },
     jobCard: {
-      // height: 120,
       color: "#fff",
       background: "rgba(255, 255, 255, 0.04)",
       border: "2px solid rgba(255, 255, 255, 0.06)",
@@ -50,9 +49,9 @@ const useStyles = makeStyles((theme: any) => {
       justifyContent: "space-between",
       "&:hover": {
         background: "rgba(255, 255, 255, 0.06)",
-        border: "2px solid",
-        borderImageSource:
-          "linear-gradient(141.27deg, rgba(0, 199, 244, 0.18) 0.83%, rgba(255, 255, 255, 0.12) 50.46%, rgba(0, 199, 244, 0.36) 98.05%)",
+        borderColor: "rgba(255, 255, 255, 0.1)",
+        // background:
+        //   "linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) padding-box, linear-gradient(141.27deg, rgba(0, 199, 244, 0.18) 0.83%, rgba(255, 255, 255, 0.12) 50.46%, rgba(0, 199, 244, 0.36) 98.05%) border-box",
       },
     },
     jobDetail: {
