@@ -1,6 +1,7 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme: any) => {
+const useStyles = makeStyles((theme: Theme) => {
   return {
     process: {
       width: "100%",
@@ -22,7 +23,11 @@ const useStyles = makeStyles((theme: any) => {
         maxWidth: "100%",
       },
     },
-
+    [theme.breakpoints.down("lg")]: {
+      processContainer: {
+        padding: "0 40px",
+      },
+    },
     [theme.breakpoints.only("xs")]: {
       forewordContainer: {
         maxWidth: "100%",

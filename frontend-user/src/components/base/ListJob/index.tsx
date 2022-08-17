@@ -84,6 +84,7 @@ const ListJob = (props: JobOpportunitiesType) => {
               </div>
               <ButtonMedium
                 text="View more"
+                className={styles.btnViewMoreMobile}
                 onClick={() => handleViewJobDetail(job?.jobId)}
               />
             </div>

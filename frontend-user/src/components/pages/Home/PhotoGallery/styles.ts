@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme: any) => {
       margin: "0 auto",
       color: "#fff",
       "& img": {
+        width: "100%",
         maxWidth: "100%",
       },
     },
 
     [theme.breakpoints.only("xs")]: {
-      forewordContainer: {
-        maxWidth: "100%",
-        padding: 0,
+      gallery: {
+        marginTop: 88,
       },
     },
   };

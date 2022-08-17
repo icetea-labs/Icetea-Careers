@@ -6,11 +6,13 @@ const useStyles = makeStyles((theme: any) => {
       width: "100%",
       display: "flex",
       flexDirection: "column",
+      padding: "0 60px",
+      boxSizing: "border-box",
     },
     jobsNav: {
       width: "100%",
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "space-between",
       gap: 20,
       boxSizing: "border-box",
       padding: "0 44px",
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme: any) => {
       display: "flex",
       flexDirection: "column",
       gap: 12,
+      boxSizing: "border-box",
     },
     jobCard: {
       color: "#fff",
@@ -81,7 +84,52 @@ const useStyles = makeStyles((theme: any) => {
       },
     },
 
-    [theme.breakpoints.only("xs")]: {},
+    [theme.breakpoints.down("lg")]: {
+      jobsNav: {
+        padding: 0,
+      },
+    },
+    [theme.breakpoints.down("md")]: {
+      jobsNav: {
+        "& .nav-item": {
+          minWidth: "unset",
+        },
+      },
+    },
+
+    [theme.breakpoints.only("xs")]: {
+      container: {
+        padding: 0,
+      },
+      jobsList: {
+        padding: 20,
+        margin: 0,
+      },
+      jobsNav: {
+        overflowX: "auto",
+        whiteSpace: "nowrap",
+        gap: 0,
+        "& .nav-item": {
+          padding: "0 12px 20px",
+        },
+      },
+      jobCard: {
+        flexDirection: "column",
+        justifyContent: "normal",
+        padding: "28px 20px 8px",
+      },
+      jobDetail: {
+        alignItems: "center",
+        paddingBottom: 20,
+        borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+        "& .job-title": {
+          textAlign: "center",
+        },
+      },
+      btnViewMoreMobile: {
+        marginTop: 8,
+      },
+    },
   };
 });
 

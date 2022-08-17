@@ -7,6 +7,7 @@ export type ButtonPropsType = {
   onClick?: () => void;
   loading?: boolean;
   style?: {};
+  className?: string;
   showIcon?: boolean;
 };
 

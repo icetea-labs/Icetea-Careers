@@ -154,7 +154,11 @@ const useStyles = makeStyles((theme: any) => {
         gap: 16,
       },
     },
-    [theme.breakpoints.only("xs")]: {},
+    [theme.breakpoints.only("xs")]: {
+      headerMobile: {
+        padding: "0 24px",
+      },
+    },
   };
 });
 

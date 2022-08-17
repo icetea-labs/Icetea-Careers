@@ -4,7 +4,14 @@ import useStyles from "./style";
 
 const ButtonMedium: React.FC<ButtonPropsType> = (props: ButtonPropsType) => {
   const styles = useStyles();
-  const { style, text = "", onClick, loading = false, showIcon = true } = props;
+  const {
+    style,
+    text = "",
+    onClick,
+    loading = false,
+    showIcon = true,
+    className = "",
+  } = props;
   const customStyle = {
     ...style,
   };
@@ -12,7 +19,7 @@ const ButtonMedium: React.FC<ButtonPropsType> = (props: ButtonPropsType) => {
   return (
     <button
       style={customStyle}
-      className={styles.button}
+      className={styles.button + " " + className}
       disabled={loading}
       onClick={onClick}
     >

@@ -6,9 +6,18 @@ const useStyles = makeStyles((theme: any) => {
       width: "100%",
       padding: "40px 0 80px",
     },
-    forewordLeft: {},
+    forewordLeft: {
+      maxWidth: "35.07%",
+      marginRight: 40,
+      "& img": {
+        maxWidth: "100%",
+      },
+      "& .foreword-mobile": {
+        display: "none",
+      },
+    },
     forewordRight: {
-      width: "46.875%",
+      maxWidth: "46.875%",
       "& img": {
         width: "100%",
       },
@@ -33,7 +42,7 @@ const useStyles = makeStyles((theme: any) => {
       borderRadius: 60,
       height: 60,
       padding: 6,
-      marginTop: 80,
+      marginTop: "15%",
       boxSizing: "border-box",
       font: theme.typography.nn41424.font,
       color: "#000",
@@ -47,6 +56,7 @@ const useStyles = makeStyles((theme: any) => {
         padding: "12px 16px",
         "& img": {
           marginRight: 12,
+          width: 24,
         },
         "& input": {
           height: "100%",
@@ -62,6 +72,35 @@ const useStyles = makeStyles((theme: any) => {
         "&:hover": {
           cursor: "pointer",
         },
+      },
+    },
+    [theme.breakpoints.down("lg")]: {
+      forewordLeft: {
+        marginRight: 30,
+      },
+    },
+    [theme.breakpoints.down("md")]: {
+      forewordContainer: {
+        flexDirection: "column",
+        padding: "0 100px",
+      },
+      forewordLeft: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        maxWidth: "max(60%, 570px)",
+        marginRight: 0,
+        padding: "0 28px",
+        "& .foreword": {
+          display: "none",
+        },
+        "& .foreword-mobile": {
+          display: "block",
+        },
+      },
+      forewordRight: {
+        maxWidth: "100%",
+        marginTop: 60,
       },
     },
     [theme.breakpoints.only("xs")]: {

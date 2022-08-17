@@ -18,7 +18,12 @@ const Foreword = (props: any) => {
       <div className={commonStyles.section}>
         <div className={styles.forewordContainer}>
           <div className={styles.forewordLeft}>
-            <img src="/images/foreword-text.svg" alt="" />
+            <img src="/images/foreword-text.svg" className="foreword" alt="" />
+            <img
+              src="/images/foreword-text-mobile.svg"
+              className="foreword-mobile"
+              alt=""
+            />
             <div className={styles.searchBar}>
               <div className="search-field">
                 <img src="/images/icon-search.svg" alt="" />

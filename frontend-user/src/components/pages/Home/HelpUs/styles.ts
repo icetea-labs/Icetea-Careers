@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme: any) => {
     helpus: {
       width: "100%",
       marginTop: 180,
+      boxSizing: "border-box",
     },
     helpusContainer: {
       maxWidth: 1000,
@@ -23,10 +24,31 @@ const useStyles = makeStyles((theme: any) => {
       },
     },
 
+    [theme.breakpoints.down("lg")]: {
+      helpusContainer: {
+        padding: "40px 60px",
+        "& .helpus-title": {
+          font: "normal normal 600 40px/56px Plus Jakarta Sans",
+        },
+      },
+    },
+    [theme.breakpoints.down("md")]: {
+      helpusContainer: {
+        "& .helpus-title": {
+          font: "normal normal 600 36px/50px Plus Jakarta Sans",
+        },
+      },
+    },
     [theme.breakpoints.only("xs")]: {
-      forewordContainer: {
-        maxWidth: "100%",
-        padding: 0,
+      helpus: {
+        marginTop: 80,
+        padding: "40px 20px",
+      },
+      helpusContainer: {
+        "& .helpus-title": {
+          margin: "40px 0",
+          font: "normal normal 600 32px/44px Plus Jakarta Sans",
+        },
       },
     },
   };
