@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { COMPONENT_ANIMATED, NORMAL_SPEED } from "../../../constants";
 import { ButtonMedium } from "../Button";
 import useStyles from "./styles";
@@ -33,7 +32,6 @@ type JobOpportunitiesType = {
 
 const ListJob = (props: JobOpportunitiesType) => {
   const styles = useStyles();
-  const navigate = useNavigate();
   const { listJob = [] } = props;
 
   const [navValue, setNavValue] = useState<
@@ -41,7 +39,8 @@ const ListJob = (props: JobOpportunitiesType) => {
   >("development");
 
   const handleViewJobDetail = (jobId: number) => {
-    navigate("/jobs/" + jobId);
+    window.open(`${window.location.origin}#/jobs/${jobId}`, "_blank");
+    // navigate("/jobs/" + jobId);
   };
 
   return (

@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useCommonStyle } from "../../../../styles";
 import { ButtonLarge } from "../../../base/Button";
 import ListJob from "../../../base/ListJob";
@@ -17,10 +16,9 @@ for (let i = 0; i < 5; i++) {
 const JobOpportunities = (props: any) => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
-  const navigate = useNavigate();
 
   const onClickViewAll = () => {
-    navigate("/jobs");
+    window.open(`${window.location.href}#/jobs`, "_blank");
   };
 
   return (
