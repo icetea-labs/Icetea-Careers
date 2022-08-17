@@ -11,14 +11,14 @@ export type SocialProps = {
 export const socialData: Array<SocialProps> = [
   {
     url: "https://www.facebook.com/",
-    imgUrl: "/images/socials/facebook.svg",
-    imgHoverUrl: "/images/socials/facebook-blue.svg",
+    imgUrl: "/images/socials/facebook-style.svg",
+    imgHoverUrl: "/images/socials/facebook-style-hover.svg",
     label: "Facebook",
   },
   {
     url: "https://www.linkedin.com/",
-    imgUrl: "/images/socials/linkedin.svg",
-    imgHoverUrl: "/images/socials/linkedin-blue.svg",
+    imgUrl: "/images/socials/linkedin-style.svg",
+    imgHoverUrl: "/images/socials/linkedin-style-hover.svg",
     label: "Linkedin",
   },
 ];

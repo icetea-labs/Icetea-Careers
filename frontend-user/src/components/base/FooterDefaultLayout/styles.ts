@@ -45,12 +45,10 @@ const useStyles = makeStyles((theme: any) => {
     socialList: {
       width: "100%",
       display: "flex",
-      gap: 12,
     },
     socialItem: {
-      width: 20,
-      height: 20,
-      borderRadius: "50%",
+      width: 38,
+      height: 38,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -58,8 +56,8 @@ const useStyles = makeStyles((theme: any) => {
       color: "#fff",
       transition: "0.5s all",
       "& img": {
-        width: 20,
-        height: 20,
+        width: 38,
+        height: 38,
       },
       "&:hover": {
         transition: "0.5s all",

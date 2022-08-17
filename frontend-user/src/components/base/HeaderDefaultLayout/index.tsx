@@ -22,57 +22,35 @@ const HeaderDefaultLayout = (props: any) => {
     });
   };
 
-  const renderHeader = () => {
-    return (
-      <div className={styles.header}>
-        <a href="/">
-          <img
-            src="/images/logo-text-horizontal-white.svg"
-            className="header-logo"
-            alt=""
-          />
-        </a>
-        <div className={styles.socials}>
-          {socialData?.map((item: SocialProps, index: number) => (
-            <Tooltip key={index} title={item?.label} arrow placement="bottom">
-              <a
-                href={item?.url}
-                className={styles.socialItem}
-                target="_blank"
-                rel="noreferrer"
-                onMouseEnter={() => onHoverSocialItem(index)}
-                onMouseLeave={() => onLeaveSocialItem(index)}
-              >
-                <img
-                  src={hover[index] ? item?.imgHoverUrl : item?.imgUrl}
-                  alt=""
-                />
-              </a>
-            </Tooltip>
-          ))}
-        </div>
-      </div>
-    );
-  };
-
-  const renderHeaderMobile = () => {
-    return (
-      <div className={styles.headerMobile}>
+  return (
+    <div className={styles.header}>
+      <a href="/">
         <img
           src="/images/logo-text-horizontal-white.svg"
           className="header-logo"
           alt=""
         />
-        <img src="/images/toggle-header.svg" className="header-toggle" alt="" />
+      </a>
+      <div className={styles.socials}>
+        {socialData?.map((item: SocialProps, index: number) => (
+          <Tooltip key={index} title={item?.label} arrow placement="bottom">
+            <a
+              href={item?.url}
+              className={styles.socialItem}
+              target="_blank"
+              rel="noreferrer"
+              onMouseEnter={() => onHoverSocialItem(index)}
+              onMouseLeave={() => onLeaveSocialItem(index)}
+            >
+              <img
+                src={hover[index] ? item?.imgHoverUrl : item?.imgUrl}
+                alt=""
+              />
+            </a>
+          </Tooltip>
+        ))}
       </div>
-    );
-  };
-
-  return (
-    <>
-      {renderHeader()}
-      {renderHeaderMobile()}
-    </>
+    </div>
   );
 };
 

@@ -42,63 +42,8 @@ const useStyles = makeStyles((theme: any) => {
         },
       },
     },
-    headerMobile: {
-      display: "none",
-    },
-
-    headerMobilePopup: {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100vw",
-      height: "100vh",
-      background: "#04060c",
-      // transform: "scale(0)",
-      // transition: "all .2s ease-out",
-      // "&.show": {
-      //   transform: "scale(1)",
-      // },
-      "& .popup-header": {
-        height: 60,
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        "& .header-logo": {
-          width: 60,
-          height: 60,
-        },
-        "& .header-close": {
-          marginLeft: "auto",
-          marginRight: 20,
-          cursor: "pointer",
-        },
-      },
-      "& .popup-navigation": {
-        height: "calc(100vh - 120px)",
-        color: "#fff",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 16,
-        marginTop: 60,
-        font: "normal normal 600 20px/32px Plus Jakarta Sans",
-        "& .button-download": {
-          margin: "32px 0 0",
-        },
-        "&-item": {
-          cursor: "pointer",
-          transition: "0.5s all",
-          "&:hover": {
-            letterSpacing: "1.5px",
-            fontWeight: 700,
-            textDecoration: "underline",
-          },
-        },
-      },
-    },
     socials: {
       display: "flex",
-      width: 155,
     },
     socialItem: {
       width: 20,
@@ -115,46 +60,10 @@ const useStyles = makeStyles((theme: any) => {
       },
     },
 
-    [theme.breakpoints.down("lg")]: {
-      headerMenu: {
-        "& .menu-item": {
-          fontSize: 16,
-        },
-      },
-    },
-    [theme.breakpoints.down("1024")]: {
-      header: {
-        "& .header-logo": {
-          height: 36,
-          marginLeft: 12,
-        },
-      },
-      headerMenu: {
-        "& .menu-item": {
-          fontSize: 14,
-          padding: "0 8px",
-        },
-      },
-    },
     [theme.breakpoints.down("md")]: {
-      header: { display: "none" },
-      headerMobile: {
-        position: "absolute",
-        zIndex: 101,
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: 92,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        "& .header-logo": {
-          marginLeft: 20,
-        },
-        "& .header-toggle": {
-          marginRight: 20,
-          height: 29,
-        },
+      header: {
+        padding: "0 24px",
+        boxSizing: "border-box",
       },
     },
     [theme.breakpoints.only("xs")]: {},

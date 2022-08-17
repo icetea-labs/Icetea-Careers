@@ -100,8 +100,8 @@ const useStyles = makeStyles((theme: any) => {
       display: "flex",
     },
     socialItem: {
-      width: 20,
-      height: 20,
+      width: 24,
+      height: 24,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
