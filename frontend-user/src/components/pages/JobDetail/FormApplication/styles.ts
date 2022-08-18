@@ -1,6 +1,7 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme: any) => {
+const useStyles = makeStyles((theme: Theme) => {
   return {
     jobFormWrap: {
       position: "sticky",
@@ -9,6 +10,7 @@ const useStyles = makeStyles((theme: any) => {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+      boxSizing: "border-box",
       border: "2px solid rgba(255, 255, 255, 0.06)",
       background: "rgba(255, 255, 255, 0.04)",
       padding: 32,
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme: any) => {
       background: "rgba(255, 255, 255, 0.08)",
       border: "1px solid rgba(255, 255, 255, 0.08)",
       borderRadius: 8,
-      padding: "14px 16px",
+      padding: "13px 16px",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -43,11 +45,13 @@ const useStyles = makeStyles((theme: any) => {
         color: "#fff",
         font: theme.typography.nn41424.font,
         padding: 0,
-        // "&:-internal-autofill-selected": {
-        //   background: "transparent !important",
-        //   outline: "none !important",
-        //   color: "#fff !important",
-        // },
+        "&:-webkit-autofill, :-webkit-autofill:hover, :-webkit-autofill:focus":
+          {
+            background: "transparent !important",
+            outline: "none !important",
+            WebkitTextFillColor: "#fff",
+            transition: "background-color 5000s ease-in-out 0s",
+          },
       },
       "& .error": {
         color: "red",
@@ -57,6 +61,12 @@ const useStyles = makeStyles((theme: any) => {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
       gap: 8,
+    },
+    groupName: {
+      width: "100%",
+      gap: 8,
+      display: "flex",
+      flexDirection: "column",
     },
     uploadInput: {
       padding: 6,
@@ -104,17 +114,33 @@ const useStyles = makeStyles((theme: any) => {
       borderRadius: 4,
       outline: "none",
       font: theme.typography.nn71420.font,
+      transition: "0.5s",
       "&:hover": {
         cursor: "pointer",
+        letterSpacing: "1px",
       },
       "&:disabled": {
         cursor: "not-allowed",
       },
     },
+
+    [theme.breakpoints.down("lg")]: {
+      jobFormWrap: {
+        margin: "0 auto",
+        maxWidth: "min(620px, 100%)",
+        width: "100%",
+      },
+      groupName: {
+        flexDirection: "row",
+      },
+    },
+
     [theme.breakpoints.only("xs")]: {
-      forewordContainer: {
-        maxWidth: "100%",
-        padding: 0,
+      jobFormWrap: {
+        padding: "24px 20px",
+      },
+      groupName: {
+        flexDirection: "column",
       },
     },
   };

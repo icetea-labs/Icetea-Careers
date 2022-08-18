@@ -42,20 +42,22 @@ const FormApplication = (props: FormApplicationTypes) => {
     <div className={styles.jobFormWrap}>
       <p className="form-title">Job Application</p>
       <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.formInput}>
-          <input
-            placeholder="Your name"
-            {...register("name", { required: true, maxLength: 20 })}
-          />
-          {errors.name && <span className="error">!</span>}
-        </div>
+        <div className={styles.groupName}>
+          <div className={styles.formInput}>
+            <input
+              placeholder="Your name"
+              {...register("name", { required: true, maxLength: 20 })}
+            />
+            {errors.name && <span className="error">!</span>}
+          </div>
 
-        <div className={styles.formInput}>
-          <input
-            placeholder="Your phone number"
-            {...register("phone", { required: true, maxLength: 20 })}
-          />
-          {errors.phone && <span className="error">!</span>}
+          <div className={styles.formInput}>
+            <input
+              placeholder="Your phone number"
+              {...register("phone", { required: true, maxLength: 20 })}
+            />
+            {errors.phone && <span className="error">!</span>}
+          </div>
         </div>
 
         <div className={styles.formInput}>

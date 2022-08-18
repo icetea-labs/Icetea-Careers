@@ -128,6 +128,10 @@ const useStyles = makeStyles((theme: any) => {
       },
     },
     [theme.breakpoints.down("lg")]: {
+      footerContainer: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
       navigation: {
         flexWrap: "wrap",
         width: "min-content",

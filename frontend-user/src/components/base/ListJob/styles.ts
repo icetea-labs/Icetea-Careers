@@ -50,11 +50,10 @@ const useStyles = makeStyles((theme: any) => {
       padding: "32px 40px 20px",
       display: "flex",
       justifyContent: "space-between",
+      transition: "0.25s",
       "&:hover": {
-        background: "rgba(255, 255, 255, 0.06)",
-        borderColor: "rgba(255, 255, 255, 0.1)",
-        // background:
-        //   "linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)) padding-box, linear-gradient(141.27deg, rgba(0, 199, 244, 0.18) 0.83%, rgba(255, 255, 255, 0.12) 50.46%, rgba(0, 199, 244, 0.36) 98.05%) border-box",
+        background: "rgba(0, 199, 244, 0.1)",
+        border: "2px solid rgba(0, 199, 244, 0.36)",
       },
     },
     jobDetail: {

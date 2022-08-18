@@ -1,10 +1,13 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme: any) => {
+const useStyles = makeStyles((theme: Theme) => {
   return {
     header: {
       width: "100%",
-      maxWidth: 1200,
+      maxWidth: 1440,
+      padding: "0 120px",
+      boxSizing: "border-box",
       margin: "0 auto",
       zIndex: 20,
       display: "flex",
@@ -59,11 +62,15 @@ const useStyles = makeStyles((theme: any) => {
         marginLeft: 0,
       },
     },
+    [theme.breakpoints.down("lg")]: {
+      header: {
+        padding: "0 60px",
+      },
+    },
 
     [theme.breakpoints.down("md")]: {
       header: {
-        padding: "0 24px",
-        boxSizing: "border-box",
+        padding: "0 30px",
       },
     },
     [theme.breakpoints.only("xs")]: {},

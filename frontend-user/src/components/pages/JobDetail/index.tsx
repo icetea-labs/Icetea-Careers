@@ -1,7 +1,8 @@
-import { Tooltip } from "@mui/material";
+import { Theme, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useCommonStyle } from "../../../styles";
+import { ButtonMedium } from "../../base/Button";
 import { SocialProps } from "../../base/FooterDefaultLayout";
 import DefaultLayout from "../../layouts/DefaultLayout";
 import FormApplication from "./FormApplication";
@@ -9,7 +10,7 @@ import ModalApplication from "./ModalApplication";
 import useStyles from "./styles";
 
 const fakeJobs: any = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 4; i++) {
   fakeJobs.push({
     jobId: i + 1,
     jobName: "Front-End Developper (Reactjs/Vuejs)",
@@ -51,6 +52,8 @@ export const socialData: Array<SocialProps> = [
 const JobDetail: FunctionComponent = () => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
+  const theme: Theme = useTheme();
+  const mainColor: string = theme.palette.primary.main;
   // const params = useParams();
   // const id = params?.jobId;
   const socialsLength = socialData.length;
@@ -91,7 +94,15 @@ const JobDetail: FunctionComponent = () => {
 
   const onCopyToClipboard = () => {
     navigator.clipboard.writeText(window.location.href);
-    toast.success("Copied to clipboard", { theme: "dark" });
+    toast.success("Copied to clipboard", {
+      theme: "dark",
+      progressStyle: { background: mainColor },
+      // bodyStyle: { color: mainColor },
+    });
+  };
+
+  const handleViewJobDetail = (jobId: number) => {
+    window.open(`${window.location.origin}#/jobs/${jobId}`, "_blank");
   };
 
   return (
@@ -155,34 +166,63 @@ const JobDetail: FunctionComponent = () => {
                 </Tooltip>
               </div>
 
-              <div className={styles.jobContent}>
-                <div className="content-group">
-                  <p className="content-title">DESCRIPTION</p>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: fakeDescription,
-                    }}
-                  ></div>
+              <div className={styles.jobDetailWrap}>
+                <div className={styles.groupJobDetail}>
+                  <div className={styles.jobContent}>
+                    <div className="content-group">
+                      <p className="content-title">DESCRIPTION</p>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: fakeDescription,
+                        }}
+                      ></div>
+                    </div>
+                    <div className="content-group">
+                      <p className="content-title">REQUIREMENTS</p>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: fakeRequirements,
+                        }}
+                      ></div>
+                    </div>
+                    <div className="content-group">
+                      <p className="content-title">BENEFITS</p>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: fakeBeneits,
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <FormApplication handleApply={handleOpenModalApplied} />
                 </div>
-                <div className="content-group">
-                  <p className="content-title">REQUIREMENTS</p>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: fakeRequirements,
-                    }}
-                  ></div>
-                </div>
-                <div className="content-group">
-                  <p className="content-title">BENEFITS</p>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: fakeBeneits,
-                    }}
-                  ></div>
+
+                <div className={styles.jobsOther}>
+                  <p className="other-title">Other</p>
+                  <div className="other-container">
+                    {fakeJobs.map((job: any, index: number) => {
+                      return (
+                        <div className={styles.otherCard} key={index}>
+                          <span className="job-title">{job?.jobName}</span>
+                          <div className="job-info">
+                            <span className="job-rank">{job?.rank}</span>
+                            <div className="job-location">
+                              <img src="/images/icon-location.svg" alt="" />
+                              <span>{job?.location}</span>
+                            </div>
+                            <ButtonMedium
+                              text="View more"
+                              className={styles.btnViewMoreMobile}
+                              onClick={() => handleViewJobDetail(job?.jobId)}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-
-              <FormApplication handleApply={handleOpenModalApplied} />
 
               <ModalApplication
                 open={openModalApplied}

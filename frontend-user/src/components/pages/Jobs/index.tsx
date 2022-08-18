@@ -29,7 +29,7 @@ const Jobs: FunctionComponent = () => {
       behavior: "smooth",
     });
     setLoading(false);
-    setTotalPage(1);
+    setTotalPage(35); //remove
   }, []);
 
   const renderPagination = () => {
