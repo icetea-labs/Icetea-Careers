@@ -48,7 +48,7 @@ const HeaderLandingLayout = (props: HeaderProps) => {
   const renderHeader = () => {
     return (
       <div className={styles.header}>
-        <a href="/">
+        <a href="https://icetea.io/#/" target="_blank" rel="noreferrer">
           <img
             src="/images/logo-text-horizontal-white.svg"
             className="header-logo"

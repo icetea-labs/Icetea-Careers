@@ -150,6 +150,11 @@ const useStyles = makeStyles((theme: Theme) => {
         alignItems: "center",
         font: theme.typography.nn71420.font,
       },
+      "& .group-info": {
+        display: "flex",
+        alignItems: "center",
+        marginRight: "auto",
+      },
       "& .job-rank": {
         color: theme.palette.primary.main,
       },
@@ -157,7 +162,6 @@ const useStyles = makeStyles((theme: Theme) => {
         display: "flex",
         alignItems: "center",
         gap: 4,
-        marginRight: "auto",
       },
       "&:hover": {
         background: "rgba(0, 199, 244, 0.1)",
@@ -173,6 +177,12 @@ const useStyles = makeStyles((theme: Theme) => {
         gridTemplateColumns: "1fr",
         gap: 8,
       },
+      jobsOther: {
+        "& .other-container": {
+          gridTemplateColumns: "1fr",
+          gap: 8,
+        },
+      },
     },
     [theme.breakpoints.down("md")]: {
       jobDetailContainer: {
@@ -180,7 +190,66 @@ const useStyles = makeStyles((theme: Theme) => {
       },
     },
 
-    [theme.breakpoints.only("xs")]: {},
+    [theme.breakpoints.only("xs")]: {
+      jobDetailHeader: {
+        margin: "0 20px",
+        width: "auto",
+        "& .jobDetail-title": {
+          font: "normal normal 600 28px/36px Plus Jakarta Sans",
+        },
+        "& .jobDetail-info": {
+          font: theme.typography.nn71420.font,
+        },
+      },
+      jobDetailBody: {
+        gridTemplateColumns: "1fr",
+        gap: 0,
+      },
+      jobDetailContainer: {
+        padding: 20,
+        paddingBottom: 60,
+        borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+      },
+      jobDetailWrap: {
+        gap: 40,
+      },
+      jobContent: {
+        padding: 20,
+      },
+      socials: {
+        position: "unset",
+        flexDirection: "row",
+        margin: "0 20px",
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "18px 50px",
+      },
+      jobsOther: {
+        "& .other-title": {
+          margin: "0 0 8px",
+          font: theme.typography.nn62028.font,
+        },
+      },
+      otherCard: {
+        padding: "28px 20px 8px",
+        gap: 12,
+        "& .job-title": {
+          textAlign: "center",
+        },
+        "& .job-info": {
+          flexDirection: "column",
+        },
+        "& .group-info": {
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          marginRight: 0,
+          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+          paddingBottom: 20,
+          marginBottom: 8,
+        },
+      },
+    },
   };
 });
 

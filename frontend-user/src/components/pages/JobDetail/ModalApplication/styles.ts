@@ -1,19 +1,25 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme: any) => {
+const useStyles = makeStyles((theme: Theme) => {
   return {
+    modal: {
+      "& .MuiPaper-root": {
+        background: "transparent",
+      },
+      "& .MuiBackdrop-root": {
+        background: "rgba(0, 0, 0, 0.8)",
+      },
+    },
     modalContainer: {
       maxWidth: 600,
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
       background: "#0A0F11",
       display: "flex",
       flexDirection: "column",
       color: "#fff",
       justifyContent: "center",
       alignItems: "center",
+      borderRadius: 32,
       outline: "none",
       padding: "40px 60px",
       border: "1px solid rgba(255, 255, 255, 0.12)",
@@ -51,7 +57,17 @@ const useStyles = makeStyles((theme: any) => {
         margin: 0,
       },
     },
-    [theme.breakpoints.only("xs")]: {},
+    [theme.breakpoints.only("xs")]: {
+      modalContainer: {
+        borderRadius: 24,
+        padding: "40px 20px",
+        width: "auto",
+        "& .title": {
+          font: "normal normal 600 18px/24px Plus Jakarta Sans",
+          marginTop: 24,
+        },
+      },
+    },
   };
 });
 

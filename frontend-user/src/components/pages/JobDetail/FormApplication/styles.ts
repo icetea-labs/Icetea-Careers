@@ -27,16 +27,22 @@ const useStyles = makeStyles((theme: Theme) => {
       gap: 8,
     },
     formInput: {
-      minHeight: 52,
-      width: "100%",
-      background: "rgba(255, 255, 255, 0.08)",
-      border: "1px solid rgba(255, 255, 255, 0.08)",
-      borderRadius: 8,
-      padding: "13px 16px",
       display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
+      flexDirection: "column",
       boxSizing: "border-box",
+      width: "100%",
+      "& .input-field": {
+        minHeight: 52,
+        width: "100%",
+        background: "rgba(255, 255, 255, 0.08)",
+        border: "1px solid rgba(255, 255, 255, 0.08)",
+        borderRadius: 8,
+        padding: "13px 16px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        boxSizing: "border-box",
+      },
       "& input, textarea": {
         width: "100%",
         border: "none",
@@ -53,8 +59,40 @@ const useStyles = makeStyles((theme: Theme) => {
             transition: "background-color 5000s ease-in-out 0s",
           },
       },
-      "& .error": {
-        color: "red",
+      "& textarea": {
+        "&::-webkit-scrollbar": {
+          width: 8,
+          borderRadius: 4,
+        },
+        "&::-webkit-scrollbar-track": {
+          background: "#f1f1f1",
+          borderRadius: 4,
+        },
+        "&::-webkit-scrollbar-thumb": {
+          borderRadius: 4,
+          background: "#888",
+          "&:hover": {
+            background: "#555",
+          },
+        },
+      },
+      "& .input-error": {
+        marginTop: 4,
+        paddingLeft: 8,
+        color: "rgba(255, 86, 86, 1)",
+        font: "normal normal 700 12px/20px Plus Jakarta Sans",
+      },
+      "& .input-error-icon": {
+        width: 18,
+        height: 18,
+        cursor: "pointer",
+        display: "none",
+      },
+      "& .input-disabled": {
+        border: "1px solid rgba(255, 86, 86, 0.6)",
+        "& .input-error-icon": {
+          display: "block",
+        },
       },
     },
     groupInput: {
@@ -69,8 +107,7 @@ const useStyles = makeStyles((theme: Theme) => {
       flexDirection: "column",
     },
     uploadInput: {
-      padding: 6,
-      paddingLeft: 16,
+      padding: "6px 6px 6px 16px !important",
       "& .cv-label": {
         maxWidth: "calc(100% - 80px)",
       },
@@ -101,7 +138,6 @@ const useStyles = makeStyles((theme: Theme) => {
       color: "rgba(255, 255, 255, 0.6)",
       font: "normal normal 400 12px/20px Plus Jakarta Sans",
       paddingLeft: 8,
-      marginTop: -4,
     },
     btnApply: {
       height: 52,

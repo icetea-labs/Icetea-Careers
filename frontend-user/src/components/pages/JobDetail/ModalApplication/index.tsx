@@ -1,4 +1,4 @@
-import { Modal } from "@mui/material";
+import { Dialog, Modal } from "@mui/material";
 import useStyles from "./styles";
 
 type ModalApplicationTypes = {
@@ -12,12 +12,13 @@ const ModalApplication = (props: ModalApplicationTypes) => {
 
   return (
     <>
-      <Modal
+      <Dialog 
         open={open}
-        className={styles.modal}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        className={styles.modal}
+        scroll="body"
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
         <div className={styles.modalContainer}>
           <img src="/images/modal-title.png" className="img-title" alt="" />
@@ -51,7 +52,7 @@ const ModalApplication = (props: ModalApplicationTypes) => {
             Stay tuned and we look forward to speaking with you!
           </p>
         </div>
-      </Modal>
+      </Dialog>
     </>
   );
 };

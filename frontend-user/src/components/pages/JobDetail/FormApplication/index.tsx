@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import useStyles from "./styles";
 
 type FormData = {
@@ -23,6 +24,7 @@ const FormApplication = (props: FormApplicationTypes) => {
     register,
     handleSubmit,
     setValue,
+    clearErrors,
     formState: { errors },
   } = useForm<FormData>({
     mode: "onChange",
@@ -31,11 +33,25 @@ const FormApplication = (props: FormApplicationTypes) => {
   const handleSelectCV = (e: any) => {
     console.log(e.target.files[0]);
     setValue("cv", e.target.files[0].name);
+    clearErrors("cv");
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormData) => {
     console.log(data);
+    if (data.coverLetter?.length > 500)
+      return toast.error("Cover letter maximum length is 500 characters", {
+        theme: "dark",
+      });
     handleApply();
+  };
+
+  const renderError = () => {
+    return <span className="input-error">Field is required</span>;
+  };
+  const renderIconError = () => {
+    return (
+      <img src="/images/icon-invalid.svg" className="input-error-icon" alt="" />
+    );
   };
 
   return (
@@ -44,77 +60,107 @@ const FormApplication = (props: FormApplicationTypes) => {
       <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.groupName}>
           <div className={styles.formInput}>
-            <input
-              placeholder="Your name"
-              {...register("name", { required: true, maxLength: 20 })}
-            />
-            {errors.name && <span className="error">!</span>}
+            <div
+              className={`input-field ${errors.name ? "input-disabled" : ""}`}
+            >
+              <input
+                placeholder="Your name"
+                {...register("name", { required: true })}
+              />
+              {renderIconError()}
+            </div>
+            {errors.name && renderError()}
           </div>
 
           <div className={styles.formInput}>
-            <input
-              placeholder="Your phone number"
-              {...register("phone", { required: true, maxLength: 20 })}
-            />
-            {errors.phone && <span className="error">!</span>}
+            <div
+              className={`input-field ${errors.phone ? "input-disabled" : ""}`}
+            >
+              <input
+                placeholder="Your phone number"
+                {...register("phone", { required: true })}
+              />
+              {renderIconError()}
+            </div>
+            {errors.phone && renderError()}
           </div>
         </div>
 
         <div className={styles.formInput}>
-          <input
-            placeholder="Enter your email"
-            {...register("email", { required: true, maxLength: 20 })}
-          />
-          {errors.email && <span className="error">!</span>}
-        </div>
-
-        <div className={styles.formInput + " " + styles.uploadInput}>
-          <input
-            type={"text"}
-            className="cv-label"
-            disabled
-            placeholder="Upload your CV"
-            // {...register("cv", { required: true })}
-          />
-          {/* {errors.cv && <span className="error">!</span>} */}
-          <label>
-            Upload
+          <div
+            className={`input-field ${errors.email ? "input-disabled" : ""}`}
+          >
             <input
-              type="file"
-              hidden
-              accept=".pdf, .ppt, .pptx, .doc, .docx, .jpg, .png"
-              // {...register("cv", { required: true })}
-              onChange={handleSelectCV}
+              placeholder="Enter your email"
+              {...register("email", { required: true })}
             />
-          </label>
+            {renderIconError()}
+          </div>
+          {errors.email && renderError()}
         </div>
-        <p className={styles.cvNote}>
-          (PDF, PPT, PPTX, DOC, DOCX, JPG, PNG - Max size: 5 MB)
-        </p>
 
         <div className={styles.formInput}>
-          <textarea
-            rows={4}
-            placeholder="Cover letter (maximum 500 characters)"
-            {...register("coverLetter", { required: true, maxLength: 500 })}
-          />
-          {errors.coverLetter && <span className="error">!</span>}
+          <div
+            className={`input-field ${styles.uploadInput} ${
+              errors.cv ? "input-disabled" : ""
+            }`}
+          >
+            <input
+              type={"text"}
+              className="cv-label"
+              disabled
+              placeholder="Upload your CV"
+              {...register("cv", { required: true })}
+            />
+            {renderIconError()}
+            <label>
+              Upload
+              <input
+                type="file"
+                hidden
+                accept=".pdf, .ppt, .pptx, .doc, .docx, .jpg, .png"
+                onChange={handleSelectCV}
+              />
+            </label>
+          </div>
+          {errors.cv && renderError()}
+          <p className={styles.cvNote}>
+            (PDF, PPT, PPTX, DOC, DOCX, JPG, PNG - Max size: 5 MB)
+          </p>
+        </div>
+
+        <div className={styles.formInput}>
+          <div
+            className={`input-field ${
+              errors.coverLetter ? "input-disabled" : ""
+            }`}
+          >
+            <textarea
+              rows={4}
+              placeholder="Cover letter (maximum 500 characters)"
+              {...register("coverLetter", { required: true })}
+            />
+            {renderIconError()}
+          </div>
+          {errors.coverLetter && renderError()}
         </div>
 
         <div className={styles.groupInput}>
           <div className={styles.formInput}>
-            <input
-              placeholder="LinkedIn (Optional)"
-              {...register("linkedin", { maxLength: 20 })}
-            />
-            {errors.linkedin && <span className="error">!</span>}
+            <div className="input-field">
+              <input
+                placeholder="LinkedIn (Optional)"
+                {...register("linkedin")}
+              />
+            </div>
           </div>
           <div className={styles.formInput}>
-            <input
-              placeholder="Facebook (Optional)"
-              {...register("facebook", { maxLength: 20 })}
-            />
-            {errors.facebook && <span className="error">!</span>}
+            <div className="input-field">
+              <input
+                placeholder="Facebook (Optional)"
+                {...register("facebook")}
+              />
+            </div>
           </div>
         </div>
 

@@ -206,10 +206,12 @@ const JobDetail: FunctionComponent = () => {
                         <div className={styles.otherCard} key={index}>
                           <span className="job-title">{job?.jobName}</span>
                           <div className="job-info">
-                            <span className="job-rank">{job?.rank}</span>
-                            <div className="job-location">
-                              <img src="/images/icon-location.svg" alt="" />
-                              <span>{job?.location}</span>
+                            <div className="group-info">
+                              <span className="job-rank">{job?.rank}</span>
+                              <div className="job-location">
+                                <img src="/images/icon-location.svg" alt="" />
+                                <span>{job?.location}</span>
+                              </div>
                             </div>
                             <ButtonMedium
                               text="View more"
