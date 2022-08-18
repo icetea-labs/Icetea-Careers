@@ -1,4 +1,4 @@
-import { Dialog, Modal } from "@mui/material";
+import { Dialog } from "@mui/material";
 import useStyles from "./styles";
 
 type ModalApplicationTypes = {
@@ -12,7 +12,7 @@ const ModalApplication = (props: ModalApplicationTypes) => {
 
   return (
     <>
-      <Dialog 
+      <Dialog
         open={open}
         onClose={handleClose}
         className={styles.modal}

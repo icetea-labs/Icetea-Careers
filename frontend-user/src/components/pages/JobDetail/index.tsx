@@ -1,4 +1,4 @@
-import { Theme, Tooltip, useMediaQuery, useTheme } from "@mui/material";
+import { Theme, Tooltip, useTheme } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useCommonStyle } from "../../../styles";
