@@ -4,46 +4,9 @@ import { makeStyles } from "@mui/styles";
 const useCommonStyle = makeStyles((theme: Theme) => {
   return {
     DefaultLayout: {
+      display: "flex",
       minHeight: "100vh",
       fontFamily: "Roboto",
-      background: "url(/images/bg-default.png)",
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-    },
-    LandingLayout: {
-      minHeight: "100vh",
-      fontFamily: "Roboto",
-      background: "url(/images/bg-landing.png)",
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-    },
-    section: {
-      width: "100%",
-      maxWidth: "90rem",
-      margin: "0 auto",
-    },
-    bgBody: {
-      position: "relative",
-      minHeight: "100vh",
-      overflow: "auto",
-    },
-    flexCol: {
-      display: "flex",
-      flexDirection: "column",
-    },
-    flexColCenter: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-    },
-    flexRow: {
-      display: "flex",
-      flexDirection: "row",
-    },
-    flexRowCenter: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
     },
     skeleton: {
       background: "#515151",

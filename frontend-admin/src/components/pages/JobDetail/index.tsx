@@ -1,13 +1,13 @@
 import DefaultLayout from "../../layout/DefaultLayout";
 import useStyles from "./styles";
 
-const Home = () => {
+const JobDetail = () => {
   const styles = useStyles();
   return (
     <DefaultLayout>
-      <div className={styles.homeContainer}>Home</div>
+      <div className={styles.jobDetailContainer}>JobDetail</div>
     </DefaultLayout>
   );
 };
 
-export default Home;
+export default JobDetail;
