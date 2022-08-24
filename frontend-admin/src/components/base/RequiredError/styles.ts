@@ -3,11 +3,12 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme: Theme) => {
   return {
-    jobDetailContainer: {
-      
+    error: {
+      marginTop: 4,
+      paddingLeft: 8,
+      fontWeight: 700,
+      color: "rgba(255, 86, 86, 1)",
     },
-    [theme.breakpoints.only("xs")]: {},
   };
 });
-
 export default useStyles;

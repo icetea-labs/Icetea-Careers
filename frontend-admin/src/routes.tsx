@@ -4,8 +4,8 @@ import { ToastContainer } from "react-toastify";
 import PrivateRoute from "./components/base/PrivateRoute";
 import Admins from "./components/pages/Admins";
 import Home from "./components/pages/Home";
-import JobCreate from "./components/pages/JobCreate";
-import JobDetail from "./components/pages/JobDetail";
+import JobCreate from "./components/pages/JobCreate/JobCreate";
+import JobUpdate from "./components/pages/JobCreate/JobUpdate";
 import Jobs from "./components/pages/Jobs";
 import Login from "./components/pages/Login";
 import NotFoundPage from "./components/pages/NotFoundPage";
@@ -41,10 +41,10 @@ const routing = function createRouting() {
           }
         />
         <Route
-          path="/jobs/:jobId"
+          path="/jobs/:id"
           element={
             <PrivateRoute>
-              <JobDetail />
+              <JobUpdate />
             </PrivateRoute>
           }
         />

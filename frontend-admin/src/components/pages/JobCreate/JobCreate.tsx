@@ -1,11 +1,12 @@
+import BackButton from "../../base/ButtonLink/BackButton";
 import DefaultLayout from "../../layout/DefaultLayout";
-import useStyles from "./styles";
+import JobForm from "./JobForm";
 
 const JobCreate = () => {
-  const styles = useStyles();
   return (
     <DefaultLayout>
-      <div className={styles.jobCreateContainer}>JobCreate</div>
+      <BackButton />
+      <JobForm isEdit={false} />
     </DefaultLayout>
   );
 };

@@ -1,6 +1,6 @@
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
 function BackButton(props: any) {
   const navigate = useNavigate();
 
@@ -9,7 +9,15 @@ function BackButton(props: any) {
   };
   return (
     <>
-      <Button onClick={goBack}>Back</Button>
+      <Button
+        onClick={goBack}
+        variant="contained"
+        color="warning"
+        size="large"
+        startIcon={<ArrowBackIcon />}
+      >
+        Back
+      </Button>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { Button, TableCell, TableRow, Tooltip } from "@mui/material";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   MAPPING_CATEGORY_TYPE_TEXT,
   MAPPING_LEVEL_TYPE_TEXT,
@@ -25,11 +25,6 @@ const ContentRecord: React.FC<ContentRecordProps> = (
 ) => {
   const { record } = props;
   const classes = useStyles();
-  const navigate = useNavigate();
-
-  const onViewJobDetail = (id: string) => {
-    navigate("/job/" + id);
-  };
 
   return (
     <TableRow
@@ -52,11 +47,7 @@ const ContentRecord: React.FC<ContentRecordProps> = (
       <TableCell className={classes.tableCellTitle} component="td" scope="row">
         {MAPPING_LEVEL_TYPE_TEXT[record?.level]}
       </TableCell>
-      <TableCell
-        className={classes.tableCellTitle}
-        component="td"
-        scope="row"
-      >
+      <TableCell className={classes.tableCellTitle} component="td" scope="row">
         {!!record?.status ? "Display" : "Hidden"}
       </TableCell>
 
@@ -66,11 +57,7 @@ const ContentRecord: React.FC<ContentRecordProps> = (
         scope="row"
         // align="left"
       >
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => onViewJobDetail(record?.id)}
-        >
+        <Button variant="contained" color="secondary">
           View
         </Button>
       </TableCell>
