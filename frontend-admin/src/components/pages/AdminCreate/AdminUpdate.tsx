@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getJobDetail } from "../../../requests/job";
+import { getAdminDetail } from "../../../requests/admin";
 import BackButton from "../../base/ButtonLink/BackButton";
 import DefaultLayout from "../../layout/DefaultLayout";
-import JobForm, { emptyJobDetail, FormData } from "./JobForm";
+import AdminForm, { emptyAdmin, FormData } from "./AdminForm";
 import useStyles from "./styles";
 
-const JobUpdate = () => {
+const AdminUpdate = () => {
   const styles = useStyles();
-  const [contentDetail, setContentDetail] = useState<FormData>(emptyJobDetail);
+  const [contentDetail, setContentDetail] = useState<FormData>(emptyAdmin);
 
   const params = useParams();
   const id = params?.id;
 
   useEffect(() => {
-    console.log(id);
     if (!id) return;
-    getJobDetail(+id)
+    getAdminDetail(+id)
       .then(async (res: any) => {
         if (res.status !== 200) {
-          toast.error(`Server Error: ${res.message || "Load JD fail !!!"}`);
+          toast.error(`Server Error: ${res.message || "Load admin fail !!!"}`);
           return false;
         }
         let data = res.data;
@@ -31,7 +30,7 @@ const JobUpdate = () => {
       })
       .catch((e) => {
         console.log("Error: ", e);
-        toast.error("JD load fail !!!");
+        toast.error("Admin load fail !!!");
       });
   }, [id]);
 
@@ -40,9 +39,9 @@ const JobUpdate = () => {
       <div className={styles.listButton}>
         <BackButton />
       </div>
-      <JobForm isEdit={true} jobData={contentDetail} />
+      <AdminForm isEdit={true} jobData={contentDetail} />
     </DefaultLayout>
   );
 };
 
-export default JobUpdate;
+export default AdminUpdate;

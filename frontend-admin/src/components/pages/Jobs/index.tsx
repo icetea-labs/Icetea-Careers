@@ -1,10 +1,4 @@
 import {
-  Button,
-  CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   Pagination,
   Paper,
   Skeleton,
@@ -16,7 +10,6 @@ import {
   TableRow,
 } from "@mui/material";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import { categories, levels } from "../../../constants";
 import { useCommonStyle } from "../../../styles";
 import ButtonLink from "../../base/ButtonLink";
@@ -49,8 +42,6 @@ const Jobs = () => {
   const classes = useStyles();
   const commonStyles = useCommonStyle();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
-  const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const loading = false;
   const jobs: Array<JobDetailProps> = [...fakeJobs];
   const lastPage = 100;
@@ -59,26 +50,13 @@ const Jobs = () => {
     setCurrentPage(page);
   };
 
-  const onConfirmDelete = async () => {
-    setDeleteLoading(true);
-    const response = { status: 200 };
-    // const response = await deleteEventContent(idDelete);
-    if (response?.status === 200) {
-      toast.success("Successful");
-      window.location.reload();
-    } else {
-      toast.error("Fail");
-    }
-    setDeleteLoading(false);
-    setShowConfirmDelete(false);
-  };
   return (
     <DefaultLayout>
       <div className={classes.header}>
         <div className="header-left">
           <ButtonLink
             to={"add"}
-            text={"Create New Event Content"}
+            text={"Create New JD"}
             icon={"icon-plus.svg"}
           />
         </div>
@@ -126,39 +104,6 @@ const Jobs = () => {
           </>
         )}
       </TableContainer>
-
-      <Dialog
-        open={showConfirmDelete}
-        // TransitionComponent={Transition}
-        aria-labelledby="form-dialog-title"
-        className={classes.dialog}
-      >
-        <DialogTitle id="form-dialog-title">Delete</DialogTitle>
-        <DialogContent className={classes.dialogContent}>
-          Are you sure to Delete?
-        </DialogContent>
-        <DialogActions className={classes.dialogActions}>
-          <Button
-            className={classes.dialogButton}
-            disabled={deleteLoading}
-            onClick={onConfirmDelete}
-            color="primary"
-          >
-            Submit
-            {deleteLoading && (
-              <CircularProgress size={25} style={{ marginLeft: 10 }} />
-            )}
-          </Button>
-          <Button
-            disabled={deleteLoading}
-            className={`${classes.dialogButton} ${classes.dialogButtonCancel}`}
-            onClick={() => setShowConfirmDelete(false)}
-            color="primary"
-          >
-            Cancel
-          </Button>
-        </DialogActions>
-      </Dialog>
     </DefaultLayout>
   );
 };

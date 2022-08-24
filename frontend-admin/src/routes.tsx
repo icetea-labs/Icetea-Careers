@@ -2,6 +2,8 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import PrivateRoute from "./components/base/PrivateRoute";
+import AdminCreate from "./components/pages/AdminCreate/AdminCreate";
+import AdminUpdate from "./components/pages/AdminCreate/AdminUpdate";
 import Admins from "./components/pages/Admins";
 import Home from "./components/pages/Home";
 import JobCreate from "./components/pages/JobCreate/JobCreate";
@@ -53,6 +55,22 @@ const routing = function createRouting() {
           element={
             <PrivateRoute>
               <Admins />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admins/add"
+          element={
+            <PrivateRoute>
+              <AdminCreate />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admins/:id"
+          element={
+            <PrivateRoute>
+              <AdminUpdate />
             </PrivateRoute>
           }
         />
