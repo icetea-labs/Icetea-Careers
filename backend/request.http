@@ -1,16 +1,16 @@
 GET http://localhost:5000/api/admins?search=&page=1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmY2Y2E2MzdjZTlmMzFlYTJkMzY3IiwiaWF0IjoxNjYxNDE0MTQ1fQ.3FYPrL4UE1bQ_JwrQE7q6sXhSHBHDo2f_Qjoa0quDac
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwOGE4ZmNiZWE2MWJlYzEyMjQ4MTQ4IiwiaWF0IjoxNjYxNTEyMDM2fQ.vFMuWGz5HFhTvnRyvv_F2dm6vJs9QXxkswXsgHYrXO0
 
 ### CREATE Admin
 POST http://localhost:5000/api/admins/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmY2Y2E2MzdjZTlmMzFlYTJkMzY3IiwiaWF0IjoxNjYxNDE0MTQ1fQ.3FYPrL4UE1bQ_JwrQE7q6sXhSHBHDo2f_Qjoa0quDac
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwOGE4ZmNiZWE2MWJlYzEyMjQ4MTQ4IiwiaWF0IjoxNjYxNTEyMDM2fQ.vFMuWGz5HFhTvnRyvv_F2dm6vJs9QXxkswXsgHYrXO0
 
 {
-  "username": "adminfake6",
+  "username": "admin",
   "password": "2018",
   "name":"Ha nguyen",
-  "email": "hnxasvnjkvnio@icetea.io",
+  "email": "hann@icetea.io",
   "isBoss": false
 }
 
@@ -32,9 +32,15 @@ POST http://localhost:5000/api/admins/login
 Content-Type: application/json
 
 {
-  "username": "adminfake2",
+  "username": "admin",
   "password": "2018"
 }
+
+### GET List Job
+GET http://localhost:5000/api/jobs
+
+### GET Job Detail by Id
+GET http://localhost:5000/api/jobs/2
 
 ### CREATE Job
 POST http://localhost:5000/api/jobs/create
@@ -53,7 +59,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwN
 }
 
 ###
-PUT http://localhost:5000/api/jobs/update/630730148234263a5d2ef7e8
+PUT http://localhost:5000/api/jobs/update/2
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmZhNjg3MWRiNzhhYzg3ZmJiMDBmIiwiaWF0IjoxNjYxNDAyNTc0fQ.3BLsaH3VGzSRuPwtzxhOIFh_4s9paPmyaCXEq49z7Ik
 
@@ -69,12 +75,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwN
 }
 
 ### Delete Job
-DELETE  http://localhost:5000/api/jobs/delete/630724ab64a049a01adaa3ac
+DELETE  http://localhost:5000/api/jobs/delete/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmZhNjg3MWRiNzhhYzg3ZmJiMDBmIiwiaWF0IjoxNjYxNDAyNTc0fQ.3BLsaH3VGzSRuPwtzxhOIFh_4s9paPmyaCXEq49z7Ik
 
 ### Delete Admin
 DELETE  http://localhost:5000/api/admins/delete/6306fa6871db78ac87fbb00f
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmY2Y2E2MzdjZTlmMzFlYTJkMzY3IiwiaWF0IjoxNjYxNDE0MTQ1fQ.3FYPrL4UE1bQ_JwrQE7q6sXhSHBHDo2f_Qjoa0quDac
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwOGE4ZmNiZWE2MWJlYzEyMjQ4MTQ4IiwiaWF0IjoxNjYxNTEyMDM2fQ.vFMuWGz5HFhTvnRyvv_F2dm6vJs9QXxkswXsgHYrXO0
 
 ### Get list jobs
 GET  http://localhost:5000/api/jobs?page=2&search=&display=&level=intern

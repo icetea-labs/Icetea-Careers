@@ -7,8 +7,8 @@ const verifyToken = require('../middleware/auth')
 
 // @route GET api/jobs
 // @desc Get list Job Detail
-// @access Private
-router.get('/', verifyToken, async (req, res) => {
+// @access Public
+router.get('/', async (req, res) => {
   const { search, display, category, level, page } = req.query
 
   try {
@@ -23,14 +23,14 @@ router.get('/', verifyToken, async (req, res) => {
       filter.level = level
     }
     filter.title = {
-      $regex: search
+      $regex: search || ''
     }
 
     const total = Job.count
     const perPage = 10
-    const jobs = await Job.find(filter).skip((+page - 1) * perPage).limit(perPage)
+    const jobs = await Job.find(filter, { _id: 0, }).skip((+page - 1) * perPage).limit(perPage)
     res.status(200).json({
-      sucess: true,
+      success: true,
       data: {
         data: jobs,
         page: +page,
@@ -42,7 +42,28 @@ router.get('/', verifyToken, async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({
-      sucess: false,
+      success: false,
+      message: "Internal server error"
+    })
+  }
+})
+
+// @route GET api/jobs/:id
+// @desc Get Job Detail by Id
+// @access Public
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const job = await Job.findOne({ id: id }, { _id: 0 })
+    res.status(200).json({
+      success: true,
+      job
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      success: false,
       message: "Internal server error"
     })
   }
@@ -57,20 +78,24 @@ router.post('/create', verifyToken, async (req, res) => {
 
   if (!title || !category || !level || !location)
     return res.status(400).json({
-      sucess: false,
+      success: false,
       message: "Missing required field"
     })
 
   try {
+    const count = (await Job.count()).toString()
+    const newId = +count <= 0 ? 1 : (+count + 1)
     const newJob = new Job({
+      id: newId,
       display: typeof (display) === 'boolean' ? display : true,
-      benefits, category, description, level, location, requirements, title, createBy: req.adminId
+      benefits, category, description, level, location, requirements, title,
+      createBy: req.adminId
     })
 
     await newJob.save()
 
     res.json({
-      sucess: true,
+      success: true,
       message: 'Created successfully',
       job: newJob
     })
@@ -78,7 +103,7 @@ router.post('/create', verifyToken, async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({
-      sucess: false,
+      success: false,
       message: "Internal server error"
     })
   }
@@ -88,22 +113,22 @@ router.post('/create', verifyToken, async (req, res) => {
 // @desc Update Job Detail
 // @access Private
 router.put('/update/:id', verifyToken, async (req, res) => {
-  console.log(req.body)
   const { display, title, category, level, location, description, requirements, benefits } = req.body
 
   if (!title || !category || !level || !location)
     return res.status(400).json({
-      sucess: false,
+      success: false,
       message: "Missing required field"
     })
 
   try {
     let updatedJob = {
+      id: req.params.id,
       display: typeof (display) === 'boolean' ? display : true,
       benefits, category, description, level, location, requirements, title, createBy: req.adminId
     }
     const jobUpdateConditions = {
-      _id: req.params.id,
+      id: req.params.id,
       admin: req.adminId
     }
     updatedJob = await Job.findOneAndUpdate(jobUpdateConditions, updatedJob, { new: true })
@@ -116,7 +141,7 @@ router.put('/update/:id', verifyToken, async (req, res) => {
       })
 
     res.json({
-      sucess: true,
+      success: true,
       message: 'Updated successfully',
       job: updatedJob
     })
@@ -124,7 +149,7 @@ router.put('/update/:id', verifyToken, async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({
-      sucess: false,
+      success: false,
       message: "Internal server error"
     })
   }
@@ -135,7 +160,7 @@ router.put('/update/:id', verifyToken, async (req, res) => {
 // @access Private
 router.delete('/delete/:id', verifyToken, async (req, res) => {
   try {
-    const jobDeleteCondition = { _id: req.params.id, admin: req.adminId }
+    const jobDeleteCondition = { id: req.params.id, admin: req.adminId }
     const deletedJob = await Job.findOneAndDelete(jobDeleteCondition)
 
     // User not authorised or post not found

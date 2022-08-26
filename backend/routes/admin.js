@@ -8,15 +8,15 @@ const verifyToken = require('../middleware/auth')
 
 // @route GET api/admins
 // @desc Get list Admin
-// @access Private
-router.get('/', verifyToken, async (req, res) => {
+// @access Public
+router.get('/', async (req, res) => {
   const { search, page } = req.query
 
   try {
     let filter = {}
     if (search) {
       let filterOption = {
-        $regex: search.toLowerCase(),
+        $regex: search || '',
         $options: "i"
       }
       filter = {
@@ -39,7 +39,7 @@ router.get('/', verifyToken, async (req, res) => {
     const jobs = await Admin.find(filter, { password: 0 }).skip((+page - 1) * perPage).limit(perPage)
 
     res.status(200).json({
-      sucess: true,
+      success: true,
       data: {
         data: jobs,
         page: +page,
@@ -51,7 +51,34 @@ router.get('/', verifyToken, async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({
-      sucess: false,
+      success: false,
+      message: "Internal server error"
+    })
+  }
+})
+
+// @route GET api/jobs/:id
+// @desc Get Job Detail by Id
+// @access Public
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const admin = await Admin.findOne({ id: id }, { _id: 0, password: 0 })
+    if (!admin)
+      return res.status(401).json({
+        success: false,
+        message: 'Admin not found'
+      })
+    
+    res.status(200).json({
+      success: true,
+      admin
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      success: false,
       message: "Internal server error"
     })
   }
@@ -86,20 +113,27 @@ router.post('/create', verifyToken, async (req, res) => {
         .json({ success: false, message: 'Username already taken' })
 
     // All good
+    const count = (await Admin.count()).toString()
+    const newId = +count <= 0 ? 1 : (+count + 1)
     const hashedPassword = await argon2.hash(password)
-    const newUser = new Admin({ username, password: hashedPassword, name, email, isBoss: isBoss || false })
+    const newUser = new Admin({
+      id: newId,
+      username, name, email,
+      password: hashedPassword,
+      isBoss: isBoss || false
+    })
     await newUser.save()
 
     // Return token
-    const accessToken = jwt.sign(
-      { adminId: newUser._id },
-      process.env.ACCESS_TOKEN_SECRET
-    )
+    // const accessToken = jwt.sign(
+    //   { adminId: newUser._id },
+    //   process.env.ACCESS_TOKEN_SECRET
+    // )
 
     res.json({
       success: true,
       message: 'New Admin created successfully',
-      accessToken
+      newUser
     })
   } catch (error) {
     console.log(error)
@@ -130,10 +164,15 @@ router.put('/update/:id', verifyToken, async (req, res) => {
 
   try {
     const hashedPassword = await argon2.hash(password)
-    let updateAdmin = { username, password: hashedPassword, name, email, isBoss: isBoss || false }
+    let updateAdmin = {
+      id: req.params.id,
+      username, name, email,
+      password: hashedPassword,
+      isBoss: isBoss || false
+    }
 
     const adminUpdateConditions = {
-      _id: req.params.id,
+      id: req.params.id,
       admin: req.adminId
     }
     updateAdmin = await Admin.findOneAndUpdate(adminUpdateConditions, updateAdmin, { new: true })
@@ -164,7 +203,7 @@ router.post('/login', async (req, res) => {
 
   // Simple validation
   if (!username || !password) return res.status(400).json({
-    sucess: false,
+    success: false,
     message: "Missing username/password"
   })
 
@@ -173,20 +212,20 @@ router.post('/login', async (req, res) => {
     const admin = await Admin.findOne({ username })
     if (!admin)
       return res.status(400).json({
-        sucess: false,
+        success: false,
         message: "Invalid username or password"
       })
 
     const passwordValid = await argon2.verify(admin.password, password)
     if (!passwordValid) return res.status(400).json({
-      sucess: false,
+      success: false,
       message: "Invalid username or password"
     })
 
     const accessToken = jwt.sign({ adminId: admin._id }, process.env.ACCESS_TOKEN_SECRET)
 
     res.json({
-      sucess: true,
+      success: true,
       message: "Admin logged in successfully",
       accessToken
     })
@@ -194,7 +233,7 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({
-      sucess: false,
+      success: false,
       message: "Internal server error"
     })
   }
@@ -213,7 +252,7 @@ router.delete('/delete/:id', verifyToken, async (req, res) => {
   })
 
   try {
-    const adminDeleteCondition = { _id: req.params.id, admin: req.adminId }
+    const adminDeleteCondition = { id: req.params.id, admin: req.adminId }
     const deletedAdmin = await Admin.findOneAndDelete(adminDeleteCondition)
 
     // User not authorised or post not found
