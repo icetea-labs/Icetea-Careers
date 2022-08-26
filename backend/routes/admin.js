@@ -36,7 +36,8 @@ router.get('/', verifyToken, async (req, res) => {
 
     const total = Admin.count
     const perPage = 10
-    const jobs = await Admin.find(filter).skip((+page - 1) * perPage).limit(perPage)
+    const jobs = await Admin.find(filter, { password: 0 }).skip((+page - 1) * perPage).limit(perPage)
+
     res.status(200).json({
       sucess: true,
       data: {
@@ -143,7 +144,7 @@ router.put('/update/:id', verifyToken, async (req, res) => {
         success: false,
         message: 'Admin not found or Admin not authorised'
       })
-    
+
     res.json({
       success: true,
       message: 'Admin updated successfully',
