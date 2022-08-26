@@ -11,7 +11,16 @@ const AdminSchema = new Schema({
     type: String,
     require: true,
   },
-  crreateAt: {
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+  },
+  isBoss: {
+    type: Boolean,
+  },
+  createAt: {
     type: Date,
     default: Date.now
   },

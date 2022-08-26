@@ -1,1 +1,81 @@
-GET http://localhost:5000
+GET http://localhost:5000/api/admins?search=&page=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmY2Y2E2MzdjZTlmMzFlYTJkMzY3IiwiaWF0IjoxNjYxNDE0MTQ1fQ.3FYPrL4UE1bQ_JwrQE7q6sXhSHBHDo2f_Qjoa0quDac
+
+### CREATE Admin
+POST http://localhost:5000/api/admins/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmY2Y2E2MzdjZTlmMzFlYTJkMzY3IiwiaWF0IjoxNjYxNDE0MTQ1fQ.3FYPrL4UE1bQ_JwrQE7q6sXhSHBHDo2f_Qjoa0quDac
+
+{
+  "username": "adminfake6",
+  "password": "2018",
+  "name":"Ha nguyen",
+  "email": "hnxasvnjkvnio@icetea.io",
+  "isBoss": false
+}
+
+### UPDATE Admin
+PUT http://localhost:5000/api/admins/update/63074a6678481ed583c99f28
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNzRhMzc3ODQ4MWVkNTgzYzk5ZjI0IiwiaWF0IjoxNjYxNDI0MTU2fQ.Aon_agt16lAs1kJXB6bHmAsoGxK_GXUYd43NihIlNFY
+
+{
+  "username": "adminfake3",
+  "password": "2018",
+  "name":"Kien nguyen 2222",
+  "email": "kienncpphasz@icetea.io",
+  "isBoss": false
+}
+
+### ADMIN LOGIN
+POST http://localhost:5000/api/admins/login
+Content-Type: application/json
+
+{
+  "username": "adminfake2",
+  "password": "2018"
+}
+
+### CREATE Job
+POST http://localhost:5000/api/jobs/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmZhNjg3MWRiNzhhYzg3ZmJiMDBmIiwiaWF0IjoxNjYxNDAyNTc0fQ.3BLsaH3VGzSRuPwtzxhOIFh_4s9paPmyaCXEq49z7Ik
+
+{
+  "title": "React native dev 7",
+  "category": "software-development",
+  "level": "intern",
+  "display": false,
+  "location": "remote",
+  "description": "<p>description development</p>",
+  "requirements": "<p>requirements development</p>",
+  "benefits": "<p>benefits development</p>"
+}
+
+###
+PUT http://localhost:5000/api/jobs/update/630730148234263a5d2ef7e8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmZhNjg3MWRiNzhhYzg3ZmJiMDBmIiwiaWF0IjoxNjYxNDAyNTc0fQ.3BLsaH3VGzSRuPwtzxhOIFh_4s9paPmyaCXEq49z7Ik
+
+{
+  "title": "React native dev edited",
+  "category": "software-development",
+  "level": "intern",
+  "display": false,
+  "location": "ha-noi",
+  "description": "<p>description development edited</p>",
+  "requirements": "<p>requirements development edited</p>",
+  "benefits": "<p>benefits development edited</p>"
+}
+
+### Delete Job
+DELETE  http://localhost:5000/api/jobs/delete/630724ab64a049a01adaa3ac
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmZhNjg3MWRiNzhhYzg3ZmJiMDBmIiwiaWF0IjoxNjYxNDAyNTc0fQ.3BLsaH3VGzSRuPwtzxhOIFh_4s9paPmyaCXEq49z7Ik
+
+### Delete Admin
+DELETE  http://localhost:5000/api/admins/delete/6306fa6871db78ac87fbb00f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmY2Y2E2MzdjZTlmMzFlYTJkMzY3IiwiaWF0IjoxNjYxNDE0MTQ1fQ.3FYPrL4UE1bQ_JwrQE7q6sXhSHBHDo2f_Qjoa0quDac
+
+### Get list jobs
+GET  http://localhost:5000/api/jobs?page=2&search=&display=&level=intern
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbklkIjoiNjMwNmZhNjg3MWRiNzhhYzg3ZmJiMDBmIiwiaWF0IjoxNjYxNDAyNTc0fQ.3BLsaH3VGzSRuPwtzxhOIFh_4s9paPmyaCXEq49z7Ik

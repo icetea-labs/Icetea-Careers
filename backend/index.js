@@ -1,6 +1,9 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const adminRouter = require('./routes/admin')
+const jobRouter = require('./routes/job')
 
 const connectDB = async () => {
   try {
@@ -15,8 +18,11 @@ const connectDB = async () => {
 connectDB()
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-app.get('/', (req, res) => res.send('ha.nguyen'))
+app.use('/api/admins', adminRouter)
+app.use('/api/jobs', jobRouter)
 
 const PORT = 5000
 
