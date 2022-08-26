@@ -27,6 +27,6 @@ app.use(cors())
 app.use('/api/admins', adminRouter)
 app.use('/api/jobs', jobRouter)
 
-const PORT = 5000
+const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => console.log('first request from port ' + PORT))
