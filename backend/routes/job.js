@@ -9,7 +9,7 @@ const verifyToken = require('../middleware/auth')
 // @desc Get list Job Detail
 // @access Public
 router.get('/', async (req, res) => {
-  const { search, display, category, level, page } = req.query
+  const { search, display, category, level, page = 1 } = req.query
 
   try {
     let filter = {}

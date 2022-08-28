@@ -10,7 +10,7 @@ const verifyToken = require('../middleware/auth')
 // @desc Get list Admin
 // @access Private
 router.get('/', verifyToken, async (req, res) => {
-  const { search, page } = req.query
+  const { search, page = 1 } = req.query
 
   try {
     let filter = {}
