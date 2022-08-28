@@ -73,7 +73,7 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).json({
       success: true,
-      admin
+      data: admin
     })
   } catch (error) {
     console.log(error)
@@ -133,7 +133,7 @@ router.post('/create', verifyToken, async (req, res) => {
     res.json({
       success: true,
       message: 'New Admin created successfully',
-      newUser
+      data: newUser
     })
   } catch (error) {
     console.log(error)
@@ -187,7 +187,7 @@ router.put('/update/:id', verifyToken, async (req, res) => {
     res.json({
       success: true,
       message: 'Admin updated successfully',
-      admin: updateAdmin
+      data: updateAdmin
     })
   } catch (error) {
     console.log(error)
@@ -262,7 +262,7 @@ router.delete('/delete/:id', verifyToken, async (req, res) => {
         message: 'Admin not found or Admin not authorised'
       })
 
-    res.json({ success: true, job: deletedAdmin })
+    res.json({ success: true, data: deletedAdmin })
   } catch (error) {
     console.log(error)
     res.status(500).json({ success: false, message: 'Internal server error' })

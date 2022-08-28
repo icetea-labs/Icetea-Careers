@@ -58,7 +58,7 @@ router.get('/:id', async (req, res) => {
     const job = await Job.findOne({ id: id }, { _id: 0 })
     res.status(200).json({
       success: true,
-      job
+      data: job
     })
   } catch (error) {
     console.log(error)
@@ -97,7 +97,7 @@ router.post('/create', verifyToken, async (req, res) => {
     res.json({
       success: true,
       message: 'Created successfully',
-      job: newJob
+      data: newJob
     })
 
   } catch (error) {
@@ -143,7 +143,7 @@ router.put('/update/:id', verifyToken, async (req, res) => {
     res.json({
       success: true,
       message: 'Updated successfully',
-      job: updatedJob
+      data: updatedJob
     })
 
   } catch (error) {
@@ -170,7 +170,7 @@ router.delete('/delete/:id', verifyToken, async (req, res) => {
         message: 'Job not found or Admin not authorised'
       })
 
-    res.json({ success: true, job: deletedJob })
+    res.json({ success: true, data: deletedJob })
   } catch (error) {
     console.log(error)
     res.status(500).json({ success: false, message: 'Internal server error' })
