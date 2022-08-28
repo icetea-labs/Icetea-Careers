@@ -89,8 +89,9 @@ router.post('/create', verifyToken, async (req, res) => {
     })
 
   try {
-    const count = (await Job.count()).toString()
-    const newId = +count <= 0 ? 1 : (+count + 1)
+    const lastJob = await Job.find().sort({ $natural: -1 }).limit(1)
+    const lastId = lastJob ? +lastJob[0]?.id : 0
+    const newId = lastId + 1
     const newJob = new Job({
       id: newId,
       display: typeof (display) === 'boolean' ? display : true,

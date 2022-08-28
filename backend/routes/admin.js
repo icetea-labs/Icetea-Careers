@@ -113,8 +113,9 @@ router.post('/create', verifyToken, async (req, res) => {
         .json({ success: false, message: 'Username already taken' })
 
     // All good
-    const count = (await Admin.count()).toString()
-    const newId = +count <= 0 ? 1 : (+count + 1)
+    const lastAdmin = await Admin.find().sort({ $natural: -1 }).limit(1)
+    const lastId = lastAdmin ? +lastAdmin[0]?.id : 0
+    const newId = lastId + 1
     const hashedPassword = await argon2.hash(password)
     const newUser = new Admin({
       id: newId,
