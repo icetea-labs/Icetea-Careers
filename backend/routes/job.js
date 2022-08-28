@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
       $regex: search || ''
     }
 
-    const total = Job.count
+    const total = await Job.count()
     const perPage = 10
     const jobs = await Job.find(filter, { _id: 0, }).skip((+page - 1) * perPage).limit(perPage)
     res.status(200).json({

@@ -8,8 +8,8 @@ const verifyToken = require('../middleware/auth')
 
 // @route GET api/admins
 // @desc Get list Admin
-// @access Public
-router.get('/', async (req, res) => {
+// @access Private
+router.get('/', verifyToken, async (req, res) => {
   const { search, page } = req.query
 
   try {
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
       }
     }
 
-    const total = Admin.count
+    const total = await Admin.count()
     const perPage = 10
     const jobs = await Admin.find(filter, { password: 0 }).skip((+page - 1) * perPage).limit(perPage)
 
@@ -70,7 +70,7 @@ router.get('/:id', async (req, res) => {
         success: false,
         message: 'Admin not found'
       })
-    
+
     res.status(200).json({
       success: true,
       admin
