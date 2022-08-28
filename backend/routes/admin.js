@@ -66,7 +66,7 @@ router.get('/:id', async (req, res) => {
   try {
     const admin = await Admin.findOne({ id: id }, { _id: 0, password: 0 })
     if (!admin)
-      return res.status(401).json({
+      return res.status(404).json({
         success: false,
         message: 'Admin not found'
       })
@@ -179,7 +179,7 @@ router.put('/update/:id', verifyToken, async (req, res) => {
 
     // User not authorised to update post or post not found
     if (!updateAdmin)
-      return res.status(401).json({
+      return res.status(404).json({
         success: false,
         message: 'Admin not found or Admin not authorised'
       })
@@ -257,7 +257,7 @@ router.delete('/delete/:id', verifyToken, async (req, res) => {
 
     // User not authorised or post not found
     if (!deletedAdmin)
-      return res.status(401).json({
+      return res.status(404).json({
         success: false,
         message: 'Admin not found or Admin not authorised'
       })

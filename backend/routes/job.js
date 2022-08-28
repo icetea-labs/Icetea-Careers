@@ -57,7 +57,7 @@ router.get('/:id', async (req, res) => {
   try {
     const job = await Job.findOne({ id: id }, { _id: 0 })
     if (!job)
-      return res.status(401).json({
+      return res.status(404).json({
         success: false,
         message: 'Job Detail not found'
       })
@@ -141,7 +141,7 @@ router.put('/update/:id', verifyToken, async (req, res) => {
 
     // User not authorised to update post or post not found
     if (!updatedJob)
-      return res.status(401).json({
+      return res.status(404).json({
         success: false,
         message: 'Job not found or Admin not authorised'
       })
@@ -171,7 +171,7 @@ router.delete('/delete/:id', verifyToken, async (req, res) => {
 
     // User not authorised or post not found
     if (!deletedJob)
-      return res.status(401).json({
+      return res.status(404).json({
         success: false,
         message: 'Job not found or Admin not authorised'
       })
