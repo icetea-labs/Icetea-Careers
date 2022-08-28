@@ -56,6 +56,12 @@ router.get('/:id', async (req, res) => {
 
   try {
     const job = await Job.findOne({ id: id }, { _id: 0 })
+    if (!job)
+      return res.status(401).json({
+        success: false,
+        message: 'Job Detail not found'
+      })
+
     res.status(200).json({
       success: true,
       data: job
