@@ -210,7 +210,7 @@ router.post('/login', async (req, res) => {
 
   try {
     // Check existing admin
-    const admin = await Admin.findOne({ username })
+    const admin = await Admin.findOne({ username }, { password: 0 })
     if (!admin)
       return res.status(400).json({
         success: false,
@@ -228,6 +228,7 @@ router.post('/login', async (req, res) => {
     res.json({
       success: true,
       message: "Admin logged in successfully",
+      data: admin,
       accessToken
     })
 
