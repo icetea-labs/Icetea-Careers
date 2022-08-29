@@ -11,6 +11,9 @@ import React from "react";
 import useStyles from "./styles";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
+import axios from "../../../services/axios";
+import { toast } from "react-toastify";
+
 interface State {
   username: string;
   password: string;
@@ -48,10 +51,27 @@ const Login = () => {
     event.preventDefault();
   };
 
-  const handleLogin = () => {
-    //TODO: validate
-    localStorage.setItem("user", values.username);
-    navigate("/dashboard");
+  const handleLogin = async () => {
+    try {
+      const res: any = await axios.post("/admins/login", {
+        username: values.username,
+        password: values.password,
+      });
+      console.log(res);
+      if (!res?.data?.sucess) {
+        toast.error(
+          `Server Error: ${res?.data?.message || "Load JD fail !!!"}`
+        );
+        return false;
+      }
+      toast.success('Logged in successfully')
+      localStorage.setItem("access_token", res.data?.accessToken);
+      navigate("/home");
+    } catch (error: any) {
+      const errMessage = error?.response?.data?.message || "Load JD fail !!!";
+      console.log("ERROR Login: ", errMessage);
+      toast.error(`Server Error: ${errMessage}`);
+    }
   };
 
   return (

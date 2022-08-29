@@ -1,5 +1,5 @@
 import { Button, CircularProgress, Grid } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,6 +7,7 @@ import { createJob, deleteJob, updateJob } from "../../../requests/job";
 import Benefits from "./Components/Benefits";
 import Category from "./Components/Category";
 import Description from "./Components/Description";
+import DisplaySwitch from "./Components/DisplaySwitch";
 import JobLevel from "./Components/JobLevel";
 import JobTitle from "./Components/JobTitle";
 import Location from "./Components/Location";
@@ -14,6 +15,8 @@ import Requirements from "./Components/Requirements";
 import useStyles from "./styles";
 
 export type FormData = {
+  id: number;
+  display: boolean;
   title: string;
   category: string;
   level: string;
@@ -24,13 +27,15 @@ export type FormData = {
 };
 
 export const emptyJobDetail: FormData = {
+  id: 0,
+  display: true,
   benefits: "",
-  category: "marketing",
-  description: "<p>defaul value</p>",
-  level: "junior",
-  location: "remote",
+  category: "",
+  description: "",
+  level: "",
+  location: "",
   requirements: "",
-  title: "React Native Dev",
+  title: "",
 };
 
 type JobFormTypes = {
@@ -43,22 +48,34 @@ const JobForm = (props: JobFormTypes) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { isEdit = false, jobData = { ...emptyJobDetail } }: any = props;
+  const { isEdit = false, jobData }: any = props;
 
   const {
     register,
     setValue,
+    reset,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    defaultValues: jobData,
+    defaultValues: useMemo(() => {
+      return jobData;
+    }, [jobData]),
     reValidateMode: "onChange",
   });
 
+  useEffect(() => {
+    console.log(jobData);
+    if (!jobData) return;
+    reset(jobData);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jobData]);
+
   const createUpdateJob = async (data: any) => {
     const submitData = {
+      id: data.id || 0,
       display: data.display,
       title: data.title,
       category: data.category,
@@ -97,8 +114,9 @@ const JobForm = (props: JobFormTypes) => {
       } else {
         toast.error("Fail!");
       }
-    } catch (e) {
+    } catch (e: any) {
       setLoading(false);
+      toast.error(e?.message || "Something wrong");
       console.log("ERROR: ", e);
     }
   };
@@ -129,6 +147,13 @@ const JobForm = (props: JobFormTypes) => {
     <div className={classes.formContainer}>
       <Grid container spacing={2}>
         <Grid item xs={12} className={classes.formGrid}>
+          <Grid item xs={12} className={classes.formFieldGroup}>
+            <DisplaySwitch
+              control={control}
+              jobData={jobData}
+              setValue={setValue}
+            />
+          </Grid>
           <Grid item xs={12} className={classes.formFieldGroup}>
             <JobTitle errors={errors} control={control} />
             <Category errors={errors} control={control} />

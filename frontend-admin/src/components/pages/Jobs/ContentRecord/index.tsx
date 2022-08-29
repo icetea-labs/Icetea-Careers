@@ -1,4 +1,5 @@
 import { Button, TableCell, TableRow, Tooltip } from "@mui/material";
+import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -8,12 +9,12 @@ import {
 import useStyles from "./style";
 
 export type JobDetailProps = {
-  id: string;
+  id: number;
   title: string;
   category: string;
   level: string;
-  status: boolean;
-  createdDate: string;
+  display: boolean;
+  createAt: string;
 };
 
 type ContentRecordProps = {
@@ -39,7 +40,11 @@ const ContentRecord: React.FC<ContentRecordProps> = (
         </Tooltip>
       </TableCell>
       <TableCell className={classes.tableCellTitle} component="td" scope="row">
-        <span>{record?.createdDate}</span>
+        <span>
+          {record?.createAt
+            ? moment(record.createAt).format("YYYY/MM/DD, hh:MM A")
+            : "N/A"}
+        </span>
       </TableCell>
       <TableCell className={classes.tableCellTitle} component="td" scope="row">
         {MAPPING_CATEGORY_TYPE_TEXT[record?.category]}
@@ -48,7 +53,7 @@ const ContentRecord: React.FC<ContentRecordProps> = (
         {MAPPING_LEVEL_TYPE_TEXT[record?.level]}
       </TableCell>
       <TableCell className={classes.tableCellTitle} component="td" scope="row">
-        {!!record?.status ? "Display" : "Hidden"}
+        {!!record?.display ? "Display" : "Hidden"}
       </TableCell>
 
       <TableCell

@@ -33,7 +33,7 @@ const NavLeft = (props: any) => {
     }
 
     // logout
-    localStorage.removeItem("user");
+    localStorage.removeItem("access_token");
     window.location.reload();
   };
 

@@ -9,8 +9,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useState } from "react";
-import { categories, levels } from "../../../constants";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import useFetch from "../../../hooks/useFetch";
 import { useCommonStyle } from "../../../styles";
 import ButtonLink from "../../base/ButtonLink";
 import DefaultLayout from "../../layout/DefaultLayout";
@@ -26,25 +27,21 @@ const tableHeaders = [
   "Detail",
 ];
 
-const fakeJobs: Array<JobDetailProps> = new Array(10)
-  .fill(1)
-  .map((item: any, index: number) => {
-    return {
-      id: index + "0",
-      category: categories[index % 4].value,
-      createdDate: "22/08/2022 04:30 PM",
-      level: levels[index % 5].value,
-      status: true,
-      title: "Front-End Developper (Reactjs/Vuejs)",
-    };
-  });
 const Jobs = () => {
   const classes = useStyles();
   const commonStyles = useCommonStyle();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const loading = false;
-  const jobs: Array<JobDetailProps> = [...fakeJobs];
-  const lastPage = 100;
+  const [totalPage, setTotalPage] = useState<number>(0);
+
+  const { data: dataJobs, error, loading } = useFetch<any>("jobs");
+
+  useEffect(() => {
+    if (!dataJobs && error) {
+      toast.error(error || "Load list Job fail");
+      return;
+    }
+    setTotalPage(dataJobs?.lastPage);
+  }, [dataJobs, error]);
 
   const handlePaginationChange = (event: any, page: number) => {
     setCurrentPage(page);
@@ -66,7 +63,7 @@ const Jobs = () => {
         {loading ? (
           [...Array(10)].map((num, index) => (
             <div key={index}>
-              <Skeleton className={commonStyles.skeleton} height={40} />
+              <Skeleton className={commonStyles.skeleton} height={60} />
             </div>
           ))
         ) : (
@@ -81,23 +78,23 @@ const Jobs = () => {
               </TableRow>
             </TableHead>
             <TableBody className={classes.tableBody}>
-              {jobs &&
-                jobs.length > 0 &&
-                jobs.map((job: JobDetailProps) => (
+              {dataJobs?.data &&
+                dataJobs.data.length > 0 &&
+                dataJobs.data.map((job: JobDetailProps) => (
                   <ContentRecord key={job.id} record={job} />
                 ))}
             </TableBody>
           </Table>
         )}
-        {(!jobs || jobs.length === 0) && !loading ? (
+        {(!dataJobs || dataJobs.length === 0) && !loading ? (
           <p className={classes.noDataMessage}>There is no data</p>
         ) : (
           <>
-            {jobs && lastPage > 1 && (
+            {dataJobs && totalPage > 1 && (
               <Pagination
                 page={currentPage}
                 className={classes.pagination}
-                count={lastPage}
+                count={totalPage}
                 onChange={handlePaginationChange}
               />
             )}

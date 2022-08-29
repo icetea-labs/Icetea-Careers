@@ -18,7 +18,7 @@ export const MAPPING_CATEGORY_TYPE_TEXT = {
 };
 
 export const LEVEL_TYPE = {
-  INTERN_FRESHER: "intern-fresher",
+  INTERN_FRESHER: "intern",
   JUNIOR: "junior",
   MIDDLE: "middle",
   SENIOR: "senior",

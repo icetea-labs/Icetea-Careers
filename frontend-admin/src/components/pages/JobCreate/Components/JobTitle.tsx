@@ -15,7 +15,9 @@ function JobTitle(props: any) {
           name="title"
           control={control}
           rules={{ required: true }}
-          render={({ field }) => <OutlinedInput {...field} />}
+          render={({ field }) => (
+            <OutlinedInput {...field} placeholder="Enter Job Title" />
+          )}
         />
 
         {errors.title && <RequiredError />}

@@ -1,5 +1,6 @@
 // @ts-ignore
 import { CKEditor } from "ckeditor4-react";
+import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import RequiredError from "../../../base/RequiredError";
 import useStyles from "../styles";
@@ -19,6 +20,8 @@ function Description(props: any) {
   const classes = useStyles();
   const { setValue, errors, jobData, control } = props;
 
+  useEffect(() => {}, []);
+
   return (
     <>
       <div className={classes.formControl}>
@@ -35,7 +38,9 @@ function Description(props: any) {
                 config={ckeditorConfig}
                 name="description"
                 initData={jobData?.description}
-                onReady={(editor: any) => {}}
+                onReady={(editor: any) => {
+                  console.log("editor loaded", editor);
+                }}
                 onChange={(event: any) => {
                   const data = event.editor.getData();
                   setValue("description", data);

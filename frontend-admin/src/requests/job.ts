@@ -1,9 +1,25 @@
+import axios from "../services/axios";
+
+export const configHeader = {
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: "Bearer " + localStorage.getItem("access_token"),
+  },
+};
+
 export const createJob = async (data: any) => {
-  return {};
+  const response = (await axios.post("jobs/create", data, configHeader)) as any;
+  return response;
 };
 
 export const updateJob = async (data: any, id: number) => {
-  return {};
+  const response = (await axios.put(
+    `jobs/update/${id}`,
+    data,
+    configHeader
+  )) as any;
+  return response;
 };
 
 export const deleteJob = async (data: any) => {

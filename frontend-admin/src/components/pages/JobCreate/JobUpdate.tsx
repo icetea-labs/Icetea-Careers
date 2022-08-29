@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getJobDetail } from "../../../requests/job";
+import useFetch from "../../../hooks/useFetch";
 import BackButton from "../../base/ButtonLink/BackButton";
 import DefaultLayout from "../../layout/DefaultLayout";
 import JobForm, { emptyJobDetail, FormData } from "./JobForm";
@@ -13,27 +13,15 @@ const JobUpdate = () => {
 
   const params = useParams();
   const id = params?.id;
+  const { data: dataJobDetail, error } = useFetch<any>("jobs/" + id);
 
   useEffect(() => {
-    console.log(id);
-    if (!id) return;
-    getJobDetail(+id)
-      .then(async (res: any) => {
-        if (res.status !== 200) {
-          toast.error(`Server Error: ${res.message || "Load JD fail !!!"}`);
-          return false;
-        }
-        let data = res.data;
-
-        setContentDetail(data);
-
-        return data;
-      })
-      .catch((e) => {
-        console.log("Error: ", e);
-        toast.error("JD load fail !!!");
-      });
-  }, [id]);
+    if (!dataJobDetail && error) {
+      toast.error(error || "Load Job Detail fail");
+      return;
+    }
+    setContentDetail(dataJobDetail);
+  }, [dataJobDetail, error]);
 
   return (
     <DefaultLayout>
