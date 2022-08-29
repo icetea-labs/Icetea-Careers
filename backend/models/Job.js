@@ -27,7 +27,7 @@ const JobSchema = new Schema({
   location: {
     type: String,
     require: true,
-    enum: ['ha-noi', 'ho-chiminh', 'remote']
+    enum: ['ha-noi', 'ho-chi-minh', 'remote']
   },
   description: {
     type: String,
