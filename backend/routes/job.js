@@ -79,7 +79,6 @@ router.get('/:id', async (req, res) => {
 // @desc Create Job Detail
 // @access Private
 router.post('/create', verifyToken, async (req, res) => {
-  console.log(req.body)
   const { display, title, category, level, location, description, requirements, benefits } = req.body
 
   if (!title || !category || !level || !location)

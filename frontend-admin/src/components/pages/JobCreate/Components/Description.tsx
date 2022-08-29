@@ -1,6 +1,6 @@
 // @ts-ignore
 import { CKEditor } from "ckeditor4-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Controller } from "react-hook-form";
 import RequiredError from "../../../base/RequiredError";
 import useStyles from "../styles";
