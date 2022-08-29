@@ -210,7 +210,7 @@ router.post('/login', async (req, res) => {
 
   try {
     // Check existing admin
-    const admin = await Admin.findOne({ username }, { password: 0 })
+    const admin = await Admin.findOne({ username })
     if (!admin)
       return res.status(400).json({
         success: false,
