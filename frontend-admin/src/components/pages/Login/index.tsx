@@ -57,16 +57,17 @@ const Login = () => {
         username: values.username,
         password: values.password,
       });
-      console.log(res);
-      if (!res?.data?.sucess) {
+      if (res?.status !== 200) {
         toast.error(
           `Server Error: ${res?.data?.message || "Load JD fail !!!"}`
         );
         return false;
       }
-      toast.success('Logged in successfully')
+      toast.success("Logged in successfully");
       localStorage.setItem("access_token", res.data?.accessToken);
+      localStorage.setItem("user", JSON.stringify(res.data?.data));
       navigate("/home");
+      window.location.reload();
     } catch (error: any) {
       const errMessage = error?.response?.data?.message || "Load JD fail !!!";
       console.log("ERROR Login: ", errMessage);

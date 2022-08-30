@@ -86,7 +86,7 @@ const Jobs = () => {
             </TableBody>
           </Table>
         )}
-        {(!dataJobs || dataJobs.length === 0) && !loading ? (
+        {(!dataJobs?.data || dataJobs?.data.length === 0) && !loading ? (
           <p className={classes.noDataMessage}>There is no data</p>
         ) : (
           <>

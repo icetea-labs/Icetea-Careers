@@ -10,7 +10,7 @@ function ConfirmPassword(props: any) {
   return (
     <>
       <div className={classes.formControl}>
-        <label className={classes.formControlLabel}>Password</label>
+        <label className={classes.formControlLabel}>RePassword</label>
         <Controller
           name="confirmPassword"
           control={control}

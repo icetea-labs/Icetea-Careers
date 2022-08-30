@@ -1,5 +1,5 @@
 import { Button, CircularProgress, Grid } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,6 +7,7 @@ import { createAdmin, updateAdmin } from "../../../requests/admin";
 import { deleteJob } from "../../../requests/job";
 import AdminEmail from "./Components/AdminEmail";
 import AdminName from "./Components/AdminName";
+import FullyPermission from "./Components/FullyPermission";
 import Password from "./Components/Password";
 import ConfirmPassword from "./Components/PasswordConfirm";
 import Username from "./Components/Username";
@@ -19,22 +20,22 @@ export type FormData = {
   username: string;
   password: string;
   confirmPassword: string;
-  status: boolean;
+  isBoss: boolean;
 };
 
 export const emptyAdmin: FormData = {
   id: "",
-  email: "careers@icetea.io",
+  email: "",
   name: "",
-  username: "theforceht",
+  username: "",
   password: "",
   confirmPassword: "",
-  status: true,
+  isBoss: false,
 };
 
 type JobFormTypes = {
   isEdit?: boolean;
-  jobData?: FormData;
+  adminData?: FormData;
 };
 
 const AdminForm = (props: JobFormTypes) => {
@@ -42,17 +43,26 @@ const AdminForm = (props: JobFormTypes) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { isEdit = false, jobData = { ...emptyAdmin } }: any = props;
+  const { isEdit = false, adminData }: any = props;
 
   const {
     handleSubmit,
     control,
+    setValue,
+    reset,
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    defaultValues: jobData,
+    defaultValues: adminData,
     reValidateMode: "onChange",
   });
+
+  useEffect(() => {
+    if (!adminData) return;
+    reset(adminData);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [adminData]);
 
   const createUpdateAdmin = async (data: any) => {
     const submitData = {
@@ -61,14 +71,14 @@ const AdminForm = (props: JobFormTypes) => {
       name: data.name,
       username: data.username,
       password: data.password,
-      status: data.status,
+      isBoss: data.isBoss,
     };
 
     console.log("[createUpdateAdmin] - Submit with data: ", submitData);
 
     let response = {};
     if (isEdit) {
-      response = await updateAdmin(submitData, jobData?.id);
+      response = await updateAdmin(submitData, adminData?.id);
     } else {
       response = await createAdmin(submitData);
     }
@@ -77,7 +87,12 @@ const AdminForm = (props: JobFormTypes) => {
   };
 
   const handleFormSubmit = async (data: any) => {
-    console.log("handleFormSubmit", data);
+    // Simple validate re-password
+    if (data?.password !== data?.confirmPassword) {
+      toast.error("Confirmation Password do not match");
+      return;
+    }
+
     setLoading(true);
     try {
       const response: any = await createUpdateAdmin(data);
@@ -92,9 +107,10 @@ const AdminForm = (props: JobFormTypes) => {
       } else {
         toast.error("Fail!");
       }
-    } catch (e) {
+    } catch (error: any) {
       setLoading(false);
-      console.log("ERROR: ", e);
+      console.log("ERROR: ", error);
+      toast.error(error?.response?.data?.message || "Update Admin fail");
     }
   };
 
@@ -109,7 +125,7 @@ const AdminForm = (props: JobFormTypes) => {
 
     // delete
     setLoading(true);
-    const response: any = await deleteJob(jobData?.id);
+    const response: any = await deleteJob(adminData?.id);
     setLoading(false);
     if (response?.status === 200) {
       toast.success("Delete Admin Successful!");
@@ -128,6 +144,12 @@ const AdminForm = (props: JobFormTypes) => {
           <AdminEmail errors={errors} control={control} />
           <Password errors={errors} control={control} />
           <ConfirmPassword errors={errors} control={control} />
+
+          <FullyPermission
+            control={control}
+            jobData={adminData}
+            setValue={setValue}
+          />
         </Grid>
       </Grid>
 
@@ -157,7 +179,7 @@ const AdminForm = (props: JobFormTypes) => {
             ) : isEdit ? (
               "Update"
             ) : (
-              "Create JD"
+              "Create Admin"
             )}
           </Button>
         </div>

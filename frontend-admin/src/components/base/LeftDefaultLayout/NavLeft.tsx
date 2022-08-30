@@ -34,6 +34,7 @@ const NavLeft = (props: any) => {
 
     // logout
     localStorage.removeItem("access_token");
+    localStorage.removeItem("user");
     window.location.reload();
   };
 

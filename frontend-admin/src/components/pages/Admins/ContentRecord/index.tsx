@@ -44,10 +44,10 @@ const ContentRecord: React.FC<ContentRecordProps> = (
       <TableCell className={classes.tableCell} component="td" scope="row">
         <span
           className={`admin-status ${
-            record?.status ? "admin-active" : "admin-disable"
+            !record?.status ? "admin-active" : "admin-disable"
           }`}
         ></span>
-        {record?.status ? "Actived" : "Disabled"}
+        {!record?.status ? "Actived" : "Disabled"}
       </TableCell>
 
       <TableCell className={classes.tableCell} component="td" scope="row">

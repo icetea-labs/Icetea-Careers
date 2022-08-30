@@ -15,9 +15,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { deleteAdmin } from "../../../requests/admin";
+import { deleteAdmin, getListAdmin } from "../../../requests/admin";
 import { useCommonStyle } from "../../../styles";
 import ButtonLink from "../../base/ButtonLink";
 import DefaultLayout from "../../layout/DefaultLayout";
@@ -34,18 +34,6 @@ export type AdminProps = {
   status: boolean;
 };
 
-const fakeAdmin: Array<AdminProps> = new Array(10)
-  .fill(1)
-  .map((item: any, index: number) => {
-    return {
-      id: "1" + index,
-      status: !!(index % 2),
-      username: "theforceht",
-      email: "careers@icetea.io",
-      name: "Icetea Careers",
-    };
-  });
-
 const Admins = () => {
   const classes = useStyles();
   const commonStyles = useCommonStyle();
@@ -53,9 +41,31 @@ const Admins = () => {
   const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [idDelete, setIdDelete] = useState<number>(0);
-  const loading = false;
-  const admins: Array<AdminProps> = [...fakeAdmin];
-  const lastPage = 100;
+  const [totalPage, setTotalPage] = useState<number>(0);
+  const [dataAdmins, setDataAdmins] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      setLoading(true);
+      try {
+        let res = await getListAdmin();
+        setLoading(false);
+        if (res?.status === 200) {
+          const { lastPage, data } = res.data?.data;
+          setTotalPage(lastPage);
+          setDataAdmins(data);
+        } else {
+          toast.error("Load list Admin fail");
+        }
+      } catch (error: any) {
+        setLoading(false);
+        toast.error(error?.message || "Load list Admin fail");
+      }
+    };
+
+    fetchAdmins();
+  }, []);
 
   const handlePaginationChange = (event: any, page: number) => {
     setCurrentPage(page);
@@ -63,15 +73,19 @@ const Admins = () => {
 
   const onConfirmDelete = async () => {
     setDeleteLoading(true);
-    const response: any = await deleteAdmin(idDelete);
-    setDeleteLoading(false);
-    if (response?.status === 200) {
-      toast.success("Delete Admin Successful!");
-      window.location.reload();
-    } else {
-      toast.error("Delete Admin Fail!");
+    try {
+      const response: any = await deleteAdmin(idDelete);
+      setDeleteLoading(false);
+      if (response?.status === 200) {
+        toast.success("Delete Admin Successful!");
+        window.location.reload();
+      } else {
+        toast.error("Delete Admin Fail!");
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Delete Admin Fail!");
+      setDeleteLoading(false);
     }
-    setDeleteLoading(false);
     setShowConfirmDelete(false);
   };
 
@@ -111,9 +125,9 @@ const Admins = () => {
               </TableRow>
             </TableHead>
             <TableBody className={classes.tableBody}>
-              {admins &&
-                admins.length > 0 &&
-                admins.map((admin: AdminProps) => (
+              {dataAdmins &&
+                dataAdmins.length > 0 &&
+                dataAdmins.map((admin: AdminProps) => (
                   <ContentRecord
                     key={admin.id}
                     record={admin}
@@ -123,15 +137,15 @@ const Admins = () => {
             </TableBody>
           </Table>
         )}
-        {(!admins || admins.length === 0) && !loading ? (
+        {(!dataAdmins || dataAdmins.length === 0) && !loading ? (
           <p className={classes.noDataMessage}>There is no data</p>
         ) : (
           <>
-            {admins && lastPage > 1 && (
+            {dataAdmins && totalPage > 1 && (
               <Pagination
                 page={currentPage}
                 className={classes.pagination}
-                count={lastPage}
+                count={totalPage}
                 onChange={handlePaginationChange}
               />
             )}
@@ -154,7 +168,8 @@ const Admins = () => {
             className={classes.dialogButton}
             disabled={deleteLoading}
             onClick={onConfirmDelete}
-            color="primary"
+            color="error"
+            variant="outlined"
           >
             Submit
             {deleteLoading && (
@@ -166,6 +181,7 @@ const Admins = () => {
             className={`${classes.dialogButton} ${classes.dialogButtonCancel}`}
             onClick={() => setShowConfirmDelete(false)}
             color="primary"
+            variant="outlined"
           >
             Cancel
           </Button>

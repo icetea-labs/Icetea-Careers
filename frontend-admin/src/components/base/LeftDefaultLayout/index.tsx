@@ -1,6 +1,6 @@
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import { IconButton } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavLeft from "./NavLeft";
 import useStyles from "./styles";
@@ -8,7 +8,12 @@ import useStyles from "./styles";
 const LeftDefaultLayout = (props: any) => {
   const styles = useStyles();
   const [smallLeft, setSmallLeft] = useState<boolean>(false);
-  const loginUser: any = {};
+  const [loginUser, setLoginUser] = useState<any>({});
+
+  useEffect(() => {
+    const user = localStorage.getItem("user") || "";
+    setLoginUser(JSON.parse(user));
+  }, []);
 
   return (
     <div className={styles.leftLayout + " " + (smallLeft && styles.smallLeft)}>
@@ -23,7 +28,7 @@ const LeftDefaultLayout = (props: any) => {
           </Link>
           {!smallLeft && (
             <div className={styles.infoUser}>
-              <div className="name">{loginUser?.username || "Admin"}</div>
+              <div className="name">{loginUser?.username || "admin"}</div>
               <div className="status">
                 Verified Profile
                 <img

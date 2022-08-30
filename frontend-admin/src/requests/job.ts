@@ -1,12 +1,5 @@
 import axios from "../services/axios";
-
-export const configHeader = {
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    Authorization: "Bearer " + localStorage.getItem("access_token"),
-  },
-};
+import { configHeader } from "../utils/configHeader";
 
 export const createJob = async (data: any) => {
   const response = (await axios.post("jobs/create", data, configHeader)) as any;
@@ -22,13 +15,10 @@ export const updateJob = async (data: any, id: number) => {
   return response;
 };
 
-export const deleteJob = async (data: any) => {
-  return {};
-};
-
-export const getJobDetail = async (id: number) => {
-  return {
-    status: 500,
-    data: null,
-  };
+export const deleteJob = async (id: number) => {
+  const response = (await axios.delete(
+    `jobs/delete/${id}`,
+    configHeader
+  )) as any;
+  return response;
 };

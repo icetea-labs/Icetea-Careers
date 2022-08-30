@@ -99,7 +99,6 @@ const JobForm = (props: JobFormTypes) => {
   };
 
   const handleFormSubmit = async (data: any) => {
-    console.log("handleFormSubmit", data);
     setLoading(true);
     try {
       const response: any = await createUpdateJob(data);
@@ -116,7 +115,7 @@ const JobForm = (props: JobFormTypes) => {
       }
     } catch (e: any) {
       setLoading(false);
-      toast.error(e?.message || "Something wrong");
+      toast.error(e?.response?.data?.message || "Something wrong");
       console.log("ERROR: ", e);
     }
   };
@@ -128,7 +127,6 @@ const JobForm = (props: JobFormTypes) => {
   };
 
   const handleJobCancelOrDelete = async () => {
-    console.log("cancle delete");
     if (!isEdit) return navigate(-1);
 
     // delete
