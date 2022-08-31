@@ -9,7 +9,7 @@ const verifyToken = require('../middleware/auth')
 // @desc Get list Job Detail
 // @access Public
 router.get('/', async (req, res) => {
-  const { search, display, category, level, page = 1 } = req.query
+  const { search, display, category, level, page = 1, perPage = 10 } = req.query
 
   try {
     let filter = {}
@@ -27,7 +27,6 @@ router.get('/', async (req, res) => {
     }
 
     const total = await Job.count()
-    const perPage = 10
     const jobs = await Job.find(filter, { _id: 0, }).skip((+page - 1) * perPage).limit(perPage)
     res.status(200).json({
       success: true,
@@ -35,8 +34,8 @@ router.get('/', async (req, res) => {
         data: jobs,
         page: +page,
         total,
-        perPage,
-        lastPage: Math.ceil(total / perPage)
+        perPage: +perPage,
+        lastPage: Math.ceil(total / +perPage)
       }
     })
   } catch (error) {
