@@ -59,7 +59,7 @@ const Login = () => {
       });
       if (res?.status !== 200) {
         toast.error(
-          `Server Error: ${res?.data?.message || "Load JD fail !!!"}`
+          `Server Error: ${res?.data?.message || "Login fail !!!"}`
         );
         return false;
       }
@@ -69,7 +69,7 @@ const Login = () => {
       navigate("/home");
       window.location.reload();
     } catch (error: any) {
-      const errMessage = error?.response?.data?.message || "Load JD fail !!!";
+      const errMessage = error?.response?.data?.message || "Login fail !!!";
       console.log("ERROR Login: ", errMessage);
       toast.error(`Server Error: ${errMessage}`);
     }
