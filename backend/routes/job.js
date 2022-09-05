@@ -23,7 +23,8 @@ router.get('/', async (req, res) => {
       filter.level = level
     }
     filter.title = {
-      $regex: search || ''
+      $regex: search || '',
+      $options: "i"
     }
 
     const total = await Job.count()
