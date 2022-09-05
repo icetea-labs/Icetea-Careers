@@ -41,7 +41,7 @@ const Jobs: FunctionComponent = () => {
       try {
         const res = await getListJob(queryParams);
         setLoading(false);
-        console.log(res);
+        // console.log(res);
         if (res?.status === 200) {
           setDataJobs(res?.data?.data?.data || []);
           setTotalPage(res?.data?.data?.lastPage || 1);

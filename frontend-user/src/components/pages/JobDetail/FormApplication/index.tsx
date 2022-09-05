@@ -31,7 +31,7 @@ const FormApplication = (props: FormApplicationTypes) => {
   });
 
   const handleSelectCV = (e: any) => {
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     setValue("cv", e.target.files[0].name);
     clearErrors("cv");
   };

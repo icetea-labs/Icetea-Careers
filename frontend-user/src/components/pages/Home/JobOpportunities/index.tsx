@@ -10,6 +10,7 @@ import useStyles from "./styles";
 const JobOpportunities = (props: any) => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
+  const { search } = props;
 
   const [loading, setLoading] = useState<boolean>(false);
   const [dataJobs, setDataJobs] = useState<any[]>([]);
@@ -22,12 +23,11 @@ const JobOpportunities = (props: any) => {
   useEffect(() => {
     const getData = async () => {
       let queryParams = { ...filter };
-
       setLoading(true);
       try {
         const res = await getListJob(queryParams);
         setLoading(false);
-        console.log(res);
+        // console.log(res);
         if (res?.status === 200) {
           setDataJobs(res?.data?.data?.data || []);
         } else {
@@ -41,6 +41,18 @@ const JobOpportunities = (props: any) => {
     };
     getData();
   }, [filter]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFilter((prev) => {
+        return {
+          ...prev,
+          search: search,
+        };
+      });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [search]);
 
   const onClickViewAll = () => {
     window.open(`${window.location.href}#/jobs`, "_blank");

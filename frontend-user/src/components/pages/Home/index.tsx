@@ -59,7 +59,7 @@ const Home = () => {
   };
 
   const handleSearch = () => {
-    console.log("inputSearch", inputSearch);
+    // console.log("inputSearch", inputSearch);
   };
 
   //#region RENDER
@@ -83,7 +83,7 @@ const Home = () => {
         handleSearch={handleSearch}
       />
 
-      <JobOpportunities jobsRef={jobsRef} />
+      <JobOpportunities jobsRef={jobsRef} search={inputSearch} />
       <SelectionProcess processRef={processRef} />
       <HelpUs />
       <Offer offerRef={offerRef} />
