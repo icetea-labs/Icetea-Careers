@@ -325,7 +325,7 @@ const JobDetail: FunctionComponent = () => {
                             <ButtonMedium
                               text="View more"
                               className={styles.btnViewMoreMobile}
-                              onClick={() => handleViewJobDetail(job?.jobId)}
+                              onClick={() => handleViewJobDetail(job?.id)}
                             />
                           </div>
                         </div>

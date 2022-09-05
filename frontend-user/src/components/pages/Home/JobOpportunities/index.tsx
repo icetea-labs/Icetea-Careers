@@ -7,16 +7,6 @@ import ListJob from "../../../base/ListJob";
 import { FilterProps } from "../../Jobs";
 import useStyles from "./styles";
 
-const fakeJobs: any = [];
-for (let i = 0; i < 5; i++) {
-  fakeJobs.push({
-    jobId: i + 1,
-    jobName: "Front-End Developper (Reactjs/Vuejs)",
-    rank: "Junior",
-    location: "Ha Noi",
-  });
-}
-
 const JobOpportunities = (props: any) => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
