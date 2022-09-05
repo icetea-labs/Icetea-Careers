@@ -151,6 +151,7 @@ const useStyles = makeStyles((theme: Theme) => {
         font: theme.typography.nn71420.font,
       },
       "& .group-info": {
+        gap: 20,
         display: "flex",
         alignItems: "center",
         marginRight: "auto",

@@ -34,6 +34,32 @@ const useStyles = makeStyles((theme: any) => {
         },
       },
     },
+    jobSkeleton: {
+      marginTop: 24,
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      gap: 12,
+      // padding: "0 60px",
+      boxSizing: "border-box",
+    },
+    skeletonItem: {
+      height: 124,
+      color: "#fff",
+      background: "rgba(255, 255, 255, 0.04)",
+      border: "2px solid rgba(255, 255, 255, 0.06)",
+      borderRadius: 20,
+      padding: "32px 40px 20px",
+      display: "flex",
+      justifyContent: "space-between",
+      boxSizing: "border-box",
+    },
+    boxSkeletonLeft: {
+      width: "100%",
+      maxWidth: 360,
+      display: "flex",
+      flexDirection: "column",
+    },
     jobsList: {
       marginTop: 24,
       width: "100%",
@@ -81,6 +107,9 @@ const useStyles = makeStyles((theme: any) => {
           marginRight: 6,
         },
       },
+    },
+    listEmpty: {
+      textAlign: "center",
     },
 
     [theme.breakpoints.down("lg")]: {

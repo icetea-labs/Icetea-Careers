@@ -1,36 +1,72 @@
 import { Pagination, PaginationItem } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { getListJob } from "../../../requests/jobs";
 import { useCommonStyle } from "../../../styles";
 import ListJob from "../../base/ListJob";
 import DefaultLayout from "../../layouts/DefaultLayout";
 import useStyles from "./styles";
 
-const fakeJobs: any = [];
-for (let i = 0; i < 10; i++) {
-  fakeJobs.push({
-    jobId: i + 1,
-    jobName: "Front-End Developper (Reactjs/Vuejs)",
-    rank: "Junior",
-    location: "Ha Noi",
-  });
-}
+export type FilterProps = {
+  page: number;
+  search: string;
+  category: string;
+};
 
 const Jobs: FunctionComponent = () => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
+  const [dataJobs, setDataJobs] = useState<any[]>([]);
+  const [filter, setFilter] = useState<FilterProps>({
+    page: 1,
+    search: "",
+    category: "",
+  });
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-    setLoading(false);
-    setTotalPage(35); //remove
   }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      let queryParams = { ...filter };
+
+      setLoading(true);
+      try {
+        const res = await getListJob(queryParams);
+        setLoading(false);
+        console.log(res);
+        if (res?.status === 200) {
+          setDataJobs(res?.data?.data?.data || []);
+          setTotalPage(res?.data?.data?.lastPage || 1);
+        } else {
+          toast.error("Fail!");
+        }
+      } catch (error: any) {
+        console.log("ERROR: ", error);
+        toast.error(error?.response?.data?.message || "Load List Job fail");
+        setLoading(false);
+      }
+    };
+    getData();
+  }, [filter]);
+
+  const handleChangePage = (e: any, value: number) => {
+    if (!loading) {
+      setFilter((prevState: FilterProps) => {
+        return { ...prevState, page: value };
+      });
+    }
+  };
+  const handleChangeFilter = (newFilter: FilterProps) => {
+    setFilter(newFilter);
+  };
 
   const renderPagination = () => {
     if (totalPage <= 1) return <></>;
@@ -39,12 +75,8 @@ const Jobs: FunctionComponent = () => {
       <Pagination
         count={totalPage}
         className={styles.pagination}
-        onChange={(e: any, value: any) => {
-          if (!loading) {
-            setCurrentPage(value);
-          }
-        }}
-        page={currentPage}
+        onChange={handleChangePage}
+        page={filter?.page || 1}
         renderItem={(item: any) => (
           <PaginationItem
             className="pagination-item"
@@ -65,7 +97,12 @@ const Jobs: FunctionComponent = () => {
         <div className={commonStyles.section}>
           <div className={styles.jobsContainer}>
             <p className="jobs-title">Job Opportunities</p>
-            <ListJob listJob={fakeJobs} />
+            <ListJob
+              listJob={dataJobs}
+              filter={filter}
+              loading={loading}
+              handleChangeFilter={handleChangeFilter}
+            />
             {renderPagination()}
           </div>
         </div>

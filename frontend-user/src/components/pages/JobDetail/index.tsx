@@ -1,6 +1,13 @@
-import { Theme, Tooltip, useTheme } from "@mui/material";
+import { Box, Skeleton, Theme, Tooltip, useTheme } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import {
+  MAPPING_CATEGORY_TYPE_TEXT,
+  MAPPING_LEVEL_TYPE_TEXT,
+  MAPPING_LOCATION_TYPE_TEXT,
+} from "../../../constants";
+import { getJobDetail, getListJob } from "../../../requests/jobs";
 import { useCommonStyle } from "../../../styles";
 import { ButtonMedium } from "../../base/Button";
 import { SocialProps } from "../../base/FooterDefaultLayout";
@@ -8,19 +15,6 @@ import DefaultLayout from "../../layouts/DefaultLayout";
 import FormApplication from "./FormApplication";
 import ModalApplication from "./ModalApplication";
 import useStyles from "./styles";
-
-const fakeJobs: any = [];
-for (let i = 0; i < 4; i++) {
-  fakeJobs.push({
-    jobId: i + 1,
-    jobName: "Front-End Developper (Reactjs/Vuejs)",
-    rank: "Junior",
-    location: "Ha Noi",
-  });
-}
-const fakeDescription = `<p>Focus on developing user-interface components and implementing them following well-known React.js, Vue.js</p>`;
-const fakeRequirements = `<p>At least 1 year of experience using React.js, Vue.js and related libraries such as Redux, Vuex...<br />Proficient in JavaScript, have good knowledge of HTML/CSS, AJAX<br />\nExperience in responsive web design and UI/UX optimization<br />\nExperience working with Restful API /GraphQL<br />\nExperience in using version management tools like Git<br />\nAnalytical and problem-solving skills<br />\nKnowledge or interest in blockchain is a plus<br />\nExperience in using: web.js ethers.js is a plus<br />\nRead and understand English documents</p>`;
-const fakeBeneits = `<p>Competitive salary range (negotiable based on capacity)<br />\nLabor Contract and Social Insurance according to Vietnamese Law<br />\n12 annual leaves and other holidays as regulated by the State.<br />\n13th month salary<br />\nAttractive bonus policy (annual performance and salary review, project bonus, holiday and birthday bonus....)<br />\nLatest equipment and devices<br />\nLearning and Development space for training courses and self-learning<br />\nTea and coffee break with snack, team building, sports, esports, unlimited parties<br />\nA buzzing space full of globally influential technical founders and business establishing experts</p>\n\n<p>&nbsp;</p>`;
 
 export const socialData: Array<SocialProps> = [
   {
@@ -54,13 +48,17 @@ const JobDetail: FunctionComponent = () => {
   const commonStyles = useCommonStyle();
   const theme: Theme = useTheme();
   const mainColor: string = theme.palette.primary.main;
-  // const params = useParams();
-  // const id = params?.jobId;
+  const params = useParams();
+  const id = params?.jobId;
   const socialsLength = socialData.length;
   const [hover, setHover] = useState<Array<boolean>>(
     new Array(socialsLength).fill(false)
   );
   const [openModalApplied, setOpenModalApplied] = useState<boolean>(false);
+  const [jobDetail, setJobDetail] = useState<any>({});
+  const [loading, setLoading] = useState<boolean>(false);
+  // const [loadingOther, setLoadingOther] = useState<boolean>(false);
+  const [otherJobs, setOtherJobs] = useState<any[]>([]);
 
   useEffect(() => {
     window.scrollTo({
@@ -68,6 +66,55 @@ const JobDetail: FunctionComponent = () => {
       behavior: "smooth",
     });
   }, []);
+
+  useEffect(() => {
+    if (!id) return;
+    const getData = async () => {
+      setLoading(true);
+      try {
+        const res = await getJobDetail(+id);
+        setLoading(false);
+        if (res?.status === 200) {
+          setJobDetail(res?.data?.data);
+        } else {
+          toast.error("Fail!");
+        }
+      } catch (error: any) {
+        console.log("ERROR: ", error);
+        toast.error(error?.response?.data?.message || "Load Job Detail fail");
+        setLoading(false);
+      }
+    };
+    getData();
+  }, [id]);
+
+  useEffect(() => {
+    if (!jobDetail) return;
+    // setLoadingOther(true);
+    const getJobOther = async () => {
+      try {
+        const queryParams = {
+          page: 1,
+          category: jobDetail.category,
+        };
+        const res = await getListJob(queryParams);
+        // setLoadingOther(false);
+        if (res?.status === 200) {
+          const others = res?.data?.data?.data
+            ?.filter((item: any) => item.id !== jobDetail.id)
+            .slice(0, 4);
+          setOtherJobs(others);
+        } else {
+          toast.error("Fail!");
+        }
+      } catch (error: any) {
+        console.log("ERROR: ", error);
+        toast.error(error?.response?.data?.message || "Load Other Jobs fail");
+        // setLoadingOther(false);
+      }
+    };
+    getJobOther();
+  }, [jobDetail]);
 
   const onHoverSocialItem = (index: number) => {
     setHover((prevState: any) => {
@@ -105,24 +152,64 @@ const JobDetail: FunctionComponent = () => {
     window.open(`${window.location.origin}#/jobs/${jobId}`, "_blank");
   };
 
+  const renderSkeletonTextLong = () => {
+    return (
+      <Box sx={{ display: "flex", flexDirection: "column", paddingTop: 2 }}>
+        <Skeleton className={commonStyles.skeleton} height={28} width="100%" />
+        <Skeleton className={commonStyles.skeleton} height={28} width="100%" />
+        <Skeleton className={commonStyles.skeleton} height={28} width="50%" />
+      </Box>
+    );
+  };
+  
+  const renderHeaderSkeleton = () => {
+    return (
+      <div className={styles.jobDetailHeader}>
+        <Skeleton className={commonStyles.skeleton} height={48} width="200px" />
+        <Skeleton className={commonStyles.skeleton} height={52} width="50%" />
+        <Box
+          width="50%"
+          sx={{ display: "flex", gap: 2, justifyContent: "center" }}
+        >
+          <Skeleton className={commonStyles.skeleton} height={42} width="20%" />
+          <Skeleton className={commonStyles.skeleton} height={42} width="20%" />
+        </Box>
+      </div>
+    );
+  };
+
   return (
     <DefaultLayout>
       <div className={styles.jobDetail}>
         <div className={commonStyles.section}>
           <div className={styles.jobDetailContainer}>
-            <div className={styles.jobDetailHeader}>
-              <div className="jobDetail-type">Engineering & Technology</div>
-              <p className="jobDetail-title">
-                Front-end Developper (Reactjs/Vuejs)
-              </p>
-              <div className="jobDetail-info">
-                <span className="job-rank">Junior</span>
-                <div className="job-location">
-                  <img src="/images/icon-location.svg" alt="" />
-                  <span>Ha Noi</span>
+            {loading ? (
+              renderHeaderSkeleton()
+            ) : (
+              <div className={styles.jobDetailHeader}>
+                <div className="jobDetail-type">
+                  {jobDetail.category
+                    ? MAPPING_CATEGORY_TYPE_TEXT[jobDetail.category]
+                    : "N/A"}
+                </div>
+                <p className="jobDetail-title">{jobDetail?.title || "N/A"}</p>
+                <div className="jobDetail-info">
+                  <span className="job-rank">
+                    {jobDetail.level
+                      ? MAPPING_LEVEL_TYPE_TEXT[jobDetail.level]
+                      : "N/A"}
+                  </span>
+                  <div className="job-location">
+                    <img src="/images/icon-location.svg" alt="" />
+                    <span>
+                      {jobDetail.level
+                        ? MAPPING_LOCATION_TYPE_TEXT[jobDetail.location]
+                        : "N/A"}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
             <div className={styles.jobDetailBody}>
               <div className={styles.socials}>
                 {socialData.map((item: SocialProps, index: number) => (
@@ -171,27 +258,39 @@ const JobDetail: FunctionComponent = () => {
                   <div className={styles.jobContent}>
                     <div className="content-group">
                       <p className="content-title">DESCRIPTION</p>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: fakeDescription,
-                        }}
-                      ></div>
+                      {loading ? (
+                        renderSkeletonTextLong()
+                      ) : (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: jobDetail?.description,
+                          }}
+                        ></div>
+                      )}
                     </div>
                     <div className="content-group">
                       <p className="content-title">REQUIREMENTS</p>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: fakeRequirements,
-                        }}
-                      ></div>
+                      {loading ? (
+                        renderSkeletonTextLong()
+                      ) : (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: jobDetail?.requirements,
+                          }}
+                        ></div>
+                      )}
                     </div>
                     <div className="content-group">
                       <p className="content-title">BENEFITS</p>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: fakeBeneits,
-                        }}
-                      ></div>
+                      {loading ? (
+                        renderSkeletonTextLong()
+                      ) : (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: jobDetail?.benefits,
+                          }}
+                        ></div>
+                      )}
                     </div>
                   </div>
 
@@ -201,16 +300,26 @@ const JobDetail: FunctionComponent = () => {
                 <div className={styles.jobsOther}>
                   <p className="other-title">Other</p>
                   <div className="other-container">
-                    {fakeJobs.map((job: any, index: number) => {
+                    {otherJobs?.map((job: any, index: number) => {
                       return (
                         <div className={styles.otherCard} key={index}>
-                          <span className="job-title">{job?.jobName}</span>
+                          <span className="job-title">
+                            {job?.title || "N/A"}
+                          </span>
                           <div className="job-info">
                             <div className="group-info">
-                              <span className="job-rank">{job?.rank}</span>
+                              <span className="job-rank">
+                                {job.level
+                                  ? MAPPING_LEVEL_TYPE_TEXT[job.level]
+                                  : "N/A"}
+                              </span>
                               <div className="job-location">
                                 <img src="/images/icon-location.svg" alt="" />
-                                <span>{job?.location}</span>
+                                <span>
+                                  {job.location
+                                    ? MAPPING_LOCATION_TYPE_TEXT[job.location]
+                                    : "N/A"}
+                                </span>
                               </div>
                             </div>
                             <ButtonMedium

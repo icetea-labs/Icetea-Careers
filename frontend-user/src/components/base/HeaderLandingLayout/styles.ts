@@ -100,15 +100,12 @@ const useStyles = makeStyles((theme: any) => {
       display: "flex",
     },
     socialItem: {
-      width: 24,
-      height: 24,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       textDecoration: "none",
       color: "#fff",
       transition: "0.5s all",
-      marginLeft: 12,
       "&:first-child": {
         marginLeft: 0,
       },

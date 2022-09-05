@@ -49,18 +49,12 @@ const useStyles = makeStyles((theme: Theme) => {
       display: "flex",
     },
     socialItem: {
-      width: 20,
-      height: 20,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       textDecoration: "none",
       color: "#fff",
       transition: "0.5s all",
-      marginLeft: 12,
-      "&:first-child": {
-        marginLeft: 0,
-      },
     },
     [theme.breakpoints.down("lg")]: {
       header: {

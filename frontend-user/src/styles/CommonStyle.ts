@@ -15,6 +15,7 @@ const useCommonStyle = makeStyles((theme: any) => {
       background: "url(/images/bg-landing.png)",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
+      overflowX: "hidden",
     },
     section: {
       width: "100%",
@@ -74,7 +75,7 @@ const useCommonStyle = makeStyles((theme: any) => {
       color: "#D01F36",
     },
     skeleton: {
-      background: "#515151",
+      background: "#515151 !important",
       borderRadius: 4,
     },
     headPage: {
