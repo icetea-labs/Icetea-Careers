@@ -66,10 +66,8 @@ const JobForm = (props: JobFormTypes) => {
   });
 
   useEffect(() => {
-    console.log(jobData);
     if (!jobData) return;
     reset(jobData);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jobData]);
 
@@ -162,27 +160,33 @@ const JobForm = (props: JobFormTypes) => {
             <Location errors={errors} control={control} />
           </Grid>
 
-          <Description
-            jobData={jobData}
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            control={control}
-          />
-          <Requirements
-            jobData={jobData}
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            control={control}
-          />
-          <Benefits
-            jobData={jobData}
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            control={control}
-          />
+          {(jobData?.description || !isEdit) && (
+            <Description
+              jobData={jobData}
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              control={control}
+            />
+          )}
+          {(jobData?.requirements || !isEdit) && (
+            <Requirements
+              jobData={jobData}
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              control={control}
+            />
+          )}
+          {(jobData?.benefits || !isEdit) && (
+            <Benefits
+              jobData={jobData}
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              control={control}
+            />
+          )}
         </Grid>
       </Grid>
 
