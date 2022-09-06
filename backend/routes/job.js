@@ -89,7 +89,7 @@ router.post('/create', verifyToken, async (req, res) => {
 
   try {
     const lastJob = await Job.find().sort({ $natural: -1 }).limit(1)
-    const lastId = lastJob ? +lastJob[0]?.id : 0
+    const lastId = (lastJob && lastJob.length) ? +lastJob[0]?.id : 0
     const newId = lastId + 1
     const newJob = new Job({
       id: newId,

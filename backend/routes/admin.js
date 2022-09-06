@@ -114,7 +114,7 @@ router.post('/create', verifyToken, async (req, res) => {
 
     // All good
     const lastAdmin = await Admin.find().sort({ $natural: -1 }).limit(1)
-    const lastId = lastAdmin ? +lastAdmin[0]?.id : 0
+    const lastId = (lastAdmin && lastAdmin.length) ? +lastAdmin[0]?.id : 0
     const newId = lastId + 1
     const hashedPassword = await argon2.hash(password)
     const newUser = new Admin({
