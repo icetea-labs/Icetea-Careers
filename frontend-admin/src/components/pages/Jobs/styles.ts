@@ -9,6 +9,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   headerRight: {
     display: "flex",
   },
+  filter: {
+    display: "flex",
+    gap: 24,
+    width: "100%",
+    marginTop:40
+  },
   tableContainer: {
     padding: "30px 20px",
     borderRadius: 10,

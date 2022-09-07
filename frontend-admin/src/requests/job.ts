@@ -1,6 +1,17 @@
 import axios from "../services/axios";
 import { configHeader } from "../utils/configHeader";
 
+const queryString = require("query-string");
+
+export const getListJob = async (queryParams: any) => {
+  let url = "/jobs";
+  url += "?" + queryString.stringify(queryParams);
+
+  const response = (await axios.get(url)) as any;
+
+  return response;
+};
+
 export const createJob = async (data: any) => {
   const response = (await axios.post("jobs/create", data, configHeader)) as any;
   return response;
