@@ -1,7 +1,6 @@
+import SearchIcon from "@mui/icons-material/Search";
 import {
-  FormControl,
-  IconButton,
-  InputAdornment,
+  FormControl, InputAdornment,
   InputLabel,
   MenuItem,
   OutlinedInput,
@@ -14,19 +13,17 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
+  TableRow
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { categories, levels } from "../../../constants";
-import useFetch from "../../../hooks/useFetch";
+import { getListJob } from "../../../requests/job";
 import { useCommonStyle } from "../../../styles";
 import ButtonLink from "../../base/ButtonLink";
 import DefaultLayout from "../../layout/DefaultLayout";
 import ContentRecord, { JobDetailProps } from "./ContentRecord";
 import useStyles from "./styles";
-import SearchIcon from "@mui/icons-material/Search";
-import { getListJob } from "../../../requests/job";
 
 const tableHeaders = [
   "Job Title",
