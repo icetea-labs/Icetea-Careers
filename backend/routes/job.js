@@ -29,13 +29,15 @@ router.get('/', async (req, res) => {
       $options: "i"
     }
 
-    const jobs = await Job.find(filter, { _id: 0, }).sort({ createAt: -1 }).skip((+page - 1) * perPage).limit(perPage)
+    const jobs = await Job.find(filter, { _id: 0, }).sort({ createAt: -1 })
+    let start = (+page - 1) * perPage
+    const jobsResult = jobs && jobs.slice(start, start + perPage)
     let total = jobs && jobs.length
-    
+
     res.status(200).json({
       success: true,
       data: {
-        data: jobs,
+        data: jobsResult,
         page: +page,
         total,
         perPage: +perPage,
