@@ -20,15 +20,18 @@ router.get('/', async (req, res) => {
       filter.category = category
     }
     if (level) {
-      filter.level = level
+      filter.level = {
+        $in: level.split(';')
+      }
     }
     filter.title = {
       $regex: search || '',
       $options: "i"
     }
 
-    const total = await Job.count()
-    const jobs = await Job.find(filter, { _id: 0, }).skip((+page - 1) * perPage).limit(perPage)
+    const jobs = await Job.find(filter, { _id: 0, }).sort({ createAt: -1 }).skip((+page - 1) * perPage).limit(perPage)
+    let total = jobs && jobs.length
+    
     res.status(200).json({
       success: true,
       data: {
@@ -81,7 +84,7 @@ router.get('/:id', async (req, res) => {
 router.post('/create', verifyToken, async (req, res) => {
   const { display, title, category, level, location, description, requirements, benefits } = req.body
 
-  if (!title || !category || !level || !location)
+  if (!title || !category || !location || !description || !requirements || !benefits)
     return res.status(400).json({
       success: false,
       message: "Missing required field"

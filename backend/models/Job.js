@@ -21,8 +21,8 @@ const JobSchema = new Schema({
   },
   level: {
     type: String,
-    require: true,
-    enum: ['intern', 'junior', 'middle', 'senior', 'leader']
+    // require: true,
+    // enum: ['intern', 'junior', 'middle', 'senior', 'leader']
   },
   location: {
     type: String,
@@ -30,12 +30,15 @@ const JobSchema = new Schema({
     enum: ['ha-noi', 'ho-chi-minh', 'remote']
   },
   description: {
+    require: true,
     type: String,
   },
   requirements: {
+    require: true,
     type: String,
   },
   benefits: {
+    require: true,
     type: String,
   },
   createAt: {
