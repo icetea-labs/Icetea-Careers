@@ -12,8 +12,6 @@ import { useCommonStyle } from "../../../styles";
 import { FilterProps } from "../../pages/Jobs";
 import { ButtonMedium } from "../Button";
 import useStyles from "./styles";
-// @ts-ignore
-import AOS from "aos";
 
 type JobType = {
   label: typeof categories[number]["label"];
@@ -48,7 +46,6 @@ const ListJob = (props: JobOpportunitiesType) => {
       ...filter,
       category: value,
     });
-    AOS.refresh();
   };
 
   const renderEmpty = () => {
@@ -100,7 +97,7 @@ const ListJob = (props: JobOpportunitiesType) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.jobsNav}>
+      <div className={styles.jobsNav} id="nav">
         {categories.map((item: JobType, index: number) => {
           return (
             <div
@@ -120,12 +117,12 @@ const ListJob = (props: JobOpportunitiesType) => {
       ) : (
         <div className={styles.jobsList}>
           {listJob && listJob.length > 0
-            ? listJob.map((job: any, index: number) => {
+            ? listJob.map((job: any) => {
                 return (
                   <div
-                    key={index}
+                    key={job.id}
                     className={styles.jobCard}
-                    data-aos={COMPONENT_ANIMATED}
+                    data-aos={listJob.length !== 1 && COMPONENT_ANIMATED}
                     data-aos-duration={NORMAL_SPEED}
                   >
                     <div className={styles.jobDetail}>
