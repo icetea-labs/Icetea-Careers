@@ -128,6 +128,10 @@ const JobForm = (props: JobFormTypes) => {
     if (!isEdit) return navigate(-1);
 
     // delete
+    // eslint-disable-next-line no-restricted-globals
+    if (!confirm("Do you want to Delelte?")) {
+      return false;
+    }
     setLoading(true);
     const response: any = await deleteJob(jobData?.id);
     setLoading(false);
