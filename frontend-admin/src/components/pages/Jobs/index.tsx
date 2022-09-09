@@ -1,6 +1,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import {
-  FormControl, InputAdornment,
+  FormControl,
+  InputAdornment,
   InputLabel,
   MenuItem,
   OutlinedInput,
@@ -13,7 +14,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -172,12 +173,17 @@ const Jobs = () => {
             value={filter.display}
             onChange={handleSelectFilter}
           >
+            <MenuItem value={""}>-</MenuItem>
             <MenuItem value={"true"}>Display</MenuItem>
             <MenuItem value={"false"}>Hidden</MenuItem>
           </Select>
         </FormControl>
 
-        <FormControl sx={{ flex: 1 }} size="small" variant="outlined">
+        <FormControl
+          sx={{ flex: 1, maxWidth: 500, marginLeft: "auto" }}
+          size="small"
+          variant="outlined"
+        >
           <InputLabel htmlFor="input-search">Search</InputLabel>
           <OutlinedInput
             id="input-search"

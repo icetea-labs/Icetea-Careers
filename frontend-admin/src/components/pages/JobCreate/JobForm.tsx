@@ -48,7 +48,7 @@ const JobForm = (props: JobFormTypes) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { isEdit = false, jobData }: any = props;
+  const { isEdit = false, jobData = emptyJobDetail }: any = props;
 
   const {
     register,
@@ -156,7 +156,12 @@ const JobForm = (props: JobFormTypes) => {
           </Grid>
 
           <Grid item xs={12} className={classes.formFieldGroup}>
-            <JobLevel errors={errors} control={control} />
+            <JobLevel
+              errors={errors}
+              control={control}
+              setValue={setValue}
+              jobData={jobData}
+            />
             <Location errors={errors} control={control} />
           </Grid>
 

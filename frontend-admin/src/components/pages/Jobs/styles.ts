@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     gap: 24,
     width: "100%",
-    marginTop:40
+    marginTop: 40,
   },
   tableContainer: {
     padding: "30px 20px",
