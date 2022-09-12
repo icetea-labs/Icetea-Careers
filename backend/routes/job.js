@@ -2,8 +2,10 @@ const express = require('express')
 const Job = require('../models/Job')
 const argon2 = require('argon2')
 const router = express.Router()
-
+const { google } = require('googleapis');
+const credentials = require('../constants/credentials');
 const verifyToken = require('../middleware/auth')
+const GMAIL_SCOPES = "https://www.googleapis.com/auth/gmail.send";
 
 // @route GET api/jobs
 // @desc Get list Job Detail
@@ -43,6 +45,31 @@ router.get('/', async (req, res) => {
         perPage: +perPage,
         lastPage: Math.ceil(total / +perPage)
       }
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      success: false,
+      message: "Internal server error"
+    })
+  }
+})
+
+router.get('/user-login', async (req, res) => {
+  try {
+    // get Gmail Service
+    const { client_secret, client_id, redirect_uris } = credentials.installed;
+    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+    const url = oAuth2Client.generateAuthUrl({
+      access_type: 'offline',
+      prompt: 'consent',
+      scope: GMAIL_SCOPES,
+    });
+    console.log('Authorize this app by visiting this url:', url);
+    res.json({
+      success: true,
+      message: 'Authorize this app by visiting this url',
+      data: url
     })
   } catch (error) {
     console.log(error)
