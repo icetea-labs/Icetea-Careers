@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: any) => {
       width: "100%",
     },
     jobsContainer: {
-      maxWidth: "min(1080px, 100%)",
+      maxWidth: "min(1120px, 100%)",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",

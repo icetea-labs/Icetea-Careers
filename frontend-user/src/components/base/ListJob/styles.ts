@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme: any) => {
       width: "100%",
       display: "flex",
       flexDirection: "column",
-      padding: "0 60px",
       boxSizing: "border-box",
     },
     jobsNav: {
@@ -40,7 +39,6 @@ const useStyles = makeStyles((theme: any) => {
       display: "flex",
       flexDirection: "column",
       gap: 12,
-      // padding: "0 60px",
       boxSizing: "border-box",
     },
     skeletonItem: {
@@ -63,35 +61,54 @@ const useStyles = makeStyles((theme: any) => {
     jobsList: {
       marginTop: 24,
       width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      gap: 12,
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gap: 20,
       boxSizing: "border-box",
     },
     jobCard: {
+      maxWidth: 360,
+      minHeight: 216,
       color: "#fff",
-      background: "rgba(255, 255, 255, 0.04)",
-      border: "2px solid rgba(255, 255, 255, 0.06)",
-      borderRadius: 20,
-      padding: "32px 40px 20px",
-      display: "flex",
-      justifyContent: "space-between",
-      transition: "0.25s",
-      "&:hover": {
-        background: "rgba(0, 199, 244, 0.1)",
-        border: "2px solid rgba(0, 199, 244, 0.36)",
-      },
-    },
-    jobDetail: {
+      background: "#000",
+      borderRadius: 24,
+      boxSizing: "border-box",
+      padding: "40px 40px 12px",
       display: "flex",
       flexDirection: "column",
+      transition: "0.3s",
+
+      "&:hover": {
+        background: theme.palette.primary.main,
+        boxShadow: "0px 4px 250px rgba(0, 199, 244, 0.32)",
+        color: "#000",
+        "& .btn-view-more": {
+          visibility: "visible",
+        },
+        "& .job-level-item": {
+          background: "#000",
+          color: "#fff",
+        },
+      },
+      "& .job-level": {
+        marginTop: 12,
+        display: "flex",
+        gap: 4,
+        "&-item": {
+          borderRadius: 20,
+          background: "#005164",
+          padding: "4px 10px",
+          font: "normal normal 600 12px/16px Plus Jakarta Sans",
+          letterSpacing: "1px",
+          textTransform: "capitalize",
+        },
+      },
       "& .job-title": {
-        font: theme.typography.nn62028.font,
+        font: "normal normal 600 28px/36px Plus Jakarta Sans",
         margin: 0,
+        minHeight: 72,
       },
       "& .job-info": {
-        marginTop: 20,
-        gap: 12,
         display: "flex",
         font: theme.typography.nn71420.font,
       },
@@ -102,11 +119,32 @@ const useStyles = makeStyles((theme: any) => {
       "& .job-location": {
         display: "flex",
         alignItems: "center",
+        font: theme.typography.nn71420.font,
         "& img": {
           height: 12,
           marginRight: 6,
         },
       },
+      "& .btn-view-more": {
+        display: "flex",
+        visibility: "hidden",
+        textDecoration: "none",
+        color: "inherit",
+        height: 40,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "0 18px",
+        font: theme.typography.nn71420.font,
+        background: "#fff",
+        borderRadius: 60,
+        gap: 4,
+      },
+    },
+    cardBottom: {
+      marginTop: "auto",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
     },
     listEmpty: {
       textAlign: "center",
@@ -154,7 +192,7 @@ const useStyles = makeStyles((theme: any) => {
           textAlign: "center",
         },
       },
-      btnViewMoreMobile: {
+      btnViewMore: {
         marginTop: 8,
       },
     },

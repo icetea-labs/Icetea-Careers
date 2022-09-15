@@ -98,6 +98,7 @@ const useStyles = makeStyles((theme: any) => {
     },
     socials: {
       display: "flex",
+      gap: 12,
     },
     socialItem: {
       display: "flex",

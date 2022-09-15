@@ -1,27 +1,5 @@
-import { Tooltip } from "@mui/material";
-import { useState } from "react";
+import SocialButtons from "../SocialButtons";
 import useStyles from "./styles";
-
-export type SocialProps = {
-  url: string;
-  imgUrl: string;
-  imgHoverUrl: string;
-  label: string;
-};
-export const socialData: Array<SocialProps> = [
-  {
-    url: "https://www.facebook.com/",
-    imgUrl: "/images/socials/facebook-style.svg",
-    imgHoverUrl: "/images/socials/facebook-style-hover.svg",
-    label: "Facebook",
-  },
-  {
-    url: "https://www.linkedin.com/",
-    imgUrl: "/images/socials/linkedin-style.svg",
-    imgHoverUrl: "/images/socials/linkedin-style-hover.svg",
-    label: "Linkedin",
-  },
-];
 
 type teamProps = {
   name: string;
@@ -54,22 +32,6 @@ type FooterProps = {
 const Footer = (props: FooterProps) => {
   const styles = useStyles();
   const { onScrollToRef } = props;
-  const [hover, setHover] = useState<Array<boolean>>([false, false, false]);
-
-  const onHoverSocialItem = (index: number) => {
-    setHover((prevState: any) => {
-      let newHover = [...prevState];
-      newHover[index] = true;
-      return newHover;
-    });
-  };
-  const onLeaveSocialItem = (index: number) => {
-    setHover((prevState: any) => {
-      let newHover = [...prevState];
-      newHover[index] = false;
-      return newHover;
-    });
-  };
 
   return (
     <div className={styles.footer}>
@@ -86,30 +48,8 @@ const Footer = (props: FooterProps) => {
             <p className="description">
               11th Floor, IPH Tower, 241 Xuan Thuy Street, Cau Giay, Hanoi
             </p>
-            <div className={styles.socialList}>
-              {socialData.map((item: SocialProps, index: number) => (
-                <Tooltip
-                  key={index}
-                  title={item?.label}
-                  arrow
-                  placement="bottom"
-                >
-                  <a
-                    href={item?.url}
-                    className={styles.socialItem}
-                    target="_blank"
-                    rel="noreferrer"
-                    onMouseEnter={() => onHoverSocialItem(index)}
-                    onMouseLeave={() => onLeaveSocialItem(index)}
-                  >
-                    <img
-                      src={hover[index] ? item?.imgHoverUrl : item?.imgUrl}
-                      alt=""
-                    />
-                  </a>
-                </Tooltip>
-              ))}
-            </div>
+
+            <SocialButtons />
           </div>
           <div className={styles.navigation}>
             <div className={styles.navigationGroup}>

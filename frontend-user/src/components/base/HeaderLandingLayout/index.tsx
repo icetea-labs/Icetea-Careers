@@ -1,6 +1,5 @@
-import { Tooltip } from "@mui/material";
 import { useState } from "react";
-import { socialData, SocialProps } from "../FooterDefaultLayout";
+import SocialButtons from "../SocialButtons";
 import useStyles from "./styles";
 
 type HeaderProps = {
@@ -23,26 +22,10 @@ const HeaderLandingLayout = (props: HeaderProps) => {
   const { onScrollToRef } = props;
   const styles = useStyles();
   const [openPopup, setOpenPopup] = useState<boolean>(false);
-  const [hover, setHover] = useState<Array<boolean>>([false, false]);
 
   const onClickMenuItemMobile = (name: string) => {
     setOpenPopup(false);
     onScrollToRef(name);
-  };
-
-  const onHoverSocialItem = (index: number) => {
-    setHover((prevState: any) => {
-      let newHover = [...prevState];
-      newHover[index] = true;
-      return newHover;
-    });
-  };
-  const onLeaveSocialItem = (index: number) => {
-    setHover((prevState: any) => {
-      let newHover = [...prevState];
-      newHover[index] = false;
-      return newHover;
-    });
   };
 
   const renderHeader = () => {
@@ -66,25 +49,8 @@ const HeaderLandingLayout = (props: HeaderProps) => {
             </div>
           ))}
         </div>
-        <div className={styles.socials}>
-          {socialData?.map((item: SocialProps, index: number) => (
-            <Tooltip key={index} title={item?.label} arrow placement="bottom">
-              <a
-                href={item?.url}
-                className={styles.socialItem}
-                target="_blank"
-                rel="noreferrer"
-                onMouseEnter={() => onHoverSocialItem(index)}
-                onMouseLeave={() => onLeaveSocialItem(index)}
-              >
-                <img
-                  src={hover[index] ? item?.imgHoverUrl : item?.imgUrl}
-                  alt=""
-                />
-              </a>
-            </Tooltip>
-          ))}
-        </div>
+
+        <SocialButtons />
       </div>
     );
   };
@@ -135,13 +101,7 @@ const HeaderLandingLayout = (props: HeaderProps) => {
               </div>
             ))}
             <p className="community">Community</p>
-            <div className={styles.socials}>
-              {socialData?.map((item: SocialProps, index: number) => (
-                <a key={index} href={item?.url} className={styles.socialItem}>
-                  <img src={item?.imgUrl} alt="" />
-                </a>
-              ))}
-            </div>
+            <SocialButtons />
           </div>
         </div>
       </div>

@@ -10,11 +10,17 @@ import {
 import { getJobDetail, getListJob } from "../../../requests/jobs";
 import { useCommonStyle } from "../../../styles";
 import { ButtonMedium } from "../../base/Button";
-import { SocialProps } from "../../base/FooterDefaultLayout";
 import DefaultLayout from "../../layouts/DefaultLayout";
 import FormApplication from "./FormApplication";
 import ModalApplication from "./ModalApplication";
 import useStyles from "./styles";
+
+export type SocialProps = {
+  url: string;
+  imgUrl: string;
+  imgHoverUrl: string;
+  label: string;
+};
 
 export const socialData: Array<SocialProps> = [
   {
@@ -161,7 +167,7 @@ const JobDetail: FunctionComponent = () => {
       </Box>
     );
   };
-  
+
   const renderHeaderSkeleton = () => {
     return (
       <div className={styles.jobDetailHeader}>

@@ -8,8 +8,9 @@ const useStyles = makeStyles((theme: any) => {
       boxSizing: "border-box",
     },
     helpusContainer: {
-      maxWidth: 1000,
-      padding: "40px 0 32px",
+      maxWidth: 1240,
+      // padding: "40px 0 32px",
+      padding: "40px 0",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -18,9 +19,21 @@ const useStyles = makeStyles((theme: any) => {
       margin: "0 auto",
       color: "#fff",
       background:
-        "url(/images/helpus-layer-top.svg) no-repeat center top, url(images/helpus-layer-bottom.svg) no-repeat center bottom",
+        // "url(/images/helpus-layer-top.svg) no-repeat center top, url(images/helpus-layer-bottom.svg) no-repeat center bottom",
+        "url(/images/helpus.png)",
+      backgroundSize: "cover",
+      borderRadius: 32,
+      backgroundRepeat: "no-repeat",
+      "& p": {
+        margin: 0,
+      },
       "& .helpus-title": {
-        font: "normal normal 600 48px/68px Plus Jakarta Sans",
+        font: "normal normal 700 48px/68px Plus Jakarta Sans",
+      },
+      "& .blending": {
+        background: "#00c7f4",
+        color: "#000",
+        padding: "0 20px",
       },
     },
 

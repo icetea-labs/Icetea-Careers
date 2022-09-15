@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme: any) => {
           padding: 0,
           border: "none",
           outline: "none",
+          flex: 1,
         },
       },
       "& .search-btn": {

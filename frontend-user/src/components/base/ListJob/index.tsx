@@ -122,32 +122,37 @@ const ListJob = (props: JobOpportunitiesType) => {
                   <div
                     key={job.id}
                     className={styles.jobCard}
-                    data-aos={listJob.length !== 1 && COMPONENT_ANIMATED}
-                    data-aos-duration={NORMAL_SPEED}
+                    // data-aos={listJob.length !== 1 && COMPONENT_ANIMATED}
+                    // data-aos-duration={NORMAL_SPEED}
                   >
-                    <div className={styles.jobDetail}>
-                      <p className="job-title">{job?.title || "N/A"}</p>
-                      <div className="job-info">
-                        <span className="job-rank">
-                          {job.level
-                            ? MAPPING_LEVEL_TYPE_TEXT[job.level]
+                    <p className="job-title">{job?.title || "N/A"}</p>
+                    <div className="job-level">
+                      {job?.level &&
+                        job.level
+                          .split(";")
+                          .map((item: any) => (
+                            <span className="job-level-item">{item}</span>
+                          ))}
+                    </div>
+                    <div className={styles.cardBottom}>
+                      <div className="job-location">
+                        <img src="/images/icon-location.svg" alt="" />
+                        <span>
+                          {job.location
+                            ? MAPPING_LOCATION_TYPE_TEXT[job.location]
                             : "N/A"}
                         </span>
-                        <div className="job-location">
-                          <img src="/images/icon-location.svg" alt="" />
-                          <span>
-                            {job.location
-                              ? MAPPING_LOCATION_TYPE_TEXT[job.location]
-                              : "N/A"}
-                          </span>
-                        </div>
                       </div>
+                      <a
+                        href={`${window.location.origin}#/jobs/${job.id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-view-more"
+                      >
+                        <span>Discover</span>
+                        <img src="/images/icon-viewmore.svg" alt="" />
+                      </a>
                     </div>
-                    <ButtonMedium
-                      text="View more"
-                      className={styles.btnViewMoreMobile}
-                      onClick={() => handleViewJobDetail(job?.id)}
-                    />
                   </div>
                 );
               })
