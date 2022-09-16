@@ -4,14 +4,14 @@ const useCommonStyle = makeStyles((theme: any) => {
   return {
     DefaultLayout: {
       minHeight: "100vh",
-      fontFamily: "Plus Jakarta Sans",
+      fontFamily: "TTHoves",
       background: "url(/images/bg-default.png)",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
     },
     LandingLayout: {
       minHeight: "100vh",
-      fontFamily: "Plus Jakarta Sans",
+      fontFamily: "TTHoves",
       background: "url(/images/bg-landing.png)",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",

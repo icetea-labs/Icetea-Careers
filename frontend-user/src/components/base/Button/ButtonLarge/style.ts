@@ -8,27 +8,30 @@ const useStyles = makeStyles((theme: any) => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "#000",
       font: theme.typography.nn71420.font,
       outline: "none",
       border: "2px solid #00c7f429",
       boxSizing: "border-box",
-      padding: "0 38px",
-      background:
-        "radial-gradient(50% 50% at 50% 50%, #00c7f400 0%, #00c7f429 100%)",
-      // background:
-      //   "linear-gradient(#00c7f400, #00c7f429) padding-box, linear-gradient(180deg, rgba(0, 199, 244, 0.3) 0%, rgba(215, 246, 253, 0.63) 55.73%, rgba(0, 199, 244, 0.51) 100%) border-box",
-      transition: "background 1s",
+      padding: "0 32px",
+      background: "#00C7F4",
+      transition: "0.5s",
+      cursor: "pointer",
 
-      "&:hover": {
-        cursor: "pointer",
-        background:
-          "linear-gradient(#00576e, #00576e) padding-box, linear-gradient(180deg, rgba(0, 199, 244, 0.3) 0%, rgba(215, 246, 253, 0.63) 55.73%, rgba(0, 199, 244, 0.51) 100%) border-box",
-    },
+      "& img": {
+        width: 20,
+        height: 20,
+        marginLeft: 12,
+      },
 
       "&:disabled": {
         cursor: "not-allowed",
-        // opacity: 0.6,
+      },
+
+      "&:hover": {
+        // boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+        boxShadow:
+          "rgba(14, 30, 37, 0.45) 0px 6px 8px 0px, rgba(14, 30, 37, 0.45) 0px 6px 12px 0px",
       },
     },
   };

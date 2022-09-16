@@ -1,13 +1,38 @@
+@font-face {
+  font-family: "TTHoves";
+  src: url(./styles/fonts/TTHoves-Regular.woff) format("woff"),
+    url(./styles/fonts/TTHoves-Regular.woff2) format("woff2"),
+    url(./styles/fonts/TTHoves-Regular.ttf) format("truetype"),
+    url(./styles/fonts/TTHoves-Regular.ttf) format("svg"),
+    url(./styles/fonts/TTHoves-Regular.ttf) format("embedded-opentype");
+}
+@font-face {
+  font-family: "TTHoves Medium";
+  src: url(./styles/fonts/TTHoves-Medium.woff) format("woff"),
+    url(./styles/fonts/TTHoves-Medium.woff2) format("woff2"),
+    url(./styles/fonts/TTHoves-Medium.ttf) format("truetype"),
+    url(./styles/fonts/TTHoves-Medium.ttf) format("svg"),
+    url(./styles/fonts/TTHoves-Medium.ttf) format("embedded-opentype");
+}
+@font-face {
+  font-family: "TTHoves Bold";
+  src: url(./styles/fonts/TTHoves-Bold.woff) format("woff"),
+    url(./styles/fonts/TTHoves-Bold.woff2) format("woff2"),
+    url(./styles/fonts/TTHoves-Bold.ttf) format("truetype"),
+    url(./styles/fonts/TTHoves-Bold.ttf) format("svg"),
+    url(./styles/fonts/TTHoves-Bold.ttf) format("embedded-opentype");
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

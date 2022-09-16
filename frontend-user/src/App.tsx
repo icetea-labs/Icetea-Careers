@@ -48,25 +48,25 @@ function App() {
     },
     typography: {
       nn41424: {
-        font: "normal normal 400 14px/24px Plus Jakarta Sans",
+        font: "normal normal 400 14px/24px TTHoves",
       },
       nn61216: {
-        font: "normal normal 600 12px/16px Plus Jakarta Sans",
+        font: "normal normal 600 12px/16px TTHoves",
       },
       nn61824: {
-        font: "normal normal 600 18px/24px Plus Jakarta Sans",
+        font: "normal normal 600 18px/24px TTHoves",
       },
       nn62028: {
-        font: "normal normal 600 20px/28px Plus Jakarta Sans",
+        font: "normal normal 600 20px/28px TTHoves",
       },
       nn63248: {
-        font: "normal normal 600 32px/48px Plus Jakarta Sans",
+        font: "normal normal 600 32px/48px TTHoves",
       },
       nn71420: {
-        font: "normal normal 700 14px/20px Plus Jakarta Sans",
+        font: "normal normal 700 14px/20px TTHoves",
       },
       nn72432: {
-        font: "normal normal 700 1.5rem/2rem Plus Jakarta Sans",
+        font: "normal normal 700 1.5rem/2rem TTHoves",
       },
     },
   });
