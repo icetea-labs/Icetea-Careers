@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: any) => {
     },
     swipeButton: {
       position: "relative",
-      width: 124,
+      // width: 124,
       height: 40,
       boxSizing: "border-box",
       background: "#fff",
@@ -19,11 +19,13 @@ const useStyles = makeStyles((theme: any) => {
       color: "#000",
       textDecoration: "none",
       paddingLeft: 40,
+      paddingRight: 20,
       transition: "0.5s",
       fontSize: 14,
+      fontWeight: 600,
 
       "&:hover": {
-        paddingLeft: 12,
+        paddingLeft: 20,
         paddingRight: 40,
         "& img": {
           left: "calc(100% - 34px)",

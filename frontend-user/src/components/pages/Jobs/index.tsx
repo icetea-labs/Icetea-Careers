@@ -9,6 +9,7 @@ import useStyles from "./styles";
 
 export type FilterProps = {
   page: number;
+  perPage?: number;
   search: string;
   category: string;
 };
@@ -22,6 +23,7 @@ const Jobs: FunctionComponent = () => {
   const [dataJobs, setDataJobs] = useState<any[]>([]);
   const [filter, setFilter] = useState<FilterProps>({
     page: 1,
+    perPage: 15,
     search: "",
     category: "",
   });

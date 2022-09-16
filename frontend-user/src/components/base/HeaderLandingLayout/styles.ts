@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: any) => {
     header: {
       width: "100%",
       maxWidth: 1440,
-      padding: "0 120px",
+      padding: "0 100px",
       boxSizing: "border-box",
       margin: "0 auto",
       display: "flex",
@@ -75,13 +75,13 @@ const useStyles = makeStyles((theme: any) => {
         alignItems: "center",
         gap: 16,
         marginTop: 80,
-        font: "normal normal 600 20px/32px Plus Jakarta Sans",
+        font: "normal normal 600 20px/32px TTHoves",
         "& .button-download": {
           margin: "32px 0 0",
         },
         "& .community": {
           marginTop: "auto",
-          font: "normal normal 600 12px/16px Plus Jakarta Sans",
+          font: "normal normal 600 12px/16px TTHoves",
           letterSpacing: "1px",
           marginBottom: -20,
         },
@@ -113,6 +113,9 @@ const useStyles = makeStyles((theme: any) => {
     },
 
     [theme.breakpoints.down("lg")]: {
+      header: {
+        padding: "0 32px",
+      },
       headerMenu: {
         "& .menu-item": {
           width: "auto",
@@ -145,7 +148,7 @@ const useStyles = makeStyles((theme: any) => {
       headerMobilePopup: {
         "& .popup-navigation": {
           gap: 40,
-          font: "normal normal 600 24px/32px Plus Jakarta Sans",
+          font: "normal normal 600 24px/32px TTHoves",
         },
       },
       socials: {

@@ -16,6 +16,7 @@ const JobOpportunities = (props: any) => {
   const [dataJobs, setDataJobs] = useState<any[]>([]);
   const [filter, setFilter] = useState<FilterProps>({
     page: 1,
+    perPage: 9,
     search: "",
     category: "",
   });
@@ -74,7 +75,7 @@ const JobOpportunities = (props: any) => {
             handleChangeFilter={handleChangeFilter}
           />
           <div className={styles.btnViewAll}>
-            <ButtonLarge text="View All" onClick={onClickViewAll} />
+            <ButtonLarge text="View all jobs" onClick={onClickViewAll} />
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) => {
     header: {
       width: "100%",
       maxWidth: 1440,
-      padding: "0 120px",
+      padding: "0 100px",
       boxSizing: "border-box",
       margin: "0 auto",
       zIndex: 20,

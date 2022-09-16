@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme: any) => {
         margin: "0 0 4px",
         color: "rgba(255, 255, 255, 0.5)",
         letterSpacing: 1,
-        font: "normal normal 600 12px/16px Plus Jakarta Sans",
+        font: "normal normal 600 12px/16px TTHoves",
       },
       "& .hr": {
         display: "grid",

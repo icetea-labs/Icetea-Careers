@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme: any) => {
       alignItems: "center",
       justifyContent: "center",
       color: "#000",
-      font: theme.typography.nn71420.font,
+      fontSize: 16,
+      fontWeight: 600,
       outline: "none",
       border: "2px solid #00c7f429",
       boxSizing: "border-box",
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme: any) => {
       },
 
       "&:hover": {
-        // boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+        letterSpacing: "1px",
         boxShadow:
           "rgba(14, 30, 37, 0.45) 0px 6px 8px 0px, rgba(14, 30, 37, 0.45) 0px 6px 12px 0px",
       },

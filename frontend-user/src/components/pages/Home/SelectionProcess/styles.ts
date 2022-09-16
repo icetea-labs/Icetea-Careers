@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: Theme) => {
   return {
     process: {
       width: "100%",
-      paddingTop: 120,
+      paddingTop: 160,
     },
     processContainer: {
       maxWidth: 1040,
@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme: Theme) => {
       margin: "0 auto",
       color: "#fff",
       "& .process-title": {
-        font: theme.typography.nn63248.font,
-        margin: "0 0 40px",
+        font: theme.typography.nn64856.font,
+        margin: "0 0 80px",
       },
       "& img": {
         maxWidth: "100%",
@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme: Theme) => {
     [theme.breakpoints.down("lg")]: {
       processContainer: {
         padding: "0 40px",
+        "& .process-title": {
+          fontSize: 40,
+        },
       },
     },
     [theme.breakpoints.only("xs")]: {

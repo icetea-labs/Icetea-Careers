@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: any) => {
       margin: "0 auto",
       color: "#fff",
       "& .jobs-title": {
-        font: theme.typography.nn63248.font,
+        font: theme.typography.nn64856.font,
         margin: "0 0 32px",
       },
     },
@@ -22,6 +22,23 @@ const useStyles = makeStyles((theme: any) => {
       marginTop: 28,
     },
 
+    [theme.breakpoints.down("lg")]: {
+      jobsContainer: {
+        maxWidth: "100%",
+        padding: "0 60px",
+        "& .jobs-title": {
+          fontSize: 40,
+        },
+      },
+      jobsNav: {
+        padding: "0 32px",
+      },
+    },
+    [theme.breakpoints.down("md")]: {
+      jobsContainer: {
+        padding: "0 32px",
+      },
+    },
     [theme.breakpoints.only("xs")]: {
       forewordContainer: {
         maxWidth: "100%",

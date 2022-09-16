@@ -17,6 +17,7 @@ const ButtonLarge: React.FC<ButtonPropsType> = (props: ButtonPropsType) => {
       onClick={onClick}
     >
       <span>{text}</span>
+      <img src="/images/icon-viewmore.svg" alt="" />
     </button>
   );
 };

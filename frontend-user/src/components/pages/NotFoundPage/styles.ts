@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme: Theme) => {
         color: "#fff",
       },
       "& .title": {
-        font: "normal normal 600 160px/160px Plus Jakarta Sans",
+        font: "normal normal 600 160px/160px TTHoves",
       },
       "& .sub-title": {
-        font: "normal normal 600 48px/60px Plus Jakarta Sans",
+        font: "normal normal 600 48px/60px TTHoves",
         margin: "28px 0 4px",
       },
       "& .detail": {
-        font: "normal normal 600 16px/32px Plus Jakarta Sans",
+        font: "normal normal 600 16px/32px TTHoves",
         color: "rgba(255, 255, 255, 0.8)",
       },
     },
@@ -49,10 +49,10 @@ const useStyles = makeStyles((theme: Theme) => {
       container: {
         padding: "0 40px",
         "& .title": {
-          font: "normal normal 600 100px/120px Plus Jakarta Sans",
+          font: "normal normal 600 100px/120px TTHoves",
         },
         "& .sub-title": {
-          font: "normal normal 600 36px/44px Plus Jakarta Sans",
+          font: "normal normal 600 36px/44px TTHoves",
           margin: "28px 0 4px",
         },
         "& .detail": {},

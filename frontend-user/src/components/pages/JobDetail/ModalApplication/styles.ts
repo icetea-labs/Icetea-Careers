@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) => {
       font: theme.typography.nn41424.font,
 
       "& .title": {
-        font: "normal normal 600 24px/32px Plus Jakarta Sans",
+        font: "normal normal 600 24px/32px TTHoves",
         textAlign: "center",
         maxWidth: 400,
         marginBottom: 20,
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) => {
         padding: "40px 20px",
         width: "auto",
         "& .title": {
-          font: "normal normal 600 18px/24px Plus Jakarta Sans",
+          font: "normal normal 600 18px/24px TTHoves",
           marginTop: 24,
         },
       },

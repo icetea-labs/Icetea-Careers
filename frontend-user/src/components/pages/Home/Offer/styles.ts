@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => {
       color: "#fff",
       "& .offer-title": {
         margin: 0,
-        font: "normal normal 600 48px/68px Plus Jakarta Sans",
+        font: "normal normal 600 48px/68px TTHoves",
       },
     },
     offerDetail: {
@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme: Theme) => {
       offerContainer: {
         padding: "40px 60px",
         "& .offer-title": {
-          font: "normal normal 600 40px/56px Plus Jakarta Sans",
+          font: "normal normal 600 40px/56px TTHoves",
         },
       },
     },
@@ -107,7 +107,7 @@ const useStyles = makeStyles((theme: Theme) => {
         padding: "0 10px 0 30px",
         "& .offer-title": {
           margin: 0,
-          font: "normal normal 600 36px/50px Plus Jakarta Sans",
+          font: "normal normal 600 36px/50px TTHoves",
         },
       },
     },
@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme: Theme) => {
       },
       offerContainer: {
         "& .offer-title": {
-          font: "normal normal 600 32px/44px Plus Jakarta Sans",
+          font: "normal normal 600 32px/44px TTHoves",
         },
       },
     },

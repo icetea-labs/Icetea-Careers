@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) => {
         marginTop: 4,
         paddingLeft: 8,
         color: "rgba(255, 86, 86, 1)",
-        font: "normal normal 700 12px/20px Plus Jakarta Sans",
+        font: "normal normal 700 12px/20px TTHoves",
       },
       "& .input-error-icon": {
         width: 18,
@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme: Theme) => {
     cvNote: {
       margin: 0,
       color: "rgba(255, 255, 255, 0.6)",
-      font: "normal normal 400 12px/20px Plus Jakarta Sans",
+      font: "normal normal 400 12px/20px TTHoves",
       paddingLeft: 8,
     },
     btnApply: {

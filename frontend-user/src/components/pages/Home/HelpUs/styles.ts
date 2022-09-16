@@ -8,8 +8,7 @@ const useStyles = makeStyles((theme: any) => {
       boxSizing: "border-box",
     },
     helpusContainer: {
-      maxWidth: 1240,
-      // padding: "40px 0 32px",
+      maxWidth: "min(1240px, 86%)",
       padding: "40px 0",
       display: "flex",
       flexDirection: "column",
@@ -18,9 +17,8 @@ const useStyles = makeStyles((theme: any) => {
       textAlign: "center",
       margin: "0 auto",
       color: "#fff",
-      background:
-        // "url(/images/helpus-layer-top.svg) no-repeat center top, url(images/helpus-layer-bottom.svg) no-repeat center bottom",
-        "url(/images/helpus.png)",
+      boxSizing: "border-box",
+      background: "url(/images/helpus.png)",
       backgroundSize: "cover",
       borderRadius: 32,
       backgroundRepeat: "no-repeat",
@@ -28,27 +26,31 @@ const useStyles = makeStyles((theme: any) => {
         margin: 0,
       },
       "& .helpus-title": {
-        font: "normal normal 700 48px/68px Plus Jakarta Sans",
+        font: "normal normal 700 48px/68px TTHoves",
       },
       "& .blending": {
-        background: "#00c7f4",
+        display: "inline",
+        backgroundColor: "#00c7f4",
         color: "#000",
         padding: "0 20px",
+        lineHeight: 40,
       },
     },
 
     [theme.breakpoints.down("lg")]: {
       helpusContainer: {
-        padding: "40px 60px",
+        maxWidth: "100%",
+        margin: "0 32px",
         "& .helpus-title": {
-          font: "normal normal 600 40px/56px Plus Jakarta Sans",
+          font: "normal normal 600 40px/56px TTHoves",
         },
       },
     },
     [theme.breakpoints.down("md")]: {
       helpusContainer: {
+        padding: "40px 20px",
         "& .helpus-title": {
-          font: "normal normal 600 36px/50px Plus Jakarta Sans",
+          font: "normal normal 600 36px/50px TTHoves",
         },
       },
     },
@@ -60,7 +62,7 @@ const useStyles = makeStyles((theme: any) => {
       helpusContainer: {
         "& .helpus-title": {
           margin: "40px 0",
-          font: "normal normal 600 32px/44px Plus Jakarta Sans",
+          font: "normal normal 600 32px/44px TTHoves",
         },
       },
     },

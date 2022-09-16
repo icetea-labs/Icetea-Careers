@@ -3,14 +3,10 @@ import { useState } from "react";
 import {
   categories,
   CATEGORY_TYPE,
-  COMPONENT_ANIMATED,
-  MAPPING_LEVEL_TYPE_TEXT,
   MAPPING_LOCATION_TYPE_TEXT,
-  NORMAL_SPEED,
 } from "../../../constants";
 import { useCommonStyle } from "../../../styles";
 import { FilterProps } from "../../pages/Jobs";
-import { ButtonMedium } from "../Button";
 import useStyles from "./styles";
 
 type JobType = {
@@ -33,11 +29,6 @@ const ListJob = (props: JobOpportunitiesType) => {
   const [navValue, setNavValue] = useState<JobType["value"]>(
     CATEGORY_TYPE.SOFTWARE_DEVELOPMENT
   );
-
-  const handleViewJobDetail = (jobId: number) => {
-    window.open(`${window.location.origin}#/jobs/${jobId}`, "_blank");
-    // navigate("/jobs/" + jobId);
-  };
 
   const handleChangeNav = (value: any) => {
     if (value === navValue) return;
@@ -136,7 +127,6 @@ const ListJob = (props: JobOpportunitiesType) => {
                     </div>
                     <div className={styles.cardBottom}>
                       <div className="job-location">
-                        <img src="/images/icon-location.svg" alt="" />
                         <span>
                           {job.location
                             ? MAPPING_LOCATION_TYPE_TEXT[job.location]

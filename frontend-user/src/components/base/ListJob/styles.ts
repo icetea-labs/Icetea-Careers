@@ -1,6 +1,8 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme: any) => {
+  // const itemMaxLength = "calc((100% - 40px) / 3)";
+
   return {
     container: {
       width: "100%",
@@ -15,7 +17,6 @@ const useStyles = makeStyles((theme: any) => {
       gap: 20,
       boxSizing: "border-box",
       padding: "0 44px",
-      borderBottom: "1px solid rgba(255, 255, 255, 0.2)",
       "& .nav-item": {
         font: theme.typography.nn61824.font,
         color: "rgba(255, 255, 255, 0.6)",
@@ -76,7 +77,7 @@ const useStyles = makeStyles((theme: any) => {
       padding: "40px 40px 12px",
       display: "flex",
       flexDirection: "column",
-      transition: "0.3s",
+      transition: "all 0.3s",
 
       "&:hover": {
         background: theme.palette.primary.main,
@@ -89,6 +90,10 @@ const useStyles = makeStyles((theme: any) => {
           background: "#000",
           color: "#fff",
         },
+        "& .job-location": {
+          background:
+            "url(/images/icon-location-black.svg) no-repeat left center",
+        },
       },
       "& .job-level": {
         marginTop: 12,
@@ -98,13 +103,14 @@ const useStyles = makeStyles((theme: any) => {
           borderRadius: 20,
           background: "#005164",
           padding: "4px 10px",
-          font: "normal normal 600 12px/16px Plus Jakarta Sans",
+          font: "normal normal 600 12px/16px TTHoves",
           letterSpacing: "1px",
           textTransform: "capitalize",
+          transition: "all 0.3s",
         },
       },
       "& .job-title": {
-        font: "normal normal 600 28px/36px Plus Jakarta Sans",
+        font: "normal normal 600 28px/36px TTHoves",
         margin: 0,
         minHeight: 72,
       },
@@ -112,18 +118,13 @@ const useStyles = makeStyles((theme: any) => {
         display: "flex",
         font: theme.typography.nn71420.font,
       },
-      "& .job-rank": {
-        color: theme.palette.primary.main,
-        minWidth: 80,
-      },
       "& .job-location": {
+        transition: "background 0.3s",
         display: "flex",
         alignItems: "center",
         font: theme.typography.nn71420.font,
-        "& img": {
-          height: 12,
-          marginRight: 6,
-        },
+        paddingLeft: 20,
+        background: "url(/images/icon-location.svg) no-repeat left center",
       },
       "& .btn-view-more": {
         display: "flex",
@@ -138,6 +139,10 @@ const useStyles = makeStyles((theme: any) => {
         background: "#fff",
         borderRadius: 60,
         gap: 4,
+        transition: "letter-spacing 0.5s",
+        "&:hover": {
+          letterSpacing: "1px",
+        },
       },
     },
     cardBottom: {
@@ -152,14 +157,24 @@ const useStyles = makeStyles((theme: any) => {
 
     [theme.breakpoints.down("lg")]: {
       jobsNav: {
-        padding: 0,
+        padding: "0 32px",
+      },
+      jobCard: {
+        padding: "32px 24px 12px",
+        "& .job-title": {
+          fontSize: 24,
+        },
       },
     },
     [theme.breakpoints.down("md")]: {
       jobsNav: {
+        padding: 0,
         "& .nav-item": {
           minWidth: "unset",
         },
+      },
+      jobsList: {
+        gridTemplateColumns: "1fr 1fr",
       },
     },
 
@@ -170,6 +185,7 @@ const useStyles = makeStyles((theme: any) => {
       jobsList: {
         padding: 20,
         margin: 0,
+        gridTemplateColumns: "1fr",
       },
       jobsNav: {
         overflowX: "auto",
@@ -180,6 +196,7 @@ const useStyles = makeStyles((theme: any) => {
         },
       },
       jobCard: {
+        maxWidth: "100%",
         flexDirection: "column",
         justifyContent: "normal",
         padding: "28px 20px 8px",

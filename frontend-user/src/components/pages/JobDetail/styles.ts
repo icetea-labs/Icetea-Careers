@@ -109,17 +109,17 @@ const useStyles = makeStyles((theme: Theme) => {
         display: "flex",
         flexDirection: "column",
         marginBottom: 32,
-        font: "normal normal 400 16px/32px Plus Jakarta Sans",
+        font: "normal normal 400 16px/32px TTHoves",
       },
       "& .content-title": {
-        font: "normal normal 700 16px/22px Plus Jakarta Sans",
+        font: "normal normal 700 16px/22px TTHoves",
         marginBottom: 8,
       },
     },
     jobsOther: {
       "& .other-title": {
         textAlign: "center",
-        font: "normal normal 700 36px/60px Plus Jakarta Sans",
+        font: "normal normal 700 36px/60px TTHoves",
       },
       "& .other-container": {
         display: "grid",
@@ -196,7 +196,7 @@ const useStyles = makeStyles((theme: Theme) => {
         margin: "0 20px",
         width: "auto",
         "& .jobDetail-title": {
-          font: "normal normal 600 28px/36px Plus Jakarta Sans",
+          font: "normal normal 600 28px/36px TTHoves",
         },
         "& .jobDetail-info": {
           font: theme.typography.nn71420.font,
