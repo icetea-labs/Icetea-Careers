@@ -1,6 +1,9 @@
+import axios from "../../../../services/axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import useStyles from "./styles";
+import { useEffect, useState } from "react";
+import jwtDecode from "jwt-decode";
 
 type FormData = {
   name: string;
@@ -10,15 +13,19 @@ type FormData = {
   coverLetter: string;
   linkedin?: string;
   facebook?: string;
+  jobTitle?: string;
 };
 
 type FormApplicationTypes = {
+  jobTitle: string | undefined;
   handleApply: () => void;
 };
 
 const FormApplication = (props: FormApplicationTypes) => {
   const styles = useStyles();
-  const { handleApply } = props;
+  const { handleApply, jobTitle } = props;
+  const [cvFile, setCvFile] = useState<any>();
+  const [user, setUser] = useState<any>(null);
 
   const {
     register,
@@ -30,18 +37,63 @@ const FormApplication = (props: FormApplicationTypes) => {
     mode: "onChange",
   });
 
+  useEffect(() => {
+    if (!google) return;
+    // Google Service
+    google.accounts.id.initialize({
+      client_id:
+        "339095532990-oepeujq7og5ki7s5n5av3rpm20bff1p4.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+    let signInDiv: any = document.getElementById("signInDiv");
+    google.accounts.id.renderButton(signInDiv, {
+      type: "standard",
+      theme: "filled_black",
+      size: "large",
+      width: "100%",
+    });
+    // google.accounts.id.prompt();
+  }, []);
+
+  const handleCallbackResponse = (res: any) => {
+    let userObject = jwtDecode(res?.credential);
+    console.log(res, userObject);
+    setUser(userObject);
+  };
+
   const handleSelectCV = (e: any) => {
-    // console.log(e.target.files[0]);
+    console.log(e.target.files[0]);
+    setCvFile(e.target.files[0]);
     setValue("cv", e.target.files[0].name);
     clearErrors("cv");
   };
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
-    if (data.coverLetter?.length > 500)
-      return toast.error("Cover letter maximum length is 500 characters", {
-        theme: "dark",
-      });
+  const onSubmit = async (data: FormData) => {
+    if (data.email !== user?.email) {
+      toast.error("Your email address you entered does not match your account");
+      return;
+    }
+
+    const newData = {
+      ...data,
+      cv: cvFile,
+      jobTitle: jobTitle,
+    };
+    console.log("SUBMIT data:", newData);
+    // if (data.coverLetter?.length > 500)
+    //   return toast.error("Cover letter maximum length is 500 characters", {
+    //     theme: "dark",
+    //   });
+
+    try {
+      const res = await axios.post("/jobs/apply", newData);
+
+      console.log(res);
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error?.response?.data?.message || "Something went wrong");
+    }
+
     handleApply();
   };
 
@@ -164,14 +216,13 @@ const FormApplication = (props: FormApplicationTypes) => {
           </div>
         </div>
 
-        {/* <div className={styles.listBtn}>
-          <Button type="submit" className={styles.btnSubmit}>
-            Submit
-          </Button>
-        </div> */}
-        <button type="submit" className={styles.btnApply}>
-          Apply this job
-        </button>
+        <div className={styles.groupBtn}>
+          <button type="submit" className={styles.btnApply} disabled={!user}>
+            Apply this job
+          </button>
+
+          {!user && <div id="signInDiv" className={styles.signInGoogle}></div>}
+        </div>
       </form>
     </div>
   );

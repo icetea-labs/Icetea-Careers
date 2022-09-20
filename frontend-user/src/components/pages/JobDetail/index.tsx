@@ -7,9 +7,8 @@ import {
   MAPPING_LEVEL_TYPE_TEXT,
   MAPPING_LOCATION_TYPE_TEXT,
 } from "../../../constants";
-import { getJobDetail, getListJob } from "../../../requests/jobs";
+import { getJobDetail } from "../../../requests/jobs";
 import { useCommonStyle } from "../../../styles";
-import { ButtonMedium } from "../../base/Button";
 import DefaultLayout from "../../layouts/DefaultLayout";
 import FormApplication from "./FormApplication";
 import ModalApplication from "./ModalApplication";
@@ -64,7 +63,7 @@ const JobDetail: FunctionComponent = () => {
   const [jobDetail, setJobDetail] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
   // const [loadingOther, setLoadingOther] = useState<boolean>(false);
-  const [otherJobs, setOtherJobs] = useState<any[]>([]);
+  // const [otherJobs, setOtherJobs] = useState<any[]>([]);
 
   useEffect(() => {
     window.scrollTo({
@@ -94,33 +93,33 @@ const JobDetail: FunctionComponent = () => {
     getData();
   }, [id]);
 
-  useEffect(() => {
-    if (!jobDetail) return;
-    // setLoadingOther(true);
-    const getJobOther = async () => {
-      try {
-        const queryParams = {
-          page: 1,
-          category: jobDetail.category,
-        };
-        const res = await getListJob(queryParams);
-        // setLoadingOther(false);
-        if (res?.status === 200) {
-          const others = res?.data?.data?.data
-            ?.filter((item: any) => item.id !== jobDetail.id)
-            .slice(0, 4);
-          setOtherJobs(others);
-        } else {
-          toast.error("Fail!");
-        }
-      } catch (error: any) {
-        console.log("ERROR: ", error);
-        toast.error(error?.response?.data?.message || "Load Other Jobs fail");
-        // setLoadingOther(false);
-      }
-    };
-    getJobOther();
-  }, [jobDetail]);
+  // useEffect(() => {
+  //   if (!jobDetail) return;
+  //   // setLoadingOther(true);
+  //   const getJobOther = async () => {
+  //     try {
+  //       const queryParams = {
+  //         page: 1,
+  //         category: jobDetail.category,
+  //       };
+  //       const res = await getListJob(queryParams);
+  //       // setLoadingOther(false);
+  //       if (res?.status === 200) {
+  //         const others = res?.data?.data?.data
+  //           ?.filter((item: any) => item.id !== jobDetail.id)
+  //           .slice(0, 4);
+  //         setOtherJobs(others);
+  //       } else {
+  //         toast.error("Fail!");
+  //       }
+  //     } catch (error: any) {
+  //       console.log("ERROR: ", error);
+  //       toast.error(error?.response?.data?.message || "Load Other Jobs fail");
+  //       // setLoadingOther(false);
+  //     }
+  //   };
+  //   getJobOther();
+  // }, [jobDetail]);
 
   const onHoverSocialItem = (index: number) => {
     setHover((prevState: any) => {
@@ -154,9 +153,9 @@ const JobDetail: FunctionComponent = () => {
     });
   };
 
-  const handleViewJobDetail = (jobId: number) => {
-    window.open(`${window.location.origin}#/jobs/${jobId}`, "_blank");
-  };
+  // const handleViewJobDetail = (jobId: number) => {
+  //   window.open(`${window.location.origin}#/jobs/${jobId}`, "_blank");
+  // };
 
   const renderSkeletonTextLong = () => {
     return (
@@ -300,10 +299,13 @@ const JobDetail: FunctionComponent = () => {
                     </div>
                   </div>
 
-                  <FormApplication handleApply={handleOpenModalApplied} />
+                  <FormApplication
+                    handleApply={handleOpenModalApplied}
+                    jobTitle={jobDetail?.title}
+                  />
                 </div>
 
-                <div className={styles.jobsOther}>
+                {/* <div className={styles.jobsOther}>
                   <p className="other-title">Other</p>
                   <div className="other-container">
                     {otherJobs?.map((job: any, index: number) => {
@@ -338,7 +340,7 @@ const JobDetail: FunctionComponent = () => {
                       );
                     })}
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <ModalApplication

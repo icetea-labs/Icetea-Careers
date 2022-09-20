@@ -139,8 +139,13 @@ const useStyles = makeStyles((theme: Theme) => {
       font: "normal normal 400 12px/20px TTHoves",
       paddingLeft: 8,
     },
+    groupBtn: {
+      width: "100%",
+      position: "relative",
+    },
     btnApply: {
       height: 52,
+      width: "100%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -157,6 +162,17 @@ const useStyles = makeStyles((theme: Theme) => {
       },
       "&:disabled": {
         cursor: "not-allowed",
+      },
+    },
+    signInGoogle: {
+      // position: "absolute",
+      // top: 0,
+      // right: 0,
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      "& iframe": {
+        width: "100% !important",
       },
     },
 

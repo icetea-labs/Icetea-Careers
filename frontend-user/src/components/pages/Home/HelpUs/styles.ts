@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: any) => {
         backgroundColor: "#00c7f4",
         color: "#000",
         padding: "0 20px",
-        lineHeight: 40,
+        lineHeight: "40px",
       },
     },
 
