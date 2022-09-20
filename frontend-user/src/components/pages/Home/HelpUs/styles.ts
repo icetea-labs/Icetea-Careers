@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: any) => {
     },
     helpusContainer: {
       maxWidth: "min(1240px, 86%)",
-      padding: "40px 0",
+      padding: "88px 0",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -26,13 +26,14 @@ const useStyles = makeStyles((theme: any) => {
         margin: 0,
       },
       "& .helpus-title": {
-        font: "normal normal 700 40px/52px TTHoves",
+        font: "normal normal 600 40px/52px TTHoves Medium",
       },
       "& .blending": {
+        marginTop: 8,
         display: "inline",
         backgroundColor: "#00c7f4",
         color: "#000",
-        padding: "0 20px",
+        padding: "0 20px 4px",
         lineHeight: "40px",
       },
     },
