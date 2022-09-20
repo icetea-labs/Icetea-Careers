@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme: any) => {
       background: "#000",
       borderRadius: 24,
       boxSizing: "border-box",
-      padding: "40px 40px 12px",
+      padding: "40px 24px 12px 40px",
       display: "flex",
       flexDirection: "column",
       transition: "all 0.3s",

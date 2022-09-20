@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: any) => {
         margin: 0,
       },
       "& .helpus-title": {
-        font: "normal normal 700 48px/68px TTHoves",
+        font: "normal normal 700 40px/52px TTHoves",
       },
       "& .blending": {
         display: "inline",
