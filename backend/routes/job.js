@@ -62,7 +62,7 @@ router.post('/apply', upload.single("cv"), async (req, res) => {
   const { jobTitle, name, phone, email, coverLetter } = req.body;
   const { fieldname, originalname } = req.file
 
-  console.log(req.file, req.body)
+  // console.log(req.file, req.body)
 
   if (!jobTitle || !name || !phone || !email || !coverLetter || !fieldname)
     return res.status(400).json({
