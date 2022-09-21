@@ -199,11 +199,14 @@ const JobDetail: FunctionComponent = () => {
                 </div>
                 <p className="jobDetail-title">{jobDetail?.title || "N/A"}</p>
                 <div className="jobDetail-info">
-                  <span className="job-rank">
-                    {jobDetail.level
-                      ? MAPPING_LEVEL_TYPE_TEXT[jobDetail.level]
-                      : "N/A"}
-                  </span>
+                  <div className="job-level">
+                    {jobDetail?.level &&
+                      jobDetail.level.split(";").map((item: any) => (
+                        <span key={item} className="job-level-item">
+                          {item} |
+                        </span>
+                      ))}
+                  </div>
                   <div className="job-location">
                     <img src="/images/icon-location.svg" alt="" />
                     <span>

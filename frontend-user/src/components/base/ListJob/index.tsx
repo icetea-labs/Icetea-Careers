@@ -40,45 +40,44 @@ const ListJob = (props: JobOpportunitiesType) => {
   };
 
   const renderEmpty = () => {
-    return <div className={styles.listEmpty}>Please try again later!</div>;
+    return (
+      <div className={styles.listEmpty}>No results found for your search!</div>
+    );
   };
 
   const renderLoading = () => {
     return (
       <div className={styles.jobSkeleton}>
-        {[...Array(5)].map((num, index) => (
+        {[...Array(9)].map((num, index) => (
           <div key={index} className={styles.skeletonItem}>
-            <Box className={styles.boxSkeletonLeft}>
-              <Skeleton
-                className={commonStyles.skeleton}
-                height={32}
-                width="100%"
-              />
-              <Box
-                gap="20px"
-                sx={{
-                  display: "flex",
-                  marginTop: "auto",
-                  maxWidth: 200,
-                }}
-              >
-                <Skeleton
-                  className={commonStyles.skeleton}
-                  height={24}
-                  width="100%"
-                />
-
-                <Skeleton
-                  className={commonStyles.skeleton}
-                  height={24}
-                  width="100%"
-                />
-              </Box>
-            </Box>
             <Skeleton
               className={commonStyles.skeleton}
-              height={44}
-              width={144}
+              height={36}
+              width="100%"
+            />
+            <Skeleton
+              className={commonStyles.skeleton}
+              height={36}
+              width="100%"
+            />
+            <Box gap="20px" sx={{ display: "flex" }}>
+              <Skeleton
+                className={commonStyles.skeleton}
+                height={28}
+                width="100%"
+              />
+              <Skeleton
+                className={commonStyles.skeleton}
+                height={28}
+                width="100%"
+              />
+            </Box>
+
+            <Skeleton
+              className={commonStyles.skeleton}
+              sx={{ marginTop: "auto" }}
+              height={28}
+              width="47%"
             />
           </div>
         ))}
@@ -105,49 +104,49 @@ const ListJob = (props: JobOpportunitiesType) => {
       </div>
       {loading ? (
         renderLoading()
-      ) : (
+      ) : listJob && listJob.length > 0 ? (
         <div className={styles.jobsList}>
-          {listJob && listJob.length > 0
-            ? listJob.map((job: any) => {
-                return (
-                  <div
-                    key={job.id}
-                    className={styles.jobCard}
-                    // data-aos={listJob.length !== 1 && COMPONENT_ANIMATED}
-                    // data-aos-duration={NORMAL_SPEED}
-                  >
-                    <p className="job-title">{job?.title || "N/A"}</p>
-                    <div className="job-level">
-                      {job?.level &&
-                        job.level
-                          .split(";")
-                          .map((item: any) => (
-                            <span className="job-level-item">{item}</span>
-                          ))}
-                    </div>
-                    <div className={styles.cardBottom}>
-                      <div className="job-location">
-                        <span>
-                          {job.location
-                            ? MAPPING_LOCATION_TYPE_TEXT[job.location]
-                            : "N/A"}
-                        </span>
-                      </div>
-                      <a
-                        href={`${window.location.origin}#/jobs/${job.id}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn-view-more"
-                      >
-                        <span>Discover</span>
-                        <img src="/images/icon-viewmore.svg" alt="" />
-                      </a>
-                    </div>
+          {listJob.map((job: any) => {
+            return (
+              <div
+                key={job.id}
+                className={styles.jobCard}
+                // data-aos={listJob.length !== 1 && COMPONENT_ANIMATED}
+                // data-aos-duration={NORMAL_SPEED}
+              >
+                <p className="job-title">{job?.title || "N/A"}</p>
+                <div className="job-level">
+                  {job?.level &&
+                    job.level
+                      .split(";")
+                      .map((item: any) => (
+                        <span className="job-level-item">{item}</span>
+                      ))}
+                </div>
+                <div className={styles.cardBottom}>
+                  <div className="job-location">
+                    <span>
+                      {job.location
+                        ? MAPPING_LOCATION_TYPE_TEXT[job.location]
+                        : "N/A"}
+                    </span>
                   </div>
-                );
-              })
-            : renderEmpty()}
+                  <a
+                    href={`${window.location.origin}#/jobs/${job.id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-view-more"
+                  >
+                    <span>Discover</span>
+                    <img src="/images/icon-viewmore.svg" alt="" />
+                  </a>
+                </div>
+              </div>
+            );
+          })}
         </div>
+      ) : (
+        renderEmpty()
       )}
     </div>
   );

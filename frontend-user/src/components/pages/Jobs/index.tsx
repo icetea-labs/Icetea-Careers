@@ -21,6 +21,7 @@ const Jobs: FunctionComponent = () => {
   const [totalPage, setTotalPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [dataJobs, setDataJobs] = useState<any[]>([]);
+  const [inputSearch, setInputSearch] = useState<string>("");
   const [filter, setFilter] = useState<FilterProps>({
     page: 1,
     perPage: 15,
@@ -58,6 +59,32 @@ const Jobs: FunctionComponent = () => {
     };
     getData();
   }, [filter]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFilter((prev) => {
+        return {
+          ...prev,
+          search: inputSearch,
+        };
+      });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [inputSearch]);
+
+  const onSearching = (e: any) => {
+    setInputSearch(e.target.value);
+  };
+  
+  const handleSearch = () => {
+    // console.log("inputSearch", inputSearch);
+  };
+
+  const onKeyUp = (e: any) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   const handleChangePage = (e: any, value: number) => {
     if (!loading) {
@@ -99,6 +126,24 @@ const Jobs: FunctionComponent = () => {
         <div className={commonStyles.section}>
           <div className={styles.jobsContainer}>
             <p className="jobs-title">Job Opportunities</p>
+
+            <div className={styles.searchBar}>
+              <div className="search-field">
+                <img src="/images/icon-search.svg" alt="" />
+                <input
+                  type="text"
+                  placeholder="Search job ..."
+                  onKeyUp={onKeyUp}
+                  value={inputSearch}
+                  onChange={onSearching}
+                  autoFocus
+                />
+              </div>
+              <span className="search-btn" onClick={handleSearch}>
+                Search
+              </span>
+            </div>
+
             <ListJob
               listJob={dataJobs}
               filter={filter}

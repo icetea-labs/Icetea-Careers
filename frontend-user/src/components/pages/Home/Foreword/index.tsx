@@ -33,6 +33,7 @@ const Foreword = (props: any) => {
                   onKeyUp={onKeyUp}
                   value={inputSearch}
                   onChange={onSearching}
+                  autoFocus
                 />
               </div>
               <span className="search-btn" onClick={handleSearch}>

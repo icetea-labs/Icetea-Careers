@@ -37,20 +37,20 @@ const useStyles = makeStyles((theme: any) => {
     jobSkeleton: {
       marginTop: 24,
       width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      gap: 12,
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gap: 20,
       boxSizing: "border-box",
     },
     skeletonItem: {
-      height: 124,
+      height: 224,
       color: "#fff",
       background: "rgba(255, 255, 255, 0.04)",
       border: "2px solid rgba(255, 255, 255, 0.06)",
       borderRadius: 20,
-      padding: "32px 40px 20px",
+      padding: "40px 40px 20px",
       display: "flex",
-      justifyContent: "space-between",
+      flexDirection: "column",
       boxSizing: "border-box",
     },
     boxSkeletonLeft: {
@@ -152,7 +152,9 @@ const useStyles = makeStyles((theme: any) => {
       alignItems: "center",
     },
     listEmpty: {
+      width: "100%",
       textAlign: "center",
+      font: theme.typography.nn62028.font,
     },
 
     [theme.breakpoints.down("lg")]: {
@@ -176,11 +178,17 @@ const useStyles = makeStyles((theme: any) => {
       jobsList: {
         gridTemplateColumns: "1fr 1fr",
       },
+      jobSkeleton: {
+        gridTemplateColumns: "1fr 1fr",
+      },
     },
 
     [theme.breakpoints.only("xs")]: {
       container: {
         padding: 0,
+      },
+      jobSkeleton: {
+        gridTemplateColumns: "1fr",
       },
       jobsList: {
         padding: 20,

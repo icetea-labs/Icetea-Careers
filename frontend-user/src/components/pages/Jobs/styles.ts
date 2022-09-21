@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: any) => {
       color: "#fff",
       "& .jobs-title": {
         font: theme.typography.nn64856.font,
-        margin: "0 0 44px",
+        margin: "0 0 20px",
       },
     },
     pagination: {
@@ -34,6 +34,48 @@ const useStyles = makeStyles((theme: any) => {
           "&.Mui-selected": {
             color: theme.palette.primary.main,
           },
+        },
+      },
+    },
+    searchBar: {
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+      maxWidth: 460,
+      background: theme.palette.primary.main,
+      borderRadius: 60,
+      height: 60,
+      padding: 6,
+      marginBottom: 32,
+      boxSizing: "border-box",
+      font: theme.typography.nn41424.font,
+      color: "#000",
+
+      "& .search-field": {
+        flex: 1,
+        display: "flex",
+        alignItems: "center",
+        background: "#fff",
+        borderRadius: 60,
+        padding: "12px 16px",
+        "& img": {
+          marginRight: 12,
+          width: 24,
+        },
+        "& input": {
+          height: "100%",
+          padding: 0,
+          border: "none",
+          outline: "none",
+          flex: 1,
+        },
+      },
+      "& .search-btn": {
+        padding: "0 20px",
+        color: "#000",
+        fontWeight: 700,
+        "&:hover": {
+          cursor: "pointer",
         },
       },
     },
