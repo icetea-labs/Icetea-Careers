@@ -1,11 +1,13 @@
-import axios from "../../../../services/axios";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import useStyles from "./styles";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 
-type FormData = {
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "";
+
+type FormDataTypes = {
   name: string;
   phone: string;
   email: string;
@@ -23,7 +25,7 @@ type FormApplicationTypes = {
 
 const FormApplication = (props: FormApplicationTypes) => {
   const styles = useStyles();
-  const { handleApply, jobTitle } = props;
+  const { handleApply, jobTitle = "" } = props;
   const [cvFile, setCvFile] = useState<any>();
   const [user, setUser] = useState<any>(null);
 
@@ -33,7 +35,7 @@ const FormApplication = (props: FormApplicationTypes) => {
     setValue,
     clearErrors,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<FormDataTypes>({
     mode: "onChange",
   });
 
@@ -41,8 +43,7 @@ const FormApplication = (props: FormApplicationTypes) => {
     if (!google) return;
     // Google Service
     google.accounts.id.initialize({
-      client_id:
-        "339095532990-oepeujq7og5ki7s5n5av3rpm20bff1p4.apps.googleusercontent.com",
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID || "",
       callback: handleCallbackResponse,
     });
     let signInDiv: any = document.getElementById("signInDiv");
@@ -52,7 +53,6 @@ const FormApplication = (props: FormApplicationTypes) => {
       size: "large",
       width: "100%",
     });
-    // google.accounts.id.prompt();
   }, []);
 
   const handleCallbackResponse = (res: any) => {
@@ -62,33 +62,50 @@ const FormApplication = (props: FormApplicationTypes) => {
   };
 
   const handleSelectCV = (e: any) => {
-    console.log(e.target.files[0]);
-    setCvFile(e.target.files[0]);
-    setValue("cv", e.target.files[0].name);
+    const targetFile = e.target.files[0];
+    setCvFile(targetFile);
+    setValue("cv", targetFile?.name);
     clearErrors("cv");
   };
 
-  const onSubmit = async (data: FormData) => {
+  const getFormData = (object: any) =>
+    Object.keys(object).reduce((formData, key) => {
+      formData.append(key, object[key]);
+      return formData;
+    }, new FormData());
+
+  const onSubmit = async (data: FormDataTypes) => {
     if (data.email !== user?.email) {
       toast.error("Your email address you entered does not match your account");
       return;
     }
 
-    const newData = {
-      ...data,
-      cv: cvFile,
-      jobTitle: jobTitle,
-    };
-    console.log("SUBMIT data:", newData);
-    // if (data.coverLetter?.length > 500)
-    //   return toast.error("Cover letter maximum length is 500 characters", {
-    //     theme: "dark",
-    //   });
+    let newData = getFormData(data);
+    newData.delete("cv");
+    newData.append("cv", cvFile);
+    newData.append("jobTitle", jobTitle);
+
+    if (data.coverLetter?.length > 500)
+      return toast.error("Cover letter maximum length is 500 characters", {
+        theme: "dark",
+      });
 
     try {
-      const res = await axios.post("/jobs/apply", newData);
+      const res = await axios({
+        method: "post",
+        url: `${API_BASE_URL}jobs/apply`,
+        data: newData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (res?.data?.success) {
+        toast.success(
+          res.data.message || "Your mail has been sent successfuly"
+        );
+      }
 
-      console.log(res);
+      // console.log(res);
     } catch (error: any) {
       console.log(error);
       toast.error(error?.response?.data?.message || "Something went wrong");
