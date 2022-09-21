@@ -31,7 +31,7 @@ type FooterProps = {
 
 const Footer = (props: FooterProps) => {
   const styles = useStyles();
-  const { onScrollToRef } = props;
+  // const { onScrollToRef } = props;
 
   return (
     <div className={styles.footer}>
@@ -51,49 +51,9 @@ const Footer = (props: FooterProps) => {
 
             <SocialButtons />
           </div>
-          <div className={styles.navigation}>
-            <div className={styles.navigationGroup}>
-              <p className="group-label">ABOUT US</p>
-              <a
-                href="/"
-                target="_blank"
-                rel="noreferrer"
-                className={styles.navigationItem}
-              >
-                Our services
-              </a>
-              <a
-                href="/"
-                target="_blank"
-                rel="noreferrer"
-                className={styles.navigationItem}
-              >
-                Blog
-              </a>
-            </div>
-            <div className={styles.navigationGroup}>
-              <p className="group-label">SITEMAP</p>
-              <div
-                onClick={() => onScrollToRef && onScrollToRef("jobs")}
-                className={styles.navigationItem}
-              >
-                List Job
-              </div>
-              <div
-                onClick={() => onScrollToRef && onScrollToRef("process")}
-                className={styles.navigationItem}
-              >
-                Selection Process
-              </div>
-              <div
-                onClick={() => onScrollToRef && onScrollToRef("offer")}
-                className={styles.navigationItem}
-              >
-                What we offer
-              </div>
-            </div>
-            <div className={styles.navigationGroup + " team-mobile"}>
-              <p className="group-label">TALENT ACQUISITION TEAM</p>
+          <div className={styles.talentTeam}>
+            <span className="talent-label">TALENT ACQUISITION TEAM</span>
+            <div className={styles.hrGroup}>
               {team.map((hr: teamProps, index: number) => {
                 return (
                   <div className="hr" key={index}>

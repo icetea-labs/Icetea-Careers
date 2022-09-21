@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) => {
       "& .process-title": {
         font: theme.typography.nn64856.font,
         margin: "0 0 80px",
+        textAlign: "center",
       },
       "& img": {
         maxWidth: "100%",

@@ -17,8 +17,11 @@ const useStyles = makeStyles((theme: any) => {
     },
     footerContainer: {
       color: "#fff",
-      padding: "80px 40px 60px",
+      padding: "60px 0 12px",
       display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: 44,
     },
     logo: {
       width: 200,
@@ -27,7 +30,8 @@ const useStyles = makeStyles((theme: any) => {
       maxWidth: 300,
       display: "flex",
       flexDirection: "column",
-      alignItems: "flex-start",
+      alignItems: "center",
+      textAlign: "center",
       font: theme.typography.nn41424.font,
       "& p": {
         margin: 0,
@@ -57,31 +61,21 @@ const useStyles = makeStyles((theme: any) => {
         transition: "0.5s all",
       },
     },
-    navigation: {
+    talentTeam: {
+      width: "100%",
       display: "flex",
-      marginTop: 10,
-      marginLeft: "auto",
+      justifyContent: "space-between",
       font: theme.typography.nn41424.font,
-    },
-    navigationGroup: {
-      display: "flex",
-      flexDirection: "column",
-      minWidth: 150,
-      marginLeft: 40,
-      // "&:first-child": {
-      //   marginLeft: 0,
-      // },
-      "& .group-label": {
-        margin: "0 0 4px",
+
+      "& .talent-label": {
         color: "rgba(255, 255, 255, 0.5)",
         letterSpacing: 1,
-        font: "normal normal 600 12px/16px TTHoves",
+        font: "normal normal 500 12px/24px TTHoves",
       },
       "& .hr": {
-        display: "grid",
-        gridTemplateColumns: "100px 120px 1fr",
-        gap: 12,
-        marginTop: 10,
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
         "& .hr-name": {
           color: theme.palette.primary.main,
         },
@@ -95,15 +89,10 @@ const useStyles = makeStyles((theme: any) => {
         },
       },
     },
-    navigationItem: {
-      marginTop: 12,
-      color: "#fff",
-      textDecoration: "none",
-      "&:hover": {
-        textDecoration: "underline",
-        transition: "0.5s all",
-        cursor: "pointer",
-      },
+    hrGroup: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gap: 30,
     },
     copyRight: {
       color: "#AEAEAE",
@@ -115,10 +104,7 @@ const useStyles = makeStyles((theme: any) => {
 
     [theme.breakpoints.down("1368")]: {
       footerWrap: {
-        padding: "0 60px",
-      },
-      navigationGroup: {
-        marginLeft: 20,
+        padding: "0 12px",
       },
     },
     [theme.breakpoints.down("lg")]: {
@@ -126,14 +112,19 @@ const useStyles = makeStyles((theme: any) => {
         paddingLeft: 0,
         paddingRight: 0,
       },
-      navigation: {
-        flexWrap: "wrap",
-        width: "min-content",
-        rowGap: 20,
-        columnGap: 60,
+      talentTeam: {
+        flexDirection: "column",
+        justifyContent: "center",
+        textAlign: "center",
+        "& .hr": {
+          justifyContent: "center",
+        },
       },
-      navigationGroup: {
-        marginLeft: 0,
+    },
+    [theme.breakpoints.down("1024")]: {
+      hrGroup: {
+        gridTemplateColumns: "1fr",
+        gap: 12,
       },
     },
     [theme.breakpoints.down("md")]: {
@@ -146,10 +137,10 @@ const useStyles = makeStyles((theme: any) => {
     },
     [theme.breakpoints.only("xs")]: {
       footerWrap: {
-        padding: "0 20px",
+        padding: "0 12px",
       },
       footerContainer: {
-        padding: "60px 0 40px",
+        padding: "60px 0 12px",
         display: "flex",
         flexDirection: "column",
       },
@@ -167,43 +158,6 @@ const useStyles = makeStyles((theme: any) => {
       },
       socialList: {
         justifyContent: "center",
-      },
-      navigation: {
-        borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-        marginTop: 40,
-        marginLeft: 0,
-        padding: "28px 20px 0 20px",
-        width: "100%",
-        boxSizing: "border-box",
-        columnGap: 40,
-        rowGap: 40,
-        justifyContent: "center",
-      },
-      navigationGroup: {
-        alignItems: "center",
-        minWidth: "auto",
-        "&.team-mobile": {
-          width: "100%",
-          alignItems: "unset",
-          display: "flex",
-          flexWrap: "wrap",
-          flexDirection: "unset",
-          "& .hr": {
-            width: "50%",
-            "&:last-child": {
-              marginTop: 20,
-            },
-          },
-        },
-        "& .group-label": {
-          textAlign: "center",
-          width: "100%",
-        },
-        "& .hr": {
-          display: "flex",
-          flexDirection: "column",
-          gap: 4,
-        },
       },
     },
   };

@@ -58,11 +58,15 @@ const useStyles = makeStyles((theme: any) => {
     [theme.breakpoints.only("xs")]: {
       helpus: {
         marginTop: 80,
-        padding: "40px 20px",
+        padding: "40px 0px",
       },
       helpusContainer: {
+        padding: "80px 20px",
+        background: "url(/images/helpus-mobile.png)",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
         "& .helpus-title": {
-          margin: "40px 0",
+          margin: "0 0 12px",
           font: "normal normal 600 32px/44px TTHoves",
         },
       },
