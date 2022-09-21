@@ -1,11 +1,11 @@
 const express = require('express')
 const Job = require('../models/Job')
-const argon2 = require('argon2')
 const router = express.Router()
-const { google } = require('googleapis');
-const credentials = require('../constants/credentials');
-const verifyToken = require('../middleware/auth')
-const GMAIL_SCOPES = "https://www.googleapis.com/auth/gmail.send";
+const verifyToken = require('../middleware/auth');
+const multer = require("multer");
+const { checkValidExtention } = require('../utils/checkValidExtention');
+const { getMailOptions, getMailTransporter } = require('../utils/getMailOptions');
+const upload = multer({ dest: "uploads/" });
 
 // @route GET api/jobs
 // @desc Get list Job Detail
@@ -55,21 +55,47 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/user-login', async (req, res) => {
+// @route GET api/jobs/apply
+// @desc Apply form and Send Email
+// @access Public
+router.post('/apply', upload.single("cv"), async (req, res) => {
+  const { jobTitle, name, phone, email, coverLetter } = req.body;
+  const { fieldname, originalname } = req.file
+
+  console.log(req.file, req.body)
+
+  if (!jobTitle || !name || !phone || !email || !coverLetter || !fieldname)
+    return res.status(400).json({
+      success: false,
+      message: "Missing required field"
+    })
+
+  // Simple validate file extentions
+  if (!checkValidExtention(originalname))
+    return res.status(400).json({
+      success: false,
+      message: "Invalid file extentions"
+    })
+
+  const options = getMailOptions();
+
   try {
-    // get Gmail Service
-    const { client_secret, client_id, redirect_uris } = credentials.installed;
-    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
-    const url = oAuth2Client.generateAuthUrl({
-      access_type: 'offline',
-      prompt: 'consent',
-      scope: GMAIL_SCOPES,
-    });
-    console.log('Authorize this app by visiting this url:', url);
-    res.json({
-      success: true,
-      message: 'Authorize this app by visiting this url',
-      data: url
+    const transporter = getMailTransporter();
+
+    transporter.sendMail(options, function (err, info) {
+      if (err) {
+        console.log(err);
+        return res.status(200).json({
+          success: false,
+          message: 'Something went wrong',
+          data: null
+        })
+      }
+      return res.status(200).json({
+        success: true,
+        message: 'Your mail has been sent successfuly',
+        data: info.messageId
+      });
     })
   } catch (error) {
     console.log(error)
