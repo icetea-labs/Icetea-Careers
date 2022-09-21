@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   MAPPING_CATEGORY_TYPE_TEXT,
-  MAPPING_LEVEL_TYPE_TEXT,
   MAPPING_LOCATION_TYPE_TEXT,
 } from "../../../constants";
 import { getJobDetail } from "../../../requests/jobs";
