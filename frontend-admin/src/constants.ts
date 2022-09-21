@@ -20,7 +20,8 @@ export const MAPPING_CATEGORY_TYPE_TEXT = {
 };
 
 export const LEVEL_TYPE = {
-  INTERN_FRESHER: "intern",
+  INTERN: "intern",
+  FRESHER: "fresher",
   JUNIOR: "junior",
   MIDDLE: "middle",
   SENIOR: "senior",
@@ -30,7 +31,8 @@ export const LEVEL_TYPE = {
 
 export const levels = [
   { value: LEVEL_TYPE.ALL, label: "-" },
-  { value: LEVEL_TYPE.INTERN_FRESHER, label: "Intern/Fresher" },
+  { value: LEVEL_TYPE.INTERN, label: "Intern" },
+  { value: LEVEL_TYPE.FRESHER, label: "Fresher" },
   { value: LEVEL_TYPE.JUNIOR, label: "Junior" },
   { value: LEVEL_TYPE.MIDDLE, label: "Middle" },
   { value: LEVEL_TYPE.SENIOR, label: "Senior" },
@@ -38,7 +40,8 @@ export const levels = [
 ];
 
 export const MAPPING_LEVEL_TYPE_TEXT = {
-  [LEVEL_TYPE.INTERN_FRESHER]: "Intern/Fresher",
+  [LEVEL_TYPE.INTERN]: "Intern",
+  [LEVEL_TYPE.FRESHER]: "Fresher",
   [LEVEL_TYPE.JUNIOR]: "Junior",
   [LEVEL_TYPE.MIDDLE]: "Middle",
   [LEVEL_TYPE.SENIOR]: "Senior",
