@@ -45,14 +45,18 @@ const FormApplication = (props: FormApplicationTypes) => {
     google.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID || "",
       callback: handleCallbackResponse,
+      cancel_on_tap_outside: false,
     });
-    let signInDiv: any = document.getElementById("signInDiv");
-    google.accounts.id.renderButton(signInDiv, {
-      type: "standard",
-      theme: "filled_black",
-      size: "large",
-      width: "100%",
-    });
+    // let signInDiv: any = document.getElementById("signInDiv");
+    // google.accounts.id.renderButton(signInDiv, {
+    //   type: "standard",
+    //   theme: "filled_black",
+    //   size: "large",
+    //   width: "100%",
+    //   logo_alignment: "left",
+    //   text: "signin",
+    // });
+    google.accounts.id.prompt();
   }, []);
 
   const handleCallbackResponse = (res: any) => {
@@ -234,11 +238,26 @@ const FormApplication = (props: FormApplicationTypes) => {
         </div>
 
         <div className={styles.groupBtn}>
-          <button type="submit" className={styles.btnApply} disabled={!user}>
-            Apply this job
-          </button>
+          {user ? (
+            <button type="submit" className={styles.btnApply} disabled={!user}>
+              Apply this job
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={styles.btnApply + " " + styles.btnLogin}
+              disabled={true}
+            >
+              <img src="/images/icon-google-plus.svg" alt="" />
+              Log in with Google to Apply
+            </button>
+          )}
 
-          {!user && <div id="signInDiv" className={styles.signInGoogle}></div>}
+          {/* {!user && (
+            <div id="signInDiv" className={styles.signInGoogle}>
+              Log in with Google{" "}
+            </div>
+          )} */}
         </div>
       </form>
     </div>

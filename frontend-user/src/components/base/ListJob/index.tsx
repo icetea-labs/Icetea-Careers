@@ -117,11 +117,11 @@ const ListJob = (props: JobOpportunitiesType) => {
                 <p className="job-title">{job?.title || "N/A"}</p>
                 <div className="job-level">
                   {job?.level &&
-                    job.level
-                      .split(";")
-                      .map((item: any) => (
-                        <span className="job-level-item">{item}</span>
-                      ))}
+                    job.level.split(";").map((item: any) => (
+                      <span key={item} className="job-level-item">
+                        {item}
+                      </span>
+                    ))}
                 </div>
                 <div className={styles.cardBottom}>
                   <div className="job-location">

@@ -162,15 +162,25 @@ const useStyles = makeStyles((theme: Theme) => {
         cursor: "not-allowed",
       },
     },
+    btnLogin: {
+      background: "#C83E3E",
+      color: "#fff",
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      "& img": {},
+    },
     signInGoogle: {
-      // position: "absolute",
-      // top: 0,
-      // right: 0,
+      position: "absolute",
+      top: 0,
+      right: 0,
       width: "100%",
+      height: "100%",
       display: "flex",
       justifyContent: "center",
-      "& iframe": {
-        width: "100% !important",
+      "&>div": {
+        display: "flex",
+        alignItems: "center",
       },
     },
 
