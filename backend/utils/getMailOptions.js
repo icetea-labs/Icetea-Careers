@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const path = require('path');
 
 const getMailOptions = (body, file) => {
   const { jobTitle, name, phone, email, coverLetter, linkedin, facebook } = body;
