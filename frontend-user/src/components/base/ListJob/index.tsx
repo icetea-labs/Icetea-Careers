@@ -41,7 +41,7 @@ const ListJob = (props: JobOpportunitiesType) => {
 
   const renderEmpty = () => {
     return (
-      <div className={styles.listEmpty}>No results found for your search!</div>
+      <div className={styles.listEmpty}>Sorry, no job found matching these criteria!</div>
     );
   };
 

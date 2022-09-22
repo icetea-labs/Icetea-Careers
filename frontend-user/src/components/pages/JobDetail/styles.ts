@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) => {
         background: "#413B76",
         borderRadius: 6,
         width: "fit-content",
+        letterSpacing: "1px",
       },
       "& .jobDetail-title": {
         font: "normal normal 600 52px/60px TTHoves Medium",

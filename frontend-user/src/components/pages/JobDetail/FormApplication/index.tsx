@@ -59,7 +59,7 @@ const FormApplication = (props: FormApplicationTypes) => {
   };
 
   const onGoogleLoginFailure = (res: any) => {
-    toast.error("Logged in Google failue!");
+    toast.error("Error signing in to your Google account!");
     console.log("ERROR login: ", res);
   };
 
