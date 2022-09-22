@@ -23,7 +23,7 @@ const getMailOptions = (body, file) => {
 
   const options = {
     to: process.env.REACT_APP_HR_EMAIL,
-    // cc: process.env.REACT_APP_TA_EMAIL,
+    cc: process.env.REACT_APP_TA_EMAIL,
     replyTo: email,
     subject: `[Job Application /Icetea Careers] ${name} - ${jobTitle}`,
     html: `<div style="background:#f5f5f5; display:flex; padding-top:20px; padding-bottom:20px">
