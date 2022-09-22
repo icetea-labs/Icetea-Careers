@@ -10,7 +10,7 @@ import useStyles from "./styles";
 const JobOpportunities = (props: any) => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
-  const { search } = props;
+  const { search = "" } = props;
 
   const [loading, setLoading] = useState<boolean>(false);
   const [dataJobs, setDataJobs] = useState<any[]>([]);
@@ -48,7 +48,7 @@ const JobOpportunities = (props: any) => {
       setFilter((prev) => {
         return {
           ...prev,
-          search: search,
+          search: search.trim(),
         };
       });
     }, 500);

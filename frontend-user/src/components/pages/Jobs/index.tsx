@@ -65,7 +65,7 @@ const Jobs: FunctionComponent = () => {
       setFilter((prev) => {
         return {
           ...prev,
-          search: inputSearch,
+          search: inputSearch.trim(),
         };
       });
     }, 500);

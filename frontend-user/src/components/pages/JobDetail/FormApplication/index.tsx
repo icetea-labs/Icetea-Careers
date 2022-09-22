@@ -1,9 +1,11 @@
+import { CircularProgress } from "@mui/material";
+import axios from "axios";
+import { gapi } from "gapi-script";
+import { useEffect, useState } from "react";
+import GoogleLogin from "react-google-login";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import useStyles from "./styles";
-import { useEffect, useState } from "react";
-import jwtDecode from "jwt-decode";
-import axios from "axios";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "";
 
@@ -28,6 +30,7 @@ const FormApplication = (props: FormApplicationTypes) => {
   const { handleApply, jobTitle = "" } = props;
   const [cvFile, setCvFile] = useState<any>();
   const [user, setUser] = useState<any>(null);
+  const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);
 
   const {
     register,
@@ -40,29 +43,24 @@ const FormApplication = (props: FormApplicationTypes) => {
   });
 
   useEffect(() => {
-    if (!google) return;
-    // Google Service
-    google.accounts.id.initialize({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID || "",
-      callback: handleCallbackResponse,
-      cancel_on_tap_outside: false,
-    });
-    // let signInDiv: any = document.getElementById("signInDiv");
-    // google.accounts.id.renderButton(signInDiv, {
-    //   type: "standard",
-    //   theme: "filled_black",
-    //   size: "large",
-    //   width: "100%",
-    //   logo_alignment: "left",
-    //   text: "signin",
-    // });
-    google.accounts.id.prompt();
+    const initClient = () => {
+      gapi.client.init({
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID || "",
+        scope: "",
+        // scope: "https://www.googleapis.com/auth/gmail.send",
+      });
+    };
+    gapi.load("client:auth2", initClient);
   }, []);
 
-  const handleCallbackResponse = (res: any) => {
-    let userObject = jwtDecode(res?.credential);
-    console.log(res, userObject);
-    setUser(userObject);
+  const onGoogleLoginSuccess = (response: any) => {
+    console.log(response);
+    setUser(response?.profileObj);
+  };
+
+  const onGoogleLoginFailure = (res: any) => {
+    toast.error("Logged in Google failue!");
+    console.log("ERROR login: ", res);
   };
 
   const handleSelectCV = (e: any) => {
@@ -95,6 +93,7 @@ const FormApplication = (props: FormApplicationTypes) => {
       });
 
     try {
+      setLoadingSubmit(true);
       const res = await axios({
         method: "post",
         url: `${API_BASE_URL}jobs/apply`,
@@ -103,14 +102,15 @@ const FormApplication = (props: FormApplicationTypes) => {
           "Content-Type": "multipart/form-data",
         },
       });
+      setLoadingSubmit(false);
+
       if (res?.data?.success) {
         toast.success(
           res.data.message || "Your mail has been sent successfuly"
         );
       }
-
-      // console.log(res);
     } catch (error: any) {
+      setLoadingSubmit(false);
       console.log(error);
       toast.error(error?.response?.data?.message || "Something went wrong");
     }
@@ -239,25 +239,39 @@ const FormApplication = (props: FormApplicationTypes) => {
 
         <div className={styles.groupBtn}>
           {user ? (
-            <button type="submit" className={styles.btnApply} disabled={!user}>
+            <button
+              type="submit"
+              className={styles.btnApply}
+              disabled={!user || loadingSubmit}
+            >
               Apply this job
+              {loadingSubmit && (
+                <CircularProgress
+                  size={25}
+                  style={{ marginLeft: 10 }}
+                  color="inherit"
+                />
+              )}
             </button>
           ) : (
-            <button
-              type="button"
-              className={styles.btnApply + " " + styles.btnLogin}
-              disabled={true}
-            >
-              <img src="/images/icon-google-plus.svg" alt="" />
-              Log in with Google to Apply
-            </button>
+            <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
+              buttonText="Log in with Google"
+              onSuccess={onGoogleLoginSuccess}
+              onFailure={onGoogleLoginFailure}
+              cookiePolicy={"single_host_origin"}
+              render={(renderProps) => (
+                <button
+                  onClick={renderProps.onClick}
+                  disabled={false}
+                  className={styles.btnApply + " " + styles.btnLogin}
+                >
+                  <img src="/images/icon-google-plus.svg" alt="" />
+                  Log in with Google
+                </button>
+              )}
+            />
           )}
-
-          {/* {!user && (
-            <div id="signInDiv" className={styles.signInGoogle}>
-              Log in with Google{" "}
-            </div>
-          )} */}
         </div>
       </form>
     </div>
