@@ -4,7 +4,14 @@ const useStyles = makeStyles((theme: any) => {
   return {
     foreword: {
       width: "100%",
-      padding: "40px 0 80px",
+      height: "100vh",
+      padding: "120px 0 80px",
+      boxSizing: "border-box",
+      background: "url(/images/bg-foreword.png)",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      display: "flex",
+      alignItems: "center",
     },
     forewordLeft: {
       maxWidth: "35.07%",
@@ -81,6 +88,10 @@ const useStyles = makeStyles((theme: any) => {
       },
     },
     [theme.breakpoints.down("md")]: {
+      foreword: {
+        paddingTop: 40,
+        height: "auto",
+      },
       forewordContainer: {
         flexDirection: "column",
         padding: "0 100px",

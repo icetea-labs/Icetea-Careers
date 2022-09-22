@@ -33,9 +33,14 @@ const useStyles = makeStyles((theme: Theme) => {
       },
     },
     [theme.breakpoints.only("xs")]: {
-      forewordContainer: {
+      processContainer: {
         maxWidth: "100%",
         padding: 0,
+        "& .process-title": {
+          font: theme.typography.nn62836.font,
+          margin: "0 0 32px",
+          textAlign: "center",
+        },
       },
     },
   };

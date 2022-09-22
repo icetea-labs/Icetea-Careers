@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme: any) => {
       justifyContent: "space-between",
       alignItems: "center",
       height: 80,
+      position: "absolute",
+      top: 0,
+      left: "50%",
+      transform: "translateX(-50%)",
       "& .header-logo": {
         height: 28,
       },

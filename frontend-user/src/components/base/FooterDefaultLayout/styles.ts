@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: any) => {
       margin: "0 auto",
       maxWidth: "1440px",
       padding: "0 80px",
-      background: "url(/images/bg-footer.png)",
+      // background: "url(/images/bg-footer.png)",
       backgroundSize: "contain",
       width: "100%",
       boxSizing: "border-box",

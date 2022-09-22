@@ -1,6 +1,7 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const useCommonStyle = makeStyles((theme: any) => {
+const useCommonStyle = makeStyles((theme: Theme) => {
   return {
     DefaultLayout: {
       minHeight: "100vh",
@@ -16,6 +17,12 @@ const useCommonStyle = makeStyles((theme: any) => {
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
       overflowX: "hidden",
+      position: "relative",
+      [theme.breakpoints.only("xs")]: {
+        background: "url(/images/bg-landing-mobile.png)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      },
     },
     section: {
       width: "100%",

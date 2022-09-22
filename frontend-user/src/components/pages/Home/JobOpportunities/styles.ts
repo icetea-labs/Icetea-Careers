@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme: any) => {
   return {
     jobs: {
       width: "100%",
+      paddingTop: 60,
     },
     jobsContainer: {
       maxWidth: "min(1120px, 100%)",
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme: any) => {
       "& .jobs-title": {
         font: theme.typography.nn64856.font,
         margin: "0 0 32px",
+        textAlign: "center",
       },
     },
     btnViewAll: {
@@ -40,9 +42,14 @@ const useStyles = makeStyles((theme: any) => {
       },
     },
     [theme.breakpoints.only("xs")]: {
-      forewordContainer: {
+      jobsContainer: {
         maxWidth: "100%",
         padding: 0,
+        "& .jobs-title": {
+        font: theme.typography.nn62836.font,
+          margin: "0 0 32px",
+          textAlign: "center",
+        },
       },
       btnViewAll: {
         marginTop: 8,

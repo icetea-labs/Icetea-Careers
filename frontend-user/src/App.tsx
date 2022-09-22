@@ -9,6 +9,7 @@ declare module "@mui/material/styles" {
     nn61216: React.CSSProperties;
     nn61824: React.CSSProperties;
     nn62028: React.CSSProperties;
+    nn62836: React.CSSProperties;
     nn63248: React.CSSProperties;
     nn64856: React.CSSProperties;
     nn71420: React.CSSProperties;
@@ -21,6 +22,7 @@ declare module "@mui/material/styles" {
     nn61216?: React.CSSProperties;
     nn61824?: React.CSSProperties;
     nn62028?: React.CSSProperties;
+    nn62836?: React.CSSProperties;
     nn63248?: React.CSSProperties;
     nn64856?: React.CSSProperties;
     nn71420?: React.CSSProperties;
@@ -35,6 +37,7 @@ declare module "@mui/material/Typography" {
     nn61216: true;
     nn61824: true;
     nn62028: true;
+    nn62836: true;
     nn63248: true;
     nn64856: true;
     nn71420: true;
@@ -61,6 +64,9 @@ function App() {
       },
       nn62028: {
         font: "normal normal 600 20px/28px TTHoves",
+      },
+      nn62836: {
+        font: "normal normal 600 28px/36px TTHoves",
       },
       nn63248: {
         font: "normal normal 600 32px/48px TTHoves",
