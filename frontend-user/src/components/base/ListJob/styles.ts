@@ -77,10 +77,10 @@ const useStyles = makeStyles((theme: any) => {
       padding: "40px 24px 12px 40px",
       display: "flex",
       flexDirection: "column",
-      transition: "all 0.3s",
+      transition: "all 0.4s",
 
       "&:hover": {
-        background: theme.palette.primary.main,
+        background: "linear-gradient(180deg, #00C7F4 18.33%, #5062E5 109.79%)",
         boxShadow: "0px 4px 250px rgba(0, 199, 244, 0.32)",
         color: "#000",
         "& .btn-view-more": {
@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme: any) => {
           font: "normal normal 600 12px/16px TTHoves",
           letterSpacing: "1px",
           textTransform: "capitalize",
-          transition: "all 0.3s",
+          transition: "all 0.4s",
         },
       },
       "& .job-title": {
@@ -119,7 +119,7 @@ const useStyles = makeStyles((theme: any) => {
         font: theme.typography.nn71420.font,
       },
       "& .job-location": {
-        transition: "background 0.3s",
+        transition: "background 0.4s",
         display: "flex",
         alignItems: "center",
         font: theme.typography.nn71420.font,

@@ -3,7 +3,8 @@ import { useState } from "react";
 import {
   categories,
   CATEGORY_TYPE,
-  MAPPING_LOCATION_TYPE_TEXT,
+  HIGH_SPEED,
+  MAPPING_LOCATION_TYPE_TEXT
 } from "../../../constants";
 import { useCommonStyle } from "../../../styles";
 import { FilterProps } from "../../pages/Jobs";
@@ -41,7 +42,9 @@ const ListJob = (props: JobOpportunitiesType) => {
 
   const renderEmpty = () => {
     return (
-      <div className={styles.listEmpty}>Sorry, but nothing matched your search terms!</div>
+      <div className={styles.listEmpty}>
+        Sorry, but nothing matched your search terms!
+      </div>
     );
   };
 
@@ -109,10 +112,10 @@ const ListJob = (props: JobOpportunitiesType) => {
           {listJob.map((job: any) => {
             return (
               <div
-                key={job.id}
+                key={job?.id}
                 className={styles.jobCard}
-                // data-aos={listJob.length !== 1 && COMPONENT_ANIMATED}
-                // data-aos-duration={NORMAL_SPEED}
+                data-aos={listJob.length !== 1 && "zoom-in"}
+                data-aos-duration={HIGH_SPEED}
               >
                 <p className="job-title">{job?.title || "N/A"}</p>
                 <div className="job-level">

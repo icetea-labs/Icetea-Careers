@@ -18,28 +18,28 @@ const Offer = (props: any) => {
           src="/images/offer-top-left.svg"
           className="offer-top-left"
           alt=""
-          data-aos="zoom-in-left"
+          data-aos="fade-up-left"
           data-aos-duration={NORMAL_SPEED}
         />
         <img
           src="/images/offer-top-right.svg"
           className="offer-top-right"
           alt=""
-          data-aos="zoom-in-right"
+          data-aos="fade-up-right"
           data-aos-duration={NORMAL_SPEED}
         />
         <img
           src="/images/offer-bottom-left.svg"
           className="offer-bottom-left"
           alt=""
-          data-aos="zoom-in-left"
+          data-aos="fade-down-left"
           data-aos-duration={NORMAL_SPEED}
         />
         <img
           src="/images/offer-bottom-right.svg"
           className="offer-bottom-right"
           alt=""
-          data-aos="zoom-in-right"
+          data-aos="fade-down-right"
           data-aos-duration={NORMAL_SPEED}
         />
       </div>

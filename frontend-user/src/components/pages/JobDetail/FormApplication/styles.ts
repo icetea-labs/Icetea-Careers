@@ -11,13 +11,14 @@ const useStyles = makeStyles((theme: Theme) => {
       flexDirection: "column",
       justifyContent: "center",
       boxSizing: "border-box",
-      background: "#151515",
+      background: "linear-gradient(180deg, #00C7F4 18.33%, #5062E5 109.79%)",
       padding: 32,
       borderRadius: 24,
       "& .form-title": {
         font: theme.typography.nn72432.font,
         textAlign: "center",
         margin: "0 0 20px",
+        color: "#000",
       },
     },
     formContainer: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => {
       "& .input-field": {
         minHeight: 52,
         width: "100%",
-        background: "rgba(255, 255, 255, 0.08)",
+        background: "#fff",
         borderRadius: 8,
         padding: "13px 16px",
         display: "flex",
@@ -46,14 +47,14 @@ const useStyles = makeStyles((theme: Theme) => {
         border: "none",
         background: "transparent",
         outline: "none",
-        color: "#fff",
+        color: "#000",
         font: theme.typography.nn41424.font,
         padding: 0,
         "&:-webkit-autofill, :-webkit-autofill:hover, :-webkit-autofill:focus":
           {
             background: "transparent !important",
             outline: "none !important",
-            WebkitTextFillColor: "#fff",
+            WebkitTextFillColor: "#000",
             transition: "background-color 5000s ease-in-out 0s",
           },
       },
@@ -77,8 +78,8 @@ const useStyles = makeStyles((theme: Theme) => {
       "& .input-error": {
         marginTop: 4,
         paddingLeft: 8,
-        color: "rgba(255, 86, 86, 1)",
-        font: "normal normal 700 12px/20px TTHoves",
+        color: "#E40000",
+        font: "normal normal 400 12px/20px TTHoves",
       },
       "& .input-error-icon": {
         width: 18,
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme: Theme) => {
         display: "none",
       },
       "& .input-disabled": {
-        border: "1px solid rgba(255, 86, 86, 0.6)",
+        border: "1px solid #FF5656",
         "& .input-error-icon": {
           display: "block",
         },
@@ -133,7 +134,7 @@ const useStyles = makeStyles((theme: Theme) => {
     },
     cvNote: {
       margin: 0,
-      color: "rgba(255, 255, 255, 0.6)",
+      color: "#000",
       font: "normal normal 400 12px/20px TTHoves",
       paddingLeft: 8,
     },
@@ -147,8 +148,8 @@ const useStyles = makeStyles((theme: Theme) => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      color: "#000",
-      background: "#00C7F4",
+      color: "#fff",
+      background: "#000",
       border: "none",
       borderRadius: 4,
       outline: "none",
