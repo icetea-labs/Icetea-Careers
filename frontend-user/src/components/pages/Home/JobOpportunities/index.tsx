@@ -75,7 +75,7 @@ const JobOpportunities = (props: any) => {
             handleChangeFilter={handleChangeFilter}
           />
           <div className={styles.btnViewAll}>
-            <ButtonLarge text="View all jobs" onClick={onClickViewAll} />
+            <ButtonLarge text="View All Jobs" onClick={onClickViewAll} />
           </div>
         </div>
       </div>
