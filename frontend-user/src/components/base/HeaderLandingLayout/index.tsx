@@ -12,10 +12,10 @@ type MenuItemProps = {
 };
 
 const menu: Array<MenuItemProps> = [
-  { label: "List job", value: "jobs" },
+  { label: "List Job", value: "jobs" },
   { label: "Process", value: "process" },
-  { label: "What we offer", value: "offer" },
-  { label: "Contact us", value: "contact" },
+  { label: "What We Offer", value: "offer" },
+  { label: "Contact Us", value: "contact" },
 ];
 
 const HeaderLandingLayout = (props: HeaderProps) => {
