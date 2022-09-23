@@ -8,7 +8,7 @@ const jobRouter = require('./routes/job')
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(`mongodb+srv://127.0.0.1/?retryWrites=true&w=majority`)
+    await mongoose.connect("mongodb://127.0.0.1:27017/?retryWrites=true&w=majority")
     console.log('MongoDB connected')
   } catch (error) {
     console.log('Connect ERROR' + error.message)
