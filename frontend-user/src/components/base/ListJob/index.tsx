@@ -4,7 +4,7 @@ import {
   categories,
   CATEGORY_TYPE,
   HIGH_SPEED,
-  MAPPING_LOCATION_TYPE_TEXT
+  MAPPING_LOCATION_TYPE_TEXT,
 } from "../../../constants";
 import { useCommonStyle } from "../../../styles";
 import { FilterProps } from "../../pages/Jobs";
