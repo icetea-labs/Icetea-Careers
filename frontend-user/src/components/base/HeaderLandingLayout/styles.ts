@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: any) => {
         width: 120,
         padding: "20px 0",
         textAlign: "center",
-        font: theme.typography.nn41424.font,
+        font: "normal normal 400 14px/24px TTHoves Medium",
         color: "#fff",
         cursor: "pointer",
         textDecoration: "none",

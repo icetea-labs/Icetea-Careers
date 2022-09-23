@@ -115,10 +115,10 @@ const useStyles = makeStyles((theme: Theme) => {
         display: "flex",
         flexDirection: "column",
         marginBottom: 32,
-        font: "normal normal 400 16px/32px TTHoves",
+        font: "normal normal 400 18px/32px TTHoves",
       },
       "& .content-title": {
-        font: "normal normal 700 16px/22px TTHoves",
+        font: "normal normal 700 18px/22px TTHoves",
         marginBottom: 8,
       },
     },
