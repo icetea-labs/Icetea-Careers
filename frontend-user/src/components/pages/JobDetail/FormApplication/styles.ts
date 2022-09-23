@@ -139,6 +139,7 @@ const useStyles = makeStyles((theme: Theme) => {
       paddingLeft: 8,
     },
     groupBtn: {
+      marginTop: 12,
       width: "100%",
       position: "relative",
     },

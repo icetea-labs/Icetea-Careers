@@ -76,7 +76,7 @@ const Offer = (props: any) => {
     <div className={styles.offer} ref={props.offerRef}>
       <div className={commonStyles.section}>
         <div className={styles.offerContainer}>
-          <p className="offer-title">What we offer</p>
+          <p className="offer-title">What We Offer</p>
           {isMobile ? renderOfferMobile() : renderOffer()}
         </div>
       </div>

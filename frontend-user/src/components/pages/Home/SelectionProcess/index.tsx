@@ -13,7 +13,7 @@ const SelectionProcess = (props: any) => {
     <div className={styles.process} ref={props.processRef}>
       <div className={commonStyles.section}>
         <div className={styles.processContainer}>
-          <p className="process-title">Selection process</p>
+          <p className="process-title">Selection Process</p>
           {isMobile ? (
             <img src="/images/selection-process-mobile.svg" alt="" />
           ) : (
