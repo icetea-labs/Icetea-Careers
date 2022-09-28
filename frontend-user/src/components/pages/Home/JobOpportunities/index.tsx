@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { CATEGORY_TYPE } from "../../../../constants";
 import { getListJob } from "../../../../requests/jobs";
 import { useCommonStyle } from "../../../../styles";
 import { ButtonLarge } from "../../../base/Button";
@@ -18,7 +19,7 @@ const JobOpportunities = (props: any) => {
     page: 1,
     perPage: 9,
     search: "",
-    category: "",
+    category: CATEGORY_TYPE.SOFTWARE_DEVELOPMENT,
   });
 
   useEffect(() => {
