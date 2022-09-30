@@ -1,6 +1,7 @@
 import { Pagination, PaginationItem } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { CATEGORY_TYPE } from "../../../constants";
 import { getListJob } from "../../../requests/jobs";
 import { useCommonStyle } from "../../../styles";
 import ListJob from "../../base/ListJob";
@@ -26,7 +27,7 @@ const Jobs: FunctionComponent = () => {
     page: 1,
     perPage: 15,
     search: "",
-    category: "",
+    category: CATEGORY_TYPE.SOFTWARE_DEVELOPMENT,
   });
 
   useEffect(() => {
@@ -75,7 +76,7 @@ const Jobs: FunctionComponent = () => {
   const onSearching = (e: any) => {
     setInputSearch(e.target.value);
   };
-  
+
   const handleSearch = () => {
     // console.log("inputSearch", inputSearch);
   };
