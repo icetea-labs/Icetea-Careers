@@ -1,12 +1,12 @@
 import React from "react";
 import useStyles from "./style";
 
-type SocialProps = {
+export type SocialProps = {
   url: string;
   imgUrl: string;
   label: string;
 };
-const socialData: Array<SocialProps> = [
+export const socialData: Array<SocialProps> = [
   {
     url: "https://www.facebook.com/IceteaLabsCareers",
     imgUrl: "/images/socials/facebook-color.svg",

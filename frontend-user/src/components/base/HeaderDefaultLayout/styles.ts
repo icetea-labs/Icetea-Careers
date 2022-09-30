@@ -56,6 +56,11 @@ const useStyles = makeStyles((theme: Theme) => {
       color: "#fff",
       transition: "0.5s all",
     },
+    socialsHeader: {},
+    socialsHeaderMobile: {
+      display: "none",
+    },
+
     [theme.breakpoints.down("lg")]: {
       header: {
         padding: "0 60px",
@@ -67,7 +72,15 @@ const useStyles = makeStyles((theme: Theme) => {
         padding: "0 30px",
       },
     },
-    [theme.breakpoints.only("xs")]: {},
+    [theme.breakpoints.only("xs")]: {
+      socialsHeader: {
+        display: "none",
+      },
+      socialsHeaderMobile: {
+        display: "flex",
+        gap: 8,
+      },
+    },
   };
 });
 

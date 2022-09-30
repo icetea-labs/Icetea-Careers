@@ -1,4 +1,4 @@
-import SocialButtons from "../SocialButtons";
+import SocialButtons, { socialData, SocialProps } from "../SocialButtons";
 import useStyles from "./styles";
 
 const HeaderDefaultLayout = (props: any) => {
@@ -14,7 +14,22 @@ const HeaderDefaultLayout = (props: any) => {
         />
       </a>
 
-      <SocialButtons />
+      <div className={styles.socialsHeader}>
+        <SocialButtons />
+      </div>
+      <div className={styles.socialsHeaderMobile}>
+        {socialData?.map((item: SocialProps, index: number) => (
+          <a
+            key={index}
+            href={item.url}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.swipeButton}
+          >
+            <img src={item.imgUrl} alt="" />
+          </a>
+        ))}
+      </div>
     </div>
   );
 };
