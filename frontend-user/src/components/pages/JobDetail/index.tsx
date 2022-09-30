@@ -349,6 +349,7 @@ const JobDetail: FunctionComponent = () => {
               </div>
 
               <ModalApplication
+                jobDetail={jobDetail}
                 open={openModalApplied}
                 handleClose={handleCloseModalApplied}
               />

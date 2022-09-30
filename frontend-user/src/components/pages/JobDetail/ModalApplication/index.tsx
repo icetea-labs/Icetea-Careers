@@ -4,12 +4,13 @@ import useStyles from "./styles";
 type ModalApplicationTypes = {
   open: boolean;
   handleClose: () => void;
+  jobDetail: any;
 };
 
 const ModalApplication = (props: ModalApplicationTypes) => {
   const styles = useStyles();
-  const { open, handleClose } = props;
-
+  const { open, handleClose, jobDetail } = props;
+  console.log(jobDetail);
   return (
     <>
       <Dialog
@@ -23,18 +24,18 @@ const ModalApplication = (props: ModalApplicationTypes) => {
         <div className={styles.modalContainer}>
           <img src="/images/modal-title.png" className="img-title" alt="" />
           <p className="title">
-            Thank you for your application for the Community Manager position at
-            Icetea Labs.{" "}
+            Thank you for applying for the {jobDetail?.title || "N/A"} position
+            at Icetea Labs.{" "}
           </p>
           <p style={{ marginBottom: 12 }}>
             We would like to inform you that we have well received your
             application. Due to the large number of applications, we would only
-            further contact with selected candidates. <br /> We sincerely thank
-            you for your understanding.
+            further contact selected candidates. <br /> We sincerely thank you
+            for your understanding.
           </p>
           <p className="">
-            Should you have any questions, please let us know for further
-            support by contacting us via following information:
+            Should you have any question, please let us know for futher support
+            by contacting us via following information:
           </p>
           <div className="contact">
             <img src="/images/icon-mail.svg" alt="" />
