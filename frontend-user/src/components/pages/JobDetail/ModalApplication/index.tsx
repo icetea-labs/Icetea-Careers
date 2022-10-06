@@ -39,7 +39,7 @@ const ModalApplication = (props: ModalApplicationTypes) => {
           </p>
           <div className="contact">
             <img src="/images/icon-mail.svg" alt="" />
-            <span>ta@icetea.io</span>
+            <span>recruitment@icetea.io</span>
           </div>
           <div className="contact">
             <img src="/images/icon-phone.svg" alt="" />

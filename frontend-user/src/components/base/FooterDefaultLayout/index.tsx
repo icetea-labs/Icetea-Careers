@@ -43,7 +43,7 @@ const Footer = (props: FooterProps) => {
               className={styles.logo}
               alt=""
             />
-            <p className="mail">ta@icetea.io</p>
+            <p className="mail">recruitment@icetea.io</p>
             <p>+84 246 658 5248</p>
             <p className="description">
               11th Floor, IPH Tower, 241 Xuan Thuy Street, Cau Giay, Hanoi
