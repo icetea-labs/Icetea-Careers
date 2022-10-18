@@ -20,6 +20,7 @@ const JobOpportunities = (props: any) => {
     perPage: 9,
     search: "",
     category: CATEGORY_TYPE.SOFTWARE_DEVELOPMENT,
+    display: true
   });
 
   useEffect(() => {

@@ -13,6 +13,7 @@ export type FilterProps = {
   perPage?: number;
   search: string;
   category: string;
+  display: boolean;
 };
 
 const Jobs: FunctionComponent = () => {
@@ -28,6 +29,7 @@ const Jobs: FunctionComponent = () => {
     perPage: 15,
     search: "",
     category: CATEGORY_TYPE.SOFTWARE_DEVELOPMENT,
+    display: true,
   });
 
   useEffect(() => {
