@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Home from "./components/pages/Home";
 import JobDetail from "./components/pages/JobDetail";
@@ -13,7 +13,8 @@ const routing = function createRouting() {
         <Route path="/" element={<Home />} />
         <Route path="jobs" element={<Jobs />} />
         <Route path="jobs/:jobId" element={<JobDetail />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/404notfound" element={<NotFoundPage />} />
+        <Route path="*" element={<Navigate to="/404notfound" replace />} />
       </Routes>
       <ToastContainer />
     </>
