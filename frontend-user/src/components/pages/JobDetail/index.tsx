@@ -2,7 +2,10 @@ import { Box, Skeleton, Theme, Tooltip, useTheme } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { MAPPING_CATEGORY_TYPE_TEXT, MAPPING_LOCATION_TYPE_TEXT } from "../../../constants";
+import {
+  MAPPING_CATEGORY_TYPE_TEXT,
+  MAPPING_LOCATION_TYPE_TEXT,
+} from "../../../constants";
 import { getJobDetail } from "../../../requests/jobs";
 import { useCommonStyle } from "../../../styles";
 import DefaultLayout from "../../layouts/DefaultLayout";
@@ -52,7 +55,9 @@ const JobDetail: FunctionComponent = () => {
   const params = useParams();
   const id = params?.jobId;
   const socialsLength = socialData.length;
-  const [hover, setHover] = useState<Array<boolean>>(new Array(socialsLength).fill(false));
+  const [hover, setHover] = useState<Array<boolean>>(
+    new Array(socialsLength).fill(false)
+  );
   const [openModalApplied, setOpenModalApplied] = useState<boolean>(false);
   const [jobDetail, setJobDetail] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
@@ -86,11 +91,6 @@ const JobDetail: FunctionComponent = () => {
     };
     getData();
   }, [id]);
-
-  useEffect(() => {
-    if (!jobDetail) return;
-    if (!jobDetail.display) window.location.href = "/404notfound";
-  }, [jobDetail]);
 
   // useEffect(() => {
   //   if (!jobDetail) return;
@@ -171,7 +171,10 @@ const JobDetail: FunctionComponent = () => {
       <div className={styles.jobDetailHeader}>
         <Skeleton className={commonStyles.skeleton} height={48} width="200px" />
         <Skeleton className={commonStyles.skeleton} height={52} width="50%" />
-        <Box width="50%" sx={{ display: "flex", gap: 2, justifyContent: "center" }}>
+        <Box
+          width="50%"
+          sx={{ display: "flex", gap: 2, justifyContent: "center" }}
+        >
           <Skeleton className={commonStyles.skeleton} height={42} width="20%" />
           <Skeleton className={commonStyles.skeleton} height={42} width="20%" />
         </Box>
@@ -189,23 +192,29 @@ const JobDetail: FunctionComponent = () => {
             ) : (
               <div className={styles.jobDetailHeader}>
                 <div className="jobDetail-type">
-                  {jobDetail.category ? MAPPING_CATEGORY_TYPE_TEXT[jobDetail.category] : "N/A"}
+                  {jobDetail.category
+                    ? MAPPING_CATEGORY_TYPE_TEXT[jobDetail.category]
+                    : "N/A"}
                 </div>
                 <p className="jobDetail-title">{jobDetail?.title || "N/A"}</p>
                 <div className="jobDetail-info">
                   <div className="job-level">
                     {jobDetail?.level &&
-                      jobDetail.level.split(";").map((item: any, index: number) => (
-                        <span key={item} className="job-level-item">
-                          {index !== 0 && " | "}
-                          {item}
-                        </span>
-                      ))}
+                      jobDetail.level
+                        .split(";")
+                        .map((item: any, index: number) => (
+                          <span key={item} className="job-level-item">
+                            {index !== 0 && " | "}
+                            {item}
+                          </span>
+                        ))}
                   </div>
                   <div className="job-location">
                     <img src="/images/icon-location.svg" alt="" />
                     <span>
-                      {jobDetail.level ? MAPPING_LOCATION_TYPE_TEXT[jobDetail.location] : "N/A"}
+                      {jobDetail.level
+                        ? MAPPING_LOCATION_TYPE_TEXT[jobDetail.location]
+                        : "N/A"}
                     </span>
                   </div>
                 </div>
@@ -214,7 +223,12 @@ const JobDetail: FunctionComponent = () => {
             <div className={styles.jobDetailBody}>
               <div className={styles.socials}>
                 {socialData.map((item: SocialProps, index: number) => (
-                  <Tooltip key={index} title={item?.label} arrow placement="right">
+                  <Tooltip
+                    key={index}
+                    title={item?.label}
+                    arrow
+                    placement="right"
+                  >
                     <a
                       href={item?.url}
                       className={styles.socialItem}
@@ -223,7 +237,10 @@ const JobDetail: FunctionComponent = () => {
                       onMouseEnter={() => onHoverSocialItem(index)}
                       onMouseLeave={() => onLeaveSocialItem(index)}
                     >
-                      <img src={hover[index] ? item?.imgHoverUrl : item?.imgUrl} alt="" />
+                      <img
+                        src={hover[index] ? item?.imgHoverUrl : item?.imgUrl}
+                        alt=""
+                      />
                     </a>
                   </Tooltip>
                 ))}

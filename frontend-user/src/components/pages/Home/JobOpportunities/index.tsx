@@ -20,7 +20,7 @@ const JobOpportunities = (props: any) => {
     perPage: 9,
     search: "",
     category: CATEGORY_TYPE.SOFTWARE_DEVELOPMENT,
-    display: true,
+    display: true
   });
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const JobOpportunities = (props: any) => {
   }, [search]);
 
   const onClickViewAll = () => {
-    window.location.replace("/jobs");
+    window.open(`${window.location.href}#/jobs`, "_blank");
   };
 
   const handleChangeFilter = (newFilter: FilterProps) => {
