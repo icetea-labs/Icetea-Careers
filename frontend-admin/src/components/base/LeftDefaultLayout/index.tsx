@@ -11,7 +11,7 @@ const LeftDefaultLayout = (props: any) => {
   const [loginUser, setLoginUser] = useState<any>({});
 
   useEffect(() => {
-    const user = localStorage.getItem("user") || "";
+    const user = localStorage.getItem("user") || "{}";
     setLoginUser(JSON.parse(user));
   }, []);
 
@@ -20,22 +20,14 @@ const LeftDefaultLayout = (props: any) => {
       <div className={styles.headLeft}>
         <div className={styles.BoxInfoUser}>
           <Link to={"/profile"}>
-            <img
-              className={styles.avatar}
-              src={"/images/logo-white.svg"}
-              alt=""
-            />
+            <img className={styles.avatar} src={"/images/logo-white.svg"} alt="" />
           </Link>
           {!smallLeft && (
             <div className={styles.infoUser}>
               <div className="name">{loginUser?.username || "admin"}</div>
               <div className="status">
                 Verified Profile
-                <img
-                  className="icon"
-                  src={"/images/icon-verified.svg"}
-                  alt=""
-                />
+                <img className="icon" src={"/images/icon-verified.svg"} alt="" />
               </div>
             </div>
           )}
@@ -51,9 +43,7 @@ const LeftDefaultLayout = (props: any) => {
       <NavLeft smallLeft={smallLeft} />
 
       {!smallLeft && (
-        <div className={styles.Copyright}>
-          Copyright @Icetea 2022. All rights reserved.
-        </div>
+        <div className={styles.Copyright}>Copyright @Icetea 2022. All rights reserved.</div>
       )}
     </div>
   );
