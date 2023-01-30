@@ -25,7 +25,7 @@ const getMailOptions = (body, file) => {
     to: process.env.REACT_APP_HR_EMAIL,
     cc: process.env.REACT_APP_TA_EMAIL,
     replyTo: email,
-    subject: `[Job Application /Icetea Careers] ${name} - ${jobTitle}`,
+    subject: `[Job Application / Icetea Careers] ${name} - ${jobTitle}`,
     html: `<div style="background:#f5f5f5; display:flex; padding-top:20px; padding-bottom:20px">
     <div style="background: #fff; padding:20px; margin: 0 auto">
         <img src="cid:logo" width="150" alt="Icetea Labs"
