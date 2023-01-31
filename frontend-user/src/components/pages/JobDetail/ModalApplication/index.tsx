@@ -10,7 +10,7 @@ type ModalApplicationTypes = {
 const ModalApplication = (props: ModalApplicationTypes) => {
   const styles = useStyles();
   const { open, handleClose, jobDetail } = props;
-  console.log(jobDetail);
+  // console.log(jobDetail);
   return (
     <>
       <Dialog

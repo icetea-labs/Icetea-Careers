@@ -89,7 +89,7 @@ const JobDetail: FunctionComponent = () => {
   }, [id]);
 
   useEffect(() => {
-    if (jobDetail && !jobDetail.display) navigate("/404notfound");
+    if (jobDetail && jobDetail?.id && !jobDetail.display) navigate("/404notfound");
   }, [jobDetail, navigate]);
 
   // useEffect(() => {
