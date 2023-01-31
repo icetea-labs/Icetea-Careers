@@ -3,14 +3,12 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme: any) => {
   return {
     footer: {
-      // background: "#000",
       width: "100%",
     },
     footerWrap: {
       margin: "0 auto",
       maxWidth: "1440px",
       padding: "0 80px",
-      // background: "url(/images/bg-footer.png)",
       backgroundSize: "contain",
       width: "100%",
       boxSizing: "border-box",
@@ -64,7 +62,9 @@ const useStyles = makeStyles((theme: any) => {
     talentTeam: {
       width: "100%",
       display: "flex",
-      justifyContent: "space-between",
+      flexDirection: "column",
+      justifyContent: "center",
+      textAlign: "center",
       font: theme.typography.nn41424.font,
 
       "& .talent-label": {
@@ -73,6 +73,7 @@ const useStyles = makeStyles((theme: any) => {
         font: "normal normal 500 12px/24px TTHoves",
       },
       "& .hr": {
+        justifyContent: "center",
         display: "flex",
         alignItems: "center",
         gap: 10,
@@ -91,7 +92,7 @@ const useStyles = makeStyles((theme: any) => {
     },
     hrGroup: {
       display: "grid",
-      gridTemplateColumns: "1fr 1fr 1fr",
+      gridTemplateColumns: "1fr 1fr",
       gap: 30,
     },
     copyRight: {
@@ -112,21 +113,12 @@ const useStyles = makeStyles((theme: any) => {
         paddingLeft: 0,
         paddingRight: 0,
       },
-      talentTeam: {
-        flexDirection: "column",
-        justifyContent: "center",
-        textAlign: "center",
-        "& .hr": {
-          justifyContent: "center",
-        },
-      },
-    },
-    [theme.breakpoints.down("1024")]: {
       hrGroup: {
         gridTemplateColumns: "1fr",
         gap: 12,
       },
     },
+    [theme.breakpoints.down("1024")]: {},
     [theme.breakpoints.down("md")]: {
       footerWrap: {
         padding: "0 30px",

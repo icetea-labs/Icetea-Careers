@@ -9,19 +9,14 @@ type teamProps = {
 
 const team: Array<teamProps> = [
   {
-    name: "Ms. Hong Anh",
-    phone: "+84 38 646 3895",
-    telegram: "@anhngo38",
+    name: "Ms. Huong",
+    phone: "+84 91 990 0925",
+    telegram: "@huongthu510",
   },
   {
     name: "Ms. Giang",
     phone: "+84 94 313 9421",
     telegram: "@PTHGiang2497",
-  },
-  {
-    name: "Ms. Phuong",
-    phone: "+84 39 344 4548",
-    telegram: "@phoebehp",
   },
 ];
 
@@ -38,11 +33,7 @@ const Footer = (props: FooterProps) => {
       <div className={styles.footerWrap}>
         <div className={styles.footerContainer}>
           <div className={styles.socials}>
-            <img
-              src="/images/logo-text-horizontal-white.svg"
-              className={styles.logo}
-              alt=""
-            />
+            <img src="/images/logo-text-horizontal-white.svg" className={styles.logo} alt="" />
             <p className="mail">recruitment@icetea.io</p>
             <p>+84 246 658 5248</p>
             <p className="description">
@@ -69,9 +60,7 @@ const Footer = (props: FooterProps) => {
             </div>
           </div>
         </div>
-        <div className={styles.copyRight}>
-          Copyright © 2022 . All rights reserved.
-        </div>
+        <div className={styles.copyRight}>Copyright © 2022 . All rights reserved.</div>
       </div>
     </div>
   );
