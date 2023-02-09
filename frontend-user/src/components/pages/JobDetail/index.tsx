@@ -18,26 +18,26 @@ export type SocialProps = {
 };
 
 export const socialData: Array<SocialProps> = [
+  // {
+  //   url: "https://web.telegram.org/",
+  //   imgUrl: "/images/socials/telegram.svg",
+  //   imgHoverUrl: "/images/socials/telegram-blue.svg",
+  //   label: "Telegram",
+  // },
   {
-    url: "https://web.telegram.org/",
-    imgUrl: "/images/socials/telegram.svg",
-    imgHoverUrl: "/images/socials/telegram-blue.svg",
-    label: "Telegram",
-  },
-  {
-    url: "https://twitter.com/",
+    url: "https://twitter.com/Icetea_Labs",
     imgUrl: "/images/socials/twitter.svg",
     imgHoverUrl: "/images/socials/twitter-blue.svg",
     label: "Twitter",
   },
   {
-    url: "https://www.linkedin.com/",
+    url: "https://www.linkedin.com/company/icetea-labs/",
     imgUrl: "/images/socials/linkedin.svg",
     imgHoverUrl: "/images/socials/linkedin-blue.svg",
     label: "Linkedin",
   },
   {
-    url: "https://www.facebook.com/",
+    url: "https://www.facebook.com/IceteaLabsCareers",
     imgUrl: "/images/socials/facebook.svg",
     imgHoverUrl: "/images/socials/facebook-blue.svg",
     label: "Facebook",
