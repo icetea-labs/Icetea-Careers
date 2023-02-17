@@ -75,6 +75,7 @@ const JobOpportunities = (props: any) => {
             filter={filter}
             loading={loading}
             handleChangeFilter={handleChangeFilter}
+            defaultNav={CATEGORY_TYPE.SOFTWARE_DEVELOPMENT}
           />
           <div className={styles.btnViewAll}>
             <ButtonLarge text="View All Jobs" onClick={onClickViewAll} />

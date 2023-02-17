@@ -2,7 +2,6 @@ import { Box, Skeleton } from "@mui/material";
 import { useState } from "react";
 import {
   categories,
-  CATEGORY_TYPE,
   HIGH_SPEED,
   MAPPING_LOCATION_TYPE_TEXT,
 } from "../../../constants";
@@ -19,16 +18,23 @@ type JobOpportunitiesType = {
   listJob: Array<any>;
   filter: FilterProps;
   loading?: Boolean;
+  defaultNav?: JobType["value"] | undefined;
   handleChangeFilter: (newFilter: FilterProps) => void;
 };
 
 const ListJob = (props: JobOpportunitiesType) => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
-  const { listJob = [], filter, handleChangeFilter, loading = false } = props;
+  const {
+    listJob = [],
+    filter,
+    handleChangeFilter,
+    loading = false,
+    defaultNav,
+  } = props;
 
-  const [navValue, setNavValue] = useState<JobType["value"]>(
-    CATEGORY_TYPE.SOFTWARE_DEVELOPMENT
+  const [navValue, setNavValue] = useState<JobType["value"] | undefined>(
+    defaultNav
   );
 
   const handleChangeNav = (value: any) => {

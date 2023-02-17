@@ -12,7 +12,7 @@ export type FilterProps = {
   page: number;
   perPage?: number;
   search: string;
-  category: string;
+  category: typeof CATEGORY_TYPE[keyof typeof CATEGORY_TYPE];
   display: boolean;
 };
 
@@ -28,7 +28,7 @@ const Jobs: FunctionComponent = () => {
     page: 1,
     perPage: 15,
     search: "",
-    category: CATEGORY_TYPE.SOFTWARE_DEVELOPMENT,
+    category: "",
     display: true,
   });
 
