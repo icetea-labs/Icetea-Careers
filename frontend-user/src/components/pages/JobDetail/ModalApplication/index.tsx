@@ -43,11 +43,11 @@ const ModalApplication = (props: ModalApplicationTypes) => {
           </div>
           <div className="contact">
             <img src="/images/icon-phone.svg" alt="" />
-            <span>+84 246 658 5248 </span>
+            <span>+84 94 313 9421 </span>
           </div>
           <div className="contact">
             <img src="/images/socials/telegram-white.svg" alt="" />
-            <span>@anhngo38 (Ms. Hong Anh- Talent Acquisition Specialist)</span>
+            <span>@PTHGiang2497 (Ms. Huong Giang- Talent Acquisition Specialist)</span>
           </div>
           <p className="info">
             Stay tuned and we look forward to speaking with you!

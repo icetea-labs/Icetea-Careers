@@ -44,7 +44,7 @@ const FormApplication = (props: FormApplicationTypes) => {
 
   useEffect(() => {
     const initClient = () => {
-      gapi.client.init({
+      gapi.auth2.init({
         clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID || "",
         scope: "",
         // scope: "https://www.googleapis.com/auth/gmail.send",
@@ -81,6 +81,11 @@ const FormApplication = (props: FormApplicationTypes) => {
       toast.error("Your email address you entered does not match your account");
       return;
     }
+    // CV file < 1MB
+    if (cvFile?.size > 1048576) {
+      toast.error("Your uploaded file is too large. Please try again");
+      return;
+    }
 
     let newData = getFormData(data);
     newData.delete("cv");
@@ -108,14 +113,13 @@ const FormApplication = (props: FormApplicationTypes) => {
         toast.success(
           res.data.message || "Your mail has been sent successfuly"
         );
+        handleApply();
       }
     } catch (error: any) {
       setLoadingSubmit(false);
       console.log(error);
       toast.error(error?.response?.data?.message || "Something went wrong");
     }
-
-    handleApply();
   };
 
   const renderError = () => {
@@ -198,7 +202,7 @@ const FormApplication = (props: FormApplicationTypes) => {
           </div>
           {errors.cv && renderError()}
           <p className={styles.cvNote}>
-            (PDF, PPT, PPTX, DOC, DOCX, JPG, PNG - Max size: 5 MB)
+            (PDF, PPT, PPTX, DOC, DOCX, JPG, PNG - Max size: 1 MB)
           </p>
         </div>
 
