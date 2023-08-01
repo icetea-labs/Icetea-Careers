@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme: any) => {
     hrGroup: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
-      gap: 30,
+      columnGap: 30,
     },
     copyRight: {
       color: "#AEAEAE",
