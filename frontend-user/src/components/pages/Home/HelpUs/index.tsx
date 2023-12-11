@@ -10,7 +10,7 @@ const HelpUs = (props: any) => {
       <div className={commonStyles.section}>
         <div className={styles.helpusContainer}>
           <p className="helpus-title">
-            Help us make sustainable impacts through
+            Join us and make sustainable impacts through
           </p>
           <p className="helpus-title blending">
             decentralization technologies.
