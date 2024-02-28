@@ -17,7 +17,7 @@ const JobOpportunities = (props: any) => {
   const [dataJobs, setDataJobs] = useState<any[]>([]);
   const [filter, setFilter] = useState<FilterProps>({
     page: 1,
-    perPage: 9,
+    perPage: 12,
     search: "",
     category: CATEGORY_TYPE.SOFTWARE_DEVELOPMENT,
     display: true,
