@@ -8,11 +8,11 @@ type teamProps = {
 };
 
 const team: Array<teamProps> = [
-  {
-    name: "Ms. Huong",
-    phone: "+84 91 990 0925",
-    telegram: "@huongthu510",
-  },
+  // {
+  //   name: "Ms. Huong",
+  //   phone: "+84 91 990 0925",
+  //   telegram: "@huongthu510",
+  // },
   {
     name: "Ms. Giang",
     phone: "+84 94 313 9421",
