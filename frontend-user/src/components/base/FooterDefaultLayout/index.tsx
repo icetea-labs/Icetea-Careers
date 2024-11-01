@@ -24,9 +24,9 @@ const team: Array<teamProps> = [
     telegram: "@thuynguyen05",
   },
   {
-    name: "Ms. Hoa",
-    phone: "+84 97 208 3896",
-    telegram: "@tieuhoa2308",
+    name: "Ms. Lich",
+    phone: "+84 97 103 8065",
+    telegram: "@lichthanh107",
   },
 ];
 
@@ -51,7 +51,7 @@ const Footer = (props: FooterProps) => {
             <p className="mail">recruitment@icetea.io</p>
             <p>+84 246 658 5248</p>
             <p className="description">
-              11th Floor, IPH Tower, 241 Xuan Thuy Street, Cau Giay, Hanoi
+              17th Floor, HUD Tower, 37 Le Van Luong Street, Thanh Xuan, Hanoi
             </p>
 
             <SocialButtons />
