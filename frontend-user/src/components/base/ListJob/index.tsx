@@ -1,5 +1,5 @@
 import { Box, Skeleton } from "@mui/material";
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 import {
   categories,
   HIGH_SPEED,
@@ -10,21 +10,106 @@ import { FilterProps } from "../../pages/Jobs";
 import useStyles from "./styles";
 
 type JobType = {
-  label: typeof categories[number]["label"];
-  value: typeof categories[number]["value"];
+  label: (typeof categories)[number]["label"];
+  value: (typeof categories)[number]["value"];
 };
 
+interface Job {
+  id: string | number;
+  title: string;
+  level: string;
+  location: keyof typeof MAPPING_LOCATION_TYPE_TEXT;
+}
+
 type JobOpportunitiesType = {
-  listJob: Array<any>;
+  listJob: Array<Job>;
   filter: FilterProps;
-  loading?: Boolean;
-  defaultNav?: JobType["value"] | undefined;
+  loading?: boolean;
+  defaultNav?: JobType["value"];
   handleChangeFilter: (newFilter: FilterProps) => void;
 };
 
-const ListJob = (props: JobOpportunitiesType) => {
+const JobCard = memo(({ job }: { job: Job }) => {
+  const styles = useStyles();
+
+  return (
+    <div
+      className={styles.jobCard}
+      data-aos="zoom-in"
+      data-aos-duration={HIGH_SPEED}
+    >
+      <p className="job-title">{job?.title || "N/A"}</p>
+      <div className="job-level">
+        {job?.level?.split(";").map((item) => (
+          <span key={item} className="job-level-item">
+            {item}
+          </span>
+        ))}
+      </div>
+      <div className={styles.cardBottom}>
+        <div className="job-location">
+          <span>
+            {job.location ? MAPPING_LOCATION_TYPE_TEXT[job.location] : "N/A"}
+          </span>
+        </div>
+        <a
+          href={`${window.location.origin}#/jobs/${job.id}`}
+          target="_blank"
+          rel="noreferrer"
+          className="btn-view-more"
+        >
+          <span>Discover</span>
+          <img src="/images/icon-viewmore.svg" alt="" />
+        </a>
+      </div>
+    </div>
+  );
+});
+
+const LoadingSkeleton = memo(() => {
   const styles = useStyles();
   const commonStyles = useCommonStyle();
+
+  return (
+    <div className={styles.jobSkeleton}>
+      {new Array(3).fill(0).map((_, index) => (
+        <div className={styles.skeletonItem} key={index}>
+          <Skeleton
+            className={commonStyles.skeleton}
+            height={36}
+            width="100%"
+          />
+          <Skeleton
+            className={commonStyles.skeleton}
+            height={36}
+            width="100%"
+          />
+          <Box gap="20px" sx={{ display: "flex" }}>
+            <Skeleton
+              className={commonStyles.skeleton}
+              height={28}
+              width="100%"
+            />
+            <Skeleton
+              className={commonStyles.skeleton}
+              height={28}
+              width="100%"
+            />
+          </Box>
+          <Skeleton
+            className={commonStyles.skeleton}
+            sx={{ marginTop: "auto" }}
+            height={28}
+            width="47%"
+          />
+        </div>
+      ))}
+    </div>
+  );
+});
+
+const ListJob = (props: JobOpportunitiesType) => {
+  const styles = useStyles();
   const {
     listJob = [],
     filter,
@@ -37,128 +122,48 @@ const ListJob = (props: JobOpportunitiesType) => {
     defaultNav
   );
 
-  const handleChangeNav = (value: any) => {
-    if (value === navValue) return;
-    setNavValue(value);
-    handleChangeFilter({
-      ...filter,
-      category: value,
-    });
-  };
-
-  const renderEmpty = () => {
-    return (
-      <div className={styles.listEmpty}>
-        Sorry, but nothing matched your search terms!
-      </div>
-    );
-  };
-
-  const renderLoading = () => {
-    return (
-      <div className={styles.jobSkeleton}>
-        {[...Array(9)].map((num, index) => (
-          <div key={index} className={styles.skeletonItem}>
-            <Skeleton
-              className={commonStyles.skeleton}
-              height={36}
-              width="100%"
-            />
-            <Skeleton
-              className={commonStyles.skeleton}
-              height={36}
-              width="100%"
-            />
-            <Box gap="20px" sx={{ display: "flex" }}>
-              <Skeleton
-                className={commonStyles.skeleton}
-                height={28}
-                width="100%"
-              />
-              <Skeleton
-                className={commonStyles.skeleton}
-                height={28}
-                width="100%"
-              />
-            </Box>
-
-            <Skeleton
-              className={commonStyles.skeleton}
-              sx={{ marginTop: "auto" }}
-              height={28}
-              width="47%"
-            />
-          </div>
-        ))}
-      </div>
-    );
-  };
+  const handleChangeNav = useCallback(
+    (value: JobType["value"]) => {
+      if (value === navValue) return;
+      setNavValue(value);
+      handleChangeFilter({
+        ...filter,
+        category: value,
+      });
+    },
+    [navValue, filter, handleChangeFilter]
+  );
 
   return (
     <div className={styles.container}>
       <div className={styles.jobsNav} id="nav">
-        {categories.map((item: JobType, index: number) => {
-          return (
-            <div
-              key={index}
-              className={`nav-item ${
-                navValue === item.value ? "nav-actived" : ""
-              }`}
-              onClick={() => handleChangeNav(item.value)}
-            >
-              {item.label}
-            </div>
-          );
-        })}
+        {categories.map((item: JobType) => (
+          <div
+            key={item.value}
+            className={`nav-item ${
+              navValue === item.value ? "nav-actived" : ""
+            }`}
+            onClick={() => handleChangeNav(item.value)}
+          >
+            {item.label}
+          </div>
+        ))}
       </div>
       {loading ? (
-        renderLoading()
-      ) : listJob && listJob.length > 0 ? (
-        <div className={styles.jobsList}>
-          {listJob.map((job: any) => {
-            return (
-              <div
-                key={job?.id}
-                className={styles.jobCard}
-                data-aos={listJob.length !== 1 && "zoom-in"}
-                data-aos-duration={HIGH_SPEED}
-              >
-                <p className="job-title">{job?.title || "N/A"}</p>
-                <div className="job-level">
-                  {job?.level &&
-                    job.level.split(";").map((item: any) => (
-                      <span key={item} className="job-level-item">
-                        {item}
-                      </span>
-                    ))}
-                </div>
-                <div className={styles.cardBottom}>
-                  <div className="job-location">
-                    <span>
-                      {job.location
-                        ? MAPPING_LOCATION_TYPE_TEXT[job.location]
-                        : "N/A"}
-                    </span>
-                  </div>
-                  <a
-                    href={`${window.location.origin}#/jobs/${job.id}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-view-more"
-                  >
-                    <span>Discover</span>
-                    <img src="/images/icon-viewmore.svg" alt="" />
-                  </a>
-                </div>
-              </div>
-            );
-          })}
+        <LoadingSkeleton />
+      ) : !listJob?.length ? (
+        <div className={styles.listEmpty}>
+          Sorry, but nothing matched your search terms!
         </div>
       ) : (
-        renderEmpty()
+        <div className={styles.jobsList}>
+          {listJob.map((job) => (
+            <JobCard key={job.id} job={job} />
+          ))}
+        </div>
       )}
     </div>
   );
 };
 
-export default ListJob;
+export default memo(ListJob);
