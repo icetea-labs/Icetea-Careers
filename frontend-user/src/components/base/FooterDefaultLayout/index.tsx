@@ -24,9 +24,9 @@ const team: Array<teamProps> = [
     telegram: "@thuynguyen05",
   },
   {
-    name: "Ms. Lich",
-    phone: "+84 97 103 8065",
-    telegram: "@lichthanh107",
+    name: "Ms. An",
+    phone: "+84 96 493 8438",
+    telegram: "@tranan198",
   },
 ];
 
